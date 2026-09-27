@@ -627,7 +627,7 @@
         if(selected)selected.classList.add(correct?'is-correct':'is-wrong');
         if(!correct&&right)right.classList.add('is-correct');
       }
-      lessonFeedback.textContent=correct?'Верно! Отличная работа ✨':'Почти! Правильный ответ показан зелёным.';
+      lessonFeedback.textContent=correct?'Верно! Отличная работа':'Почти! Правильный ответ показан зелёным.';
       if(task.type==='order'&&!correct)lessonFeedback.textContent='Правильный порядок: '+task.correct.join(' ');
       lessonFeedback.className='lesson-feedback '+(correct?'good':'bad');
       lessonAction.textContent='ДАЛЕЕ →';
