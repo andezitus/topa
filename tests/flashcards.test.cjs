@@ -38,7 +38,7 @@ const emit=(name,detail)=>listeners[name]({detail});
 const open=()=>click('reviewBtn');
 function answer(known){click(known?'reviewKnown':'reviewLearning')}
 function guideAdd(id){$('#guideContent').events.click({target:{closest:()=>({dataset:{reviewAdd:id}})}})}
-boot();assert.equal($('#reviewDueCount').textContent,0);open();assert.match($('#reviewContent').innerHTML,/Завершите первый урок/);
+boot();assert.equal($('#reviewDueCount').textContent,0);open();assert.match($('#reviewContent').innerHTML,/Завершите ознакомительный урок/);
 // Errors recorded before completion may not unlock any words.
 emit('topa:answer',{lesson:1,task:0,correct:false});assert.equal($('#reviewDueCount').textContent,0);
 progress[language].completed=1;emit('topa:progress');assert.equal($('#reviewDueCount').textContent,7);open();assert.equal(current().session.queue[0],'1:0');assert.doesNotMatch($('#reviewContent').innerHTML,/Новое слово из урока|review-reason|reviewTip/);
@@ -54,7 +54,7 @@ answer(true);assert.equal(current().cards['1:0'].due,now+86400000);assert.equal(
 click('closeReview');guideAdd('1:0');assert.equal(current().cards['1:0'].manual,true);assert.equal(current().session.queue.filter(id=>id==='1:0').length,2);guideAdd('1:0');assert.equal(current().session.queue.filter(id=>id==='1:0').length,2,'manual additions are deduplicated');
 // Uncompleted lesson content cannot be added even through a forged data attribute.
 guideAdd('2:0');assert.equal(current().cards['2:0'],undefined);
-const firstLanguage=JSON.stringify(current());language='Киргизский';emit('topa:progress');assert.equal($('#reviewDueCount').textContent,0);open();assert.match($('#reviewContent').innerHTML,/Завершите первый урок/);progress[language].completed=1;emit('topa:progress');open();assert.equal(current().session.queue.length,7);answer(true);assert.equal(current().cards['1:0'].streak,1);
+const firstLanguage=JSON.stringify(current());language='Киргизский';emit('topa:progress');assert.equal($('#reviewDueCount').textContent,0);open();assert.match($('#reviewContent').innerHTML,/Завершите ознакомительный урок/);progress[language].completed=1;emit('topa:progress');open();assert.equal(current().session.queue.length,7);answer(true);assert.equal(current().cards['1:0'].streak,1);
 language='Татарский';emit('topa:progress');assert.equal(JSON.stringify(current()),firstLanguage,'other language results stay intact');
 // Completion of the next lesson also extends an unfinished session with new words.
 progress[language].completed=2;emit('topa:progress');assert.ok(current().session.queue.includes('2:6'));assert.equal(Object.keys(current().cards).length,14);
@@ -100,3 +100,18 @@ selectLesson(1);const beforeSelectionReload=JSON.stringify(current());boot();ass
 const tatarBulk=JSON.stringify(current());language='Чувашский';progress[language].completed=1;boot();selectLesson(1);assert.equal(Object.values(current().cards).filter(card=>card.manual).length,7);
 language='Татарский';assert.equal(JSON.stringify(current()),tatarBulk,'bulk selection is isolated by language');
 console.log('PASS: existing review mechanics, reversible bulk selection, automatic due preservation, queue removal, interval/history retention, reload and language isolation.');
+storage.clear();language='Татарский';progress[language]={completed:0,introDone:false};boot();
+assert.equal($('#reviewDueCount').textContent,0);selectLesson(0);assert.equal(Object.keys(current().cards).length,0);
+progress[language].introDone=true;emit('topa:progress');assert.equal($('#reviewDueCount').textContent,7);
+selectLesson(0);assert.equal(Object.values(current().cards).filter(card=>card.manual).length,7);
+selectLesson(0,false);assert.equal(Object.values(current().cards).filter(card=>card.manual).length,0);
+open();assert.equal(current().session.queue.length,7);answer(true);
+const reviewedId=current().session.queue[0],reviewed=JSON.stringify(current().cards[reviewedId]);
+progress[language].completed=2;emit('topa:progress');assert.equal(Object.keys(current().cards).length,14);
+assert.equal(JSON.stringify(current().cards[reviewedId]),reviewed,'later completion does not reset an intro word');
+assert.equal(new Set(current().session.queue).size,current().session.queue.length,'overlapping lessons do not duplicate review words');
+const priorMistakes=current().cards['2:1'].lessonMistakes;
+emit('topa:answer',{lesson:0,words:['пальто'],correct:false});assert.equal(current().cards['2:1'].lessonMistakes,priorMistakes+1);
+const introState=JSON.stringify(current());language='Киргизский';progress[language]={completed:0,introDone:false};emit('topa:progress');assert.equal($('#reviewDueCount').textContent,0);
+language='Татарский';boot();assert.equal(JSON.stringify(current()),introState,'intro queue and ratings survive language switch and reload');
+console.log('PASS: intro word gating, reversible selection, shared-word rating retention and deduplicated sessions.');

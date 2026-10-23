@@ -31,10 +31,10 @@
     return value;
   }
   function allWords(){
-    return (GUIDE_DATA[language]||[]).flatMap(section=>section.words.map((word,index)=>({id:section.lesson+':'+index,lesson:section.lesson,word:word[0],translation:word[1]})));
+    return getGlossaryWords(language);
   }
   function unlockedWords(){
-    return allWords().filter(word=>word.lesson<=getLanguageProgress(language).completed);
+    return allWords().filter(word=>word.lessons.some(number=>isLessonCompleted(number)));
   }
   function record(id){
     const cards=state().cards;
@@ -125,7 +125,7 @@
   function emptyIcon(){return '<div class="review-empty__icon">'+icon+'</div>'}
   function renderEmpty(){
     const words=unlockedWords();
-    content.innerHTML='<div class="review-empty">'+emptyIcon()+'<h3>'+(words.length?'Всё повторено на сегодня':'Сначала познакомимся со словами')+'</h3><p>'+(words.length?'Вы можете выбрать любое изученное слово в справочнике и добавить его в карточки.':'Завершите первый урок. Его слова появятся здесь автоматически — вместе с переводом и удобным планом повторения.')+'</p><button class="primary" id="reviewEmptyAction" type="button">'+(words.length?'ОТКРЫТЬ СПРАВОЧНИК':'К УРОКАМ')+'</button></div>';
+    content.innerHTML='<div class="review-empty">'+emptyIcon()+'<h3>'+(words.length?'Всё повторено на сегодня':'Сначала познакомимся со словами')+'</h3><p>'+(words.length?'Вы можете выбрать любое изученное слово в справочнике и добавить его в карточки.':'Завершите ознакомительный урок. Его слова появятся здесь автоматически — вместе с переводом и удобным планом повторения.')+'</p><button class="primary" id="reviewEmptyAction" type="button">'+(words.length?'ОТКРЫТЬ СПРАВОЧНИК':'К УРОКАМ')+'</button></div>';
     $('#reviewEmptyAction').onclick=()=>{close();if(words.length)openGuide();else showSection('Обучение')};
   }
   function renderResult(){
@@ -163,7 +163,7 @@
           </span>
         </button>
         <div class="review-card-tools">
-          <button class="review-audio" id="reviewAudio" type="button" aria-label="Прослушать слово"><img src="speaker-icon.png" alt=""></button>
+          <button class="review-audio" id="reviewAudio" type="button" aria-label="Прослушать слово"><img src="speaker-icon.svg" alt=""></button>
         </div>
       </div>
       <div class="review-bottom">
