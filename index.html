@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#176CF1">
   <meta name="description" content="ТОПА — интерактивное приложение для изучения языков народов России.">
   <title>ТОПА — языки народов России</title>
@@ -85,10 +85,11 @@
     .story-avatar--woman img{transform:scale(1.08);transform-origin:center bottom}
     .story-avatar--mascot img{transform:scale(1.12);transform-origin:center bottom}
   </style>
-  <link rel="stylesheet" href="flashcards.css?v=5">
+  <link rel="stylesheet" href="flashcards.css?v=6">
   <link rel="stylesheet" href="mobile-layout.css?v=7">
   <link rel="stylesheet" href="courses.css?v=3">
   <link rel="stylesheet" href="intro-lesson.css?v=2">
+  <link rel="stylesheet" href="mobile-viewport.css?v=2">
 </head>
 <body>
   <div class="app">
@@ -100,7 +101,7 @@
         <button class="nav__item mobile-nav-statistics" data-section="Статистика"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10m8 10V4m8 16v-7" stroke-linecap="round"/></svg><span>Статистика</span></button>
         <button class="nav__item" data-section="Профиль"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Профиль</span></button>
       </nav>
-      <button class="nav__item nav__settings" data-section="Настройки"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1.1V21h-4v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.5-1H3v-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.5V3h4v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.4 9c.17.61.72 1.03 1.35 1.03H21v4h-.25c-.63 0-1.18.42-1.35 1z"/></svg><span>Настройки</span></button>
+      <button class="nav__item nav__settings" data-section="Настройки" aria-label="Настройки" title="Настройки"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1.1V21h-4v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.5-1H3v-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.5V3h4v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.4 9c.17.61.72 1.03 1.35 1.03H21v4h-.25c-.63 0-1.18.42-1.35 1z"/></svg><span>Настройки</span></button>
     </aside>
 
     <main class="main">
@@ -163,7 +164,7 @@
         <div class="statistics-cards" id="statisticsCards"></div>
       </section>
       <section class="mobile-page profile-view hidden" id="profileView" aria-labelledby="profileTitle">
-        <header class="mobile-page__header"><h1 id="profileTitle">Профиль</h1><p>Ваш аккаунт в ТОПА</p></header>
+        <header class="mobile-page__header"><div class="profile-heading"><h1 id="profileTitle">Профиль</h1><p>Ваш аккаунт в ТОПА</p></div><div class="profile-settings-slot" id="profileSettingsSlot"></div></header>
         <div class="profile-cards" id="profileCards"><section class="card account-card" id="accountCard"><div class="card__title"><h2>Ваш аккаунт</h2><span></span></div><div class="account"><div class="account__avatar">Я</div><div class="account__copy"><strong>Гость</strong><span>Сохраняйте прогресс<br>и получайте достижения</span></div></div><button class="primary account-btn" id="accountBtn">СОЗДАТЬ АККАУНТ</button></section></div>
       </section>
     </main>
@@ -799,7 +800,7 @@
       $('#lessonStep').textContent=count+'/'+count;$('#lessonProgressFill').style.width='100%';
       host.innerHTML='<div class="lesson-complete"><h2 id="taskTitle">'+(intro?'Знакомство состоялось!':'Урок завершён!')+'</h2><p>'+(intro?'Теперь вам знакомы слова для следующих уроков. Они уже в справочнике и карточках повторения.':'Вы познакомились с приветствиями и базовыми фразами на '+escapeHtml(language.toLowerCase())+' языке.')+'</p><div class="lesson-complete__badge">✓ '+count+' заданий выполнено</div></div>';
       lessonFeedback.textContent=firstCompletion?'Прогресс сохранён отдельно для этого языка.':'Урок повторён — знания закреплены!';lessonFeedback.className='lesson-feedback good';
-      lessonAction.textContent='ВЕРНУТЬСЯ К ДОРОГЕ';lessonAction.disabled=false;showToast(firstCompletion?'Урок завершён! +25 баллов':'Урок повторён!');
+      lessonAction.textContent='ВЕРНУТЬСЯ К ДОРОГЕ';lessonAction.disabled=false;
     }
 
     function storyLineMarkup(index,animated){
@@ -1075,7 +1076,6 @@
       lessonAction.textContent='ВЕРНУТЬСЯ';
       lessonAction.disabled=false;
       scrollStoryToBottom();
-      showToast(firstCompletion?'Урок 3 завершён! +25 баллов':'История повторена!');
     }
     function openStory(restart){
       const progress=getLanguageProgress(language);
@@ -1128,6 +1128,7 @@
         document.querySelectorAll('.nav__item').forEach(function(item){item.classList.toggle('active',item.dataset.section===section)});
         Object.keys(views).forEach(function(name){$('#'+views[name]).classList.toggle('hidden',name!==section)});
         scrollPageToTop();
+        window.dispatchEvent(new CustomEvent('topa:section',{detail:{section:section}}));
         return;
       }
       scrollPageToTop();
@@ -1201,8 +1202,9 @@
     renderLanguage();
     renderProgress();
   </script>
-  <script src="flashcards.js?v=9"></script>
-  <script src="mobile-layout.js?v=6"></script>
+  <script src="flashcards.js?v=10"></script>
+  <script src="mobile-layout.js?v=7"></script>
   <script src="courses.js?v=1"></script>
+  <script src="mobile-viewport.js?v=1"></script>
 </body>
 </html>

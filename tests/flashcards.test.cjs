@@ -8,7 +8,7 @@ const source=fs.readFileSync('flashcards.js','utf8');
 const DATA=html.slice(html.indexOf('    const courseData='),html.indexOf('    const STORY_ROLES='));
 let now=Date.UTC(2026,9,21,12),language='Татарский';
 const progress={'Татарский':{completed:0},'Чувашский':{completed:0},'Киргизский':{completed:0}};
-const storage=new Map(),listeners={};
+const storage=new Map(),listeners={},toastMessages=[];
 let elements=new Map(),guideButtons=[],guideChecks=[];
 class Element{
   constructor(id=''){this.id=id;this.disabled=false;this.hidden=false;this.style={};this.dataset={};this.events={};this.attrs={};const classes=new Set();this.classList={add:c=>classes.add(c),remove:c=>classes.delete(c),contains:c=>classes.has(c),toggle:(c,b)=>b?classes.add(c):classes.delete(c)}}
@@ -25,7 +25,7 @@ class Element{
 const $=s=>{const id=s.replace(/^#/,'');if(!elements.has(id))elements.set(id,new Element(id));return elements.get(id)};
 const document={createElement:()=>new Element(),body:new Element('body'),activeElement:null,querySelector:()=>null,querySelectorAll:selector=>selector==='[data-review-lesson]'?guideChecks:guideButtons};
 const DateProxy=class extends Date{constructor(...args){super(...(args.length?args:[now]))}static now(){return now}};
-const context=vm.createContext({console,Map,Set,Date:DateProxy,Math,Object,Array,JSON,String,Number,document,$,window:{addEventListener:(name,callback)=>listeners[name]=callback},localStorage:{getItem:key=>storage.get(key)||null,setItem:(key,value)=>storage.set(key,value)},getLanguageProgress:()=>progress[language],escapeHtml:s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;'),showToast:()=>{},speak:()=>{},showSection:()=>{},openGuide:()=>{}});
+const context=vm.createContext({console,Map,Set,Date:DateProxy,Math,Object,Array,JSON,String,Number,document,$,window:{addEventListener:(name,callback)=>listeners[name]=callback},localStorage:{getItem:key=>storage.get(key)||null,setItem:(key,value)=>storage.set(key,value)},getLanguageProgress:()=>progress[language],escapeHtml:s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;'),showToast:message=>toastMessages.push(message),speak:()=>{},showSection:()=>{},openGuide:()=>{}});
 Object.defineProperty(context,'language',{get:()=>language});
 vm.runInContext(DATA,context);
 assert.equal(vm.runInContext('Object.values(courseData).every(course=>course.tasks.length===5)',context),true,'all courses retain exactly five lesson-one tasks');
@@ -115,3 +115,6 @@ emit('topa:answer',{lesson:0,words:['пальто'],correct:false});assert.equal
 const introState=JSON.stringify(current());language='Киргизский';progress[language]={completed:0,introDone:false};emit('topa:progress');assert.equal($('#reviewDueCount').textContent,0);
 language='Татарский';boot();assert.equal(JSON.stringify(current()),introState,'intro queue and ratings survive language switch and reload');
 console.log('PASS: intro word gating, reversible selection, shared-word rating retention and deduplicated sessions.');
+
+assert.deepEqual(toastMessages,[],'manual add and cancel are silent');
+open();assert.match($('#reviewContent').innerHTML,/Нажмите, чтобы увидеть перевод/,'front face contains the flip instruction');

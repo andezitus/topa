@@ -10,3 +10,7 @@
 
 
 /* Faces use normal DOM visibility, not 3D compositing, to keep mobile text sharp. */
+
+.review-face--front{padding-bottom:76px}
+.review-face__hint{position:absolute;left:18px;right:18px;bottom:22px;color:#647fa5;font-size:.84rem;line-height:1.35;font-weight:600;letter-spacing:normal;text-align:center}
+@media(max-width:560px){.review-face--front{padding-bottom:72px}.review-face__hint{font-size:.74rem;bottom:20px}}

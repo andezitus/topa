@@ -1,0 +1,92 @@
+:root{--app-height:100vh;--visible-top:0px;--visible-bottom:0px;--mobile-nav-height:calc(72px + env(safe-area-inset-bottom,0px))}
+@supports(height:100dvh){:root{--app-height:100dvh}}
+@media(max-width:860px){
+  html,body{touch-action:pan-y}
+  .sidebar{bottom:var(--visible-bottom);height:var(--mobile-nav-height);padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+  html.mobile-static-page,body.mobile-static-page{height:var(--app-height);min-height:0;overflow:hidden;overscroll-behavior:none}
+  body.mobile-static-page{position:fixed;top:var(--visible-top);left:0;right:0;width:100%;padding-bottom:0}
+  .mobile-static-page .app{height:100%;min-height:0;overflow:hidden}
+  .mobile-static-page .main{height:calc(100% - var(--mobile-nav-height));min-height:0;padding: max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px));overflow:hidden}
+  .mobile-static-page #languagesView:not(.hidden),.mobile-static-page #profileView:not(.hidden),.mobile-static-page #statisticsView:not(.hidden){display:flex;flex-direction:column;height:100%;min-height:0;overflow:hidden}
+  .mobile-static-page #languagesView{padding:0}
+  .mobile-static-page #languagesView .languages-head{flex:none;gap:12px;margin-bottom:16px}
+  .mobile-static-page #availableCourses:not([hidden]){flex:1;min-height:0;max-height:480px;grid-template-rows:repeat(3,minmax(0,1fr));gap:12px}
+  .mobile-static-page #languagesView .language-card{height:auto;min-height:0;padding:12px 18px;gap:16px}
+  .mobile-static-page #upcomingCourses{min-height:0}
+  .mobile-static-page .statistics-view .mobile-page__header{padding-bottom:12px}
+  .mobile-static-page .statistics-cards{grid-template-rows:minmax(0,1.1fr) minmax(0,.8fr) minmax(0,1fr)}
+  .mobile-static-page .profile-view .mobile-page__header{flex:none;padding:0 0 18px}
+  .mobile-static-page .profile-cards{display:flex;flex-direction:column;flex:1;min-height:0}
+  .mobile-static-page .profile-cards .account-card{flex:1;min-height:0;max-height:290px;padding:18px;gap:14px;justify-content:space-between}
+  .mobile-static-page .profile-cards .account-btn{flex:none}
+  /* The outer shell fits the visual viewport. Only the word list scrolls. */
+  #guideModal{top:var(--visible-top);bottom:auto;height:var(--app-height);min-height:0;overflow:hidden;padding:max(12px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+  #guideModal .guide-dialog{height:100%;max-height:100%;min-height:0;width:100%;border-radius:22px;overflow:hidden}
+  #guideModal .guide-dialog__header{position:relative;flex:none;padding:16px 18px}
+  #guideModal .guide-dialog__body{min-height:0;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+  #guideModal .guide-dialog__footer{flex:none;padding:12px 18px 14px}
+  #guideModal .guide-dialog__footer .primary{min-height:46px;padding:12px 14px}
+  body.viewport-compact.mobile-static-page .main{padding-top:max(12px,env(safe-area-inset-top,0px));padding-bottom:10px}
+  .viewport-compact #languagesView .languages-head{gap:10px;margin-bottom:12px}
+  .viewport-compact #languagesView h1{font-size:1.2rem;line-height:1.25}
+  .viewport-compact .course-source{gap:4px}
+  .viewport-compact #availableCourses:not([hidden]){gap:10px}
+  .viewport-compact #languagesView .language-card{padding:10px 14px;gap:14px}
+  .viewport-compact .course-flag{width:60px;height:41px;border-radius:14px}
+  .viewport-compact #languagesView .language-card strong{font-size:1.06rem}
+  .viewport-compact .statistics-cards{gap:8px}
+  .viewport-compact .statistics-cards .card{padding:11px}
+  .viewport-compact .statistics-cards #goalCard .card__title,.viewport-compact .statistics-cards #progressCard .card__title{margin-bottom:6px}
+  .viewport-compact .statistics-cards .progress-wrap{gap:5px}
+  .viewport-compact .statistics-cards .streak-start{top:8px;font-size:1rem}
+  .viewport-compact .statistics-cards .streak-card__status{width:92px;top:-8px}
+  .viewport-compact .statistics-cards #wordCard{gap:3px;padding:11px}
+  .viewport-compact .statistics-cards #wordCard .word-card__badge{width:36px;height:36px;font-size:1.2rem;border-radius:12px;margin-bottom:3px}
+  .viewport-compact .statistics-cards #wordCard strong{font-size:1.1rem}
+  .viewport-compact .statistics-cards #wordCard small{font-size:.63rem}
+  .viewport-compact .statistics-cards #wordCard>span{font-size:.82rem}
+  .viewport-compact .statistics-cards #progressCard .card__title h2{font-size:.92rem}
+  .viewport-compact .statistics-cards .ring{width:56px;height:56px}
+  .viewport-compact .statistics-cards .ring:before{inset:7px}
+  .viewport-compact .statistics-cards .ring strong{font-size:1.05rem}
+  .viewport-compact .statistics-cards .progress-copy strong{font-size:.8rem}
+  .viewport-tight.mobile-static-page .statistics-cards{grid-template-rows:repeat(2,minmax(0,1fr));max-height:none}
+  .viewport-tight .statistics-cards .streak-card,.viewport-tight .statistics-cards #goalCard{grid-column:auto}
+  .viewport-tight .statistics-cards .card__title h2{font-size:.8rem}
+  .viewport-tight .statistics-cards .goal{gap:6px}
+  .viewport-tight .statistics-cards .goal__icon,.viewport-tight .statistics-cards .goal__icon img{width:28px;height:28px}
+  .viewport-tight .statistics-cards .goal__top{font-size:.7rem}
+  .viewport-tight .statistics-cards .goal-edit{font-size:.65rem}
+  .viewport-tight .statistics-cards .streak-start{font-size:.85rem;top:8px;left:8px;right:8px;max-width:none}
+  .viewport-tight .statistics-cards .streak-card__mascot{left:50%;max-height:60%;max-width:85%}
+  .viewport-tight .statistics-cards .streak-card__status{left:50%;max-height:54%}
+  .viewport-tight .statistics-cards .ring{width:46px;height:46px}
+  .viewport-tight .statistics-cards .ring strong{font-size:.9rem}
+  .viewport-tight .profile-view .mobile-page__header{padding-bottom:12px}
+  .viewport-tight .profile-view .mobile-page__header h1{font-size:1.3rem;margin-bottom:5px}
+}
+@media(max-width:860px) and (orientation:landscape){
+  .mobile-static-page #languagesView .languages-head{gap:10px;margin-bottom:12px;align-items:center}
+  .mobile-static-page #languagesView h1{font-size:1.15rem;max-width:none}
+  .mobile-static-page #availableCourses:not([hidden]){grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:minmax(0,1fr);max-height:200px;gap:10px}
+  .mobile-static-page #languagesView .language-card{flex-direction:column;justify-content:center;gap:10px;padding:12px 8px;text-align:center}
+  .mobile-static-page .course-selected{position:absolute;right:8px;top:8px;width:22px;height:22px;font-size:.85rem}
+  .mobile-static-page .profile-view .mobile-page__header p{display:none}
+  .mobile-static-page .profile-cards .account-card{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto minmax(0,1fr);gap:8px 16px;padding:14px 18px}
+  .mobile-static-page .profile-cards .card__title{grid-column:1/-1}
+  .mobile-static-page .profile-cards .account-btn{max-width:210px;font-size:.8rem;padding:12px 18px}
+  .viewport-tight .statistics-cards .streak-card__mascot{left:75%;max-width:45%;max-height:88%}
+  .viewport-tight .statistics-cards .streak-start{right:46%;top:25%}
+}
+
+/* Keep the same Settings button and handler when moving between layouts. */
+.profile-settings-slot{display:none}
+@media(max-width:860px){
+  #profileView .mobile-page__header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+  .profile-heading{min-width:0}
+  .profile-settings-slot{display:block;flex:none}
+  .profile-settings-slot .nav__settings{display:grid;place-items:center;width:44px;height:44px;min-height:44px;margin:0;padding:10px;border:1px solid #d3e5fb;border-radius:14px;background:#edf6ff;color:#0872ef;box-shadow:0 5px 12px #176cf10a}
+  .profile-settings-slot .nav__settings svg{display:block;width:23px;height:23px}
+  .profile-settings-slot .nav__settings span{display:none}
+  .profile-settings-slot .nav__settings:hover{background:#e0efff;transform:none}
+}

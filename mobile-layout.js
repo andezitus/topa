@@ -3,6 +3,9 @@
   'use strict';
   const mobile=window.matchMedia('(max-width:860px)');
   const review=document.getElementById('reviewBtn');
+  const settings=document.querySelector('.nav__settings');
+  const settingsAnchor=document.createComment('Desktop location: settings');
+  settings.before(settingsAnchor);
   const placements=['streakCard','goalCard','wordCard','progressCard'].map(id=>{
     const node=document.getElementById(id);
     const anchor=document.createComment('Desktop location: '+id);
@@ -13,6 +16,8 @@
     document.getElementById('statisticsLanguage').textContent=language+' язык';
   }
   function layout(){
+    if(mobile.matches)document.getElementById('profileSettingsSlot').append(settings);
+    else settingsAnchor.after(settings);
     document.getElementById(mobile.matches?'mobileReviewSlot':'trailReviewSlot').append(review);
     placements.forEach(item=>{
       if(mobile.matches)document.getElementById('statisticsCards').append(item.node);

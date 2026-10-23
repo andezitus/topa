@@ -1,8 +1,8 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const html=fs.readFileSync('index.html','utf8');
-const nodes=new Map(),storage=new Map();
+const nodes=new Map(),storage=new Map(),toastMessages=[];
 function node(id){if(!nodes.has(id))nodes.set(id,{textContent:'',hidden:false,style:{setProperty(){}},classList:{toggle(name,value){this[name]=value}},setAttribute(name,value){this[name]=value},insertAdjacentHTML(){}});return nodes.get(id)}
-const context=vm.createContext({console,Number,Math,JSON,PROGRESS_KEY:'test-progress',language:'Татарский',progressStore:{},completed:0,today:0,goal:1,lessonFinishedView:false,activeLesson:1,STORY_FLOW:Array(28),STORY_STEPS:Array(7),storyCursor:0,courseData:{'Татарский':{story:{title:'Новое пальто'}}},$:node,host:node('host'),lessonAction:node('action'),lessonFeedback:node('feedback'),document:{querySelectorAll:()=>[]},localStorage:{setItem:(k,v)=>storage.set(k,v)},window:{dispatchEvent(){}},CustomEvent:class{constructor(type){this.type=type}},showToast(){},updateStoryProgress(){},scrollStoryToBottom(){},escapeHtml:s=>s});
+const context=vm.createContext({console,Number,Math,JSON,PROGRESS_KEY:'test-progress',language:'Татарский',progressStore:{},completed:0,today:0,goal:1,lessonFinishedView:false,activeLesson:1,STORY_FLOW:Array(28),STORY_STEPS:Array(7),storyCursor:0,courseData:{'Татарский':{story:{title:'Новое пальто'}}},$:node,host:node('host'),lessonAction:node('action'),lessonFeedback:node('feedback'),document:{querySelectorAll:()=>[]},localStorage:{setItem:(k,v)=>storage.set(k,v)},window:{dispatchEvent(){}},CustomEvent:class{constructor(type){this.type=type}},showToast(message){toastMessages.push(message)},updateStoryProgress(){},scrollStoryToBottom(){},escapeHtml:s=>s});
 vm.runInContext(html.slice(html.indexOf('    const courseData='),html.indexOf('    const STORY_ROLES=')),context);
 for(const name of ['getLanguageProgress','saveProgress','syncLanguageState','renderProgress','finishLessonOne','finishStory']){
  const start=html.indexOf('    function '+name+'('),end=html.indexOf('\n    function ',start+5);
@@ -32,3 +32,5 @@ run('finishLessonOne()');assert.equal(run('getLanguageProgress(language).streakC
 run('lessonFinishedView=false;finishLessonOne()');assert.equal(run('getLanguageProgress(language).streakCount'),4,'intro review increments the streak');
 run("language='Киргизский';syncLanguageState()");assert.equal(run('getLanguageProgress(language).introDone'),false,'intro is isolated by language');
 console.log('PASS: intro completion, review, existing lesson migration and total progress.');
+
+assert.deepEqual(toastMessages,[],'intro, lesson and story completion do not announce points');

@@ -155,6 +155,7 @@
           <span class="review-flip__inner">
             <span class="review-face review-face--front" aria-hidden="false">
               <strong>${escapeHtml(word.word)}</strong>
+              <span class="review-face__hint">Нажмите, чтобы увидеть перевод</span>
             </span>
             <span class="review-face review-face--back" aria-hidden="true" hidden>
               <span class="review-face__label">Перевод на русский</span>
@@ -227,7 +228,6 @@
     });
     if(!added)return;
     persist();refreshLaunch();refreshGuide();
-    showToast(added===1?'Слово добавлено в карточки повторения':'Все слова урока добавлены в карточки повторения');
   }
   function add(id){addWords([id])}
   function addLesson(number){
@@ -250,7 +250,6 @@
       saved.queue=history.concat(pending);saved.undo=null;
     }
     persist();refreshLaunch();refreshGuide();
-    if(cancelled.size)showToast('Ручное добавление слов урока отменено');
   }
   function noteMistake(detail){
     if(detail.correct)return;
