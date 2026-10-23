@@ -1,0 +1,53 @@
+/* Five stops share the exact coordinates of the SVG road. Internal lesson IDs
+   stay stable so existing local progress and flashcard history are preserved. */
+.trail{--path-inset-x:50px;--path-bottom:35px;--tile-size:clamp(72px,5vw,86px);min-height:max(940px,calc(100vh - 162px))}
+.trail .path-svg{inset:18px var(--path-inset-x) var(--path-bottom);width:calc(100% - 2 * var(--path-inset-x));height:calc(100% - 18px - var(--path-bottom))}
+.trail .lesson{left:calc(var(--path-inset-x) + (100% - 2 * var(--path-inset-x)) * var(--node-x) - var(--tile-size) / 2);top:calc(18px + (100% - 18px - var(--path-bottom)) * var(--node-y) - var(--tile-size) / 2);right:auto}
+.trail .lesson--intro{--node-x:.625;--node-y:.079545455}
+.trail .lesson--1{--node-x:.339285714;--node-y:.289772727}
+.trail .lesson--2{--node-x:.651785714;--node-y:.477272727}
+.trail .lesson--3{--node-x:.375;--node-y:.681818182}
+.trail .lesson--4{--node-x:.625;--node-y:.880681818}
+.trail .lesson__button{width:var(--tile-size);height:var(--tile-size)}
+.trail .lesson--intro .lesson__button{background:linear-gradient(145deg,#2da7ff,#0870ed);color:#fff;box-shadow:0 14px 29px #156fe742,inset 0 -5px 0 #003fb71f}
+.trail .lesson__button.locked{background:#dbe6f3;color:#8298bc;box-shadow:0 10px 22px #41669426}
+.trail .lesson__text{left:calc(100% + 10px);right:auto;width:86px;max-width:86px;text-align:left}
+.trail .lesson__text span{white-space:normal;max-width:86px}
+.trail .lesson--1 .lesson__text{left:auto;right:calc(100% + 10px);text-align:right}
+.picture-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:510px;margin:28px auto 12px}
+.picture-choice{position:relative;display:flex;flex-direction:column;justify-content:center;gap:10px;min-height:244px;padding:18px 15px 27px;border-bottom-width:5px;text-align:center;font-size:1.05rem}
+.picture-choice img{display:block;width:100%;height:155px;object-fit:contain;pointer-events:none}
+.picture-choice__number{position:absolute;bottom:8px;right:11px;display:grid;place-items:center;width:23px;height:23px;border:1px solid #d2e2f5;border-radius:7px;color:#7189b3;font-size:.72rem}
+.intro-task .task-help{max-width:570px;line-height:1.6}
+.intro-task .order-source{line-height:1.6}
+@media(max-width:860px){
+  .trail{--path-inset-x:30px;--path-bottom:48px;--tile-size:76px;min-height:940px}
+  .trail .lesson__text{width:86px;max-width:86px}
+  .trail .lesson--2 .lesson__text{left:calc(100% + 10px);right:auto;width:86px;max-width:86px;text-align:left}
+  .trail .lesson--2 .lesson__text span{max-width:86px}
+}
+@media(max-width:560px){
+  .picture-choices{gap:12px;margin-top:20px}
+  .picture-choice{min-height:204px;padding:12px 9px 30px;font-size:.95rem}
+  .picture-choice img{height:126px}
+  .intro-task .task-help{font-size:.85rem;margin-bottom:20px}
+  .intro-task .task-prompt{gap:10px}
+  .intro-task .speech-bubble{font-size:1rem}
+}
+@media(max-width:360px){
+  .trail .lesson__text,.trail .lesson--2 .lesson__text{width:70px;max-width:70px}
+  .trail .lesson__text span,.trail .lesson--2 .lesson__text span{max-width:70px}
+  .trail .lesson--1 .lesson__text{right:calc(100% + 8px)}
+  .picture-choice img{height:106px}
+  .picture-choice{min-height:180px;font-size:.85rem}
+}
+@media(prefers-reduced-motion:reduce){.picture-choice{transition:none}}
+/* Intro screens contain only the title and exercise; lesson progress stays in
+   the player header. The second stop uses the supplied letter as its icon. */
+.intro-task .task-title{margin-bottom:26px}
+.intro-task .picture-choices{margin-top:0}
+.intro-task .token-answer:empty:before{content:none}
+.trail .lesson--1 .lesson__button:not(.locked){background:#fff;color:#0872ef;box-shadow:0 13px 27px #2360ab29,inset 0 -4px 0 #739fd515}
+.lesson__button .lesson-letter-icon{display:block;width:28px;height:42px;object-fit:contain}
+.lesson__button.locked .lesson-letter-icon{display:none}
+body.assets-loading,body.assets-loading button{cursor:progress}
