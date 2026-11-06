@@ -1,0 +1,10 @@
+.git
+.openai
+dist
+node_modules
+**/.env
+**/.env.*
+**/data
+**/*.sqlite*
+tests
+upload
