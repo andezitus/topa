@@ -4,7 +4,7 @@
  */
 (function(){
   'use strict';
-  const KEY='topa-word-review-v1';
+  const KEY=window.TopaWork?.active?'topa-work-word-review-v1':'topa-word-review-v1';
   const DAY=86400000;
   const intervals=[1,3,7,14,30,60];
   let store={version:1,languages:{}};

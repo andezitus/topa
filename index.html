@@ -90,6 +90,8 @@
   <link rel="stylesheet" href="courses.css?v=3">
   <link rel="stylesheet" href="intro-lesson.css?v=2">
   <link rel="stylesheet" href="mobile-viewport.css?v=2">
+  <link rel="stylesheet" href="modes.css?v=1">
+  <script src="work-course.js?v=1"></script>
 </head>
 <body>
   <div class="app">
@@ -99,6 +101,7 @@
         <button class="nav__item active" data-section="Обучение"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8M5 10v10h14V10M9 20v-6h6v6"/></svg><span>Обучение</span></button>
         <button class="nav__item" data-section="Курсы"><svg viewBox="0 0 24 24"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H12v18H7.5A3.5 3.5 0 0 0 4 23zm16 0A3.5 3.5 0 0 0 16.5 2H12v18h4.5A3.5 3.5 0 0 1 20 23z"/></svg><span>Курсы</span></button>
         <button class="nav__item mobile-nav-statistics" data-section="Статистика"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10m8 10V4m8 16v-7" stroke-linecap="round"/></svg><span>Статистика</span></button>
+        <button class="nav__item" data-section="Режимы"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>Режимы</span></button>
         <button class="nav__item" data-section="Профиль"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Профиль</span></button>
       </nav>
       <button class="nav__item nav__settings" data-section="Настройки" aria-label="Настройки" title="Настройки"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1.1V21h-4v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.5-1H3v-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.5V3h4v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.4 9c.17.61.72 1.03 1.35 1.03H21v4h-.25c-.63 0-1.18.42-1.35 1z"/></svg><span>Настройки</span></button>
@@ -130,6 +133,17 @@
         </section>
       </div>
 
+      <section class="modes-view hidden" id="modesView" aria-labelledby="modesTitle">
+        <header class="modes-head"><h1 id="modesTitle">Режимы обучения</h1><p>Выберите, как хотите учиться с Топой</p></header>
+        <div class="mode-grid">
+          <a class="mode-card" href="./" id="personalMode"><span class="mode-illustration"><img src="work-assets/personal.svg" alt="" loading="lazy" width="613" height="805"></span><span class="mode-copy"><strong>Для самостоятельного изучения</strong><small>Языки народов России</small><span>Перейти к обучению →</span></span></a>
+          <a class="mode-card mode-card--work" href="?mode=work" id="workMode"><span class="mode-illustration"><img src="work-assets/work.svg" alt="" loading="lazy" width="613" height="805"></span><span class="mode-copy"><strong>Для компаний</strong><small>Русский язык на стройке</small><span>Открыть курс →</span></span></a>
+          <button class="mode-card mode-card--edu" type="button" id="educationMode" aria-haspopup="dialog"><span class="mode-illustration"><img src="work-assets/education.svg" alt="" loading="lazy" width="594" height="924"></span><span class="mode-copy"><strong>Для образовательных учреждений</strong><small>Обучение в группах</small><span>Подробнее →</span></span></button>
+        </div>
+      </section>
+      <dialog class="mode-notice" id="educationNotice" aria-labelledby="educationTitle">
+        <h2 id="educationTitle">Данный режим находится в разработке</h2><form method="dialog"><button class="primary" type="submit">ПОНЯТНО</button></form>
+      </dialog>
       <section class="languages-view hidden" id="languagesView" aria-labelledby="languagesTitle">
         <header class="languages-head">
           <h1 id="languagesTitle">Курсы для тех, кто знает <span id="coursesSourceName">русский</span></h1>
@@ -388,7 +402,7 @@
       return number<=2&&isLessonCompleted(0,name)&&(number===1||isLessonCompleted(1,name));
     }
     function nextLessonId(){return [0,1,2].find(number=>!isLessonCompleted(number))??2}
-    function getActiveTasks(){return activeLesson===0?INTRO_DATA[language].tasks:courseData[language].tasks}
+    function getActiveTasks(){if(typeof window!=='undefined'&&window.TopaWork?.active)return window.TopaWork.lessons[activeLesson].tasks;return activeLesson===0?INTRO_DATA[language].tasks:courseData[language].tasks}
 
     const STORY_ROLES=['woman','mascot','woman','mascot','woman','woman','woman','woman','mascot','mascot','mascot','mascot','mascot','woman','woman','woman','mascot','mascot'];
     const STORY_STEPS=[
@@ -412,19 +426,27 @@
       {type:'line',line:15},{type:'line',line:16},{type:'line',line:17},{type:'task',step:9},{type:'task',step:10}
     ];
 
+    const workMode=window.TopaWork.active;
+    if(workMode){
+      const work=window.TopaWork;
+      document.body.classList.add('work-theme');
+      document.title='Русский для работы · ТОПА';
+      courseData['Русский']={word:'каска',translation:'каска · кыргызча',badge:'К',speechLang:'ru-RU'};
+      GUIDE_DATA['Русский']=work.lessons.map(({title,words},lesson)=>({lesson,title:'Урок '+(lesson+1)+' · '+title,words}));
+    }
     const availableLanguages=['Татарский','Чувашский','Киргизский'];
-    const PROGRESS_KEY='topa-progress-by-language-v1';
+    const PROGRESS_KEY=workMode?'topa-work-progress-v1':'topa-progress-by-language-v1';
     const $=selector=>document.querySelector(selector);
     const storedLanguage=localStorage.getItem('topa-language')==='Башкирский'?'Киргизский':localStorage.getItem('topa-language');
-    let language=availableLanguages.includes(storedLanguage)?storedLanguage:'Татарский';
-    localStorage.setItem('topa-language',language);
+    let language=workMode?'Русский':availableLanguages.includes(storedLanguage)?storedLanguage:'Татарский';
+    if(!workMode)localStorage.setItem('topa-language',language);
     let progressStore={};
     try{progressStore=JSON.parse(localStorage.getItem(PROGRESS_KEY)||'{}')||{}}catch(error){progressStore={}}
     delete progressStore['Башкирский'];
     if(!progressStore[language]){
       progressStore[language]={
-        completed:language==='Киргизский'?0:Math.max(0,Number(localStorage.getItem('topa-completed'))||0),
-        today:language==='Киргизский'?0:Math.max(0,Number(localStorage.getItem('topa-today'))||0),
+        completed:workMode||language==='Киргизский'?0:Math.max(0,Number(localStorage.getItem('topa-completed'))||0),
+        today:workMode||language==='Киргизский'?0:Math.max(0,Number(localStorage.getItem('topa-today'))||0),
         lesson1Step:0,
         lesson2Step:0,
         lesson2Cursor:0
@@ -433,7 +455,7 @@
     let lessonOpenRequest=0;
     let completed=0;
     let today=0;
-    let goal=Math.max(1,Number(localStorage.getItem('topa-goal'))||1);
+    let goal=Math.max(1,Number(localStorage.getItem(workMode?'topa-work-goal-v1':'topa-goal'))||1);
     let currentTaskIndex=0;
     let taskState={};
     let lessonFinishedView=false;
@@ -464,7 +486,7 @@
       progress.introStep=Math.min(INTRO_TASK_COUNT,Math.max(0,Number(progress.introStep)||0));
       progress.streakCount=Math.max(getCompletedLessonCount(progress),Number.isFinite(Number(progress.streakCount))?Math.floor(Number(progress.streakCount)):getCompletedLessonCount(progress));
       progress.today=Math.max(0,Number(progress.today)||0);
-      progress.lesson1Step=Math.min(5,Math.max(0,Number(progress.lesson1Step)||0));
+      progress.lesson1Step=Math.min(name==='Русский'?10:5,Math.max(0,Number(progress.lesson1Step)||0));
       progress.lesson2Step=Math.min(STORY_STEPS.length,Math.max(0,Number(progress.lesson2Step)||0));
       progress.lesson2Cursor=Math.min(STORY_FLOW.length,Math.max(0,Number(progress.lesson2Cursor)||0));
       return progress;
@@ -481,7 +503,7 @@
     function renderLanguage(){
       const info=courseData[language];
       $('#courseLanguage').textContent=language+' язык';
-      $('#courseTitle').textContent='Первые слова';
+      $('#courseTitle').textContent=workMode?'Первая смена':'Первые слова';
       $('#wordDay').textContent=info.word;
       $('#wordTranslation').textContent=info.translation;
       $('#wordBadge').textContent=info.badge;
@@ -535,6 +557,7 @@
       window.toastTimer=setTimeout(function(){toast.classList.remove('show')},2400);
     }
     function lessonName(number){
+      if(window.TopaWork?.active)return '«'+window.TopaWork.lessons[number].title+'»';
       return number===0?'«Знакомство»':number===1?'«Приветствия»':'«Новое пальто»';
     }
 
@@ -594,6 +617,7 @@
       window.speechSynthesis.speak(voiceLine);
     }
     function taskHeading(task){
+      if(typeof window!=='undefined'&&window.TopaWork?.active)return '<h2 class="task-title" id="taskTitle">'+escapeHtml(task.title)+'</h2>';
       if(activeLesson===0)return '<h2 class="task-title" id="taskTitle">'+escapeHtml(task.title)+'</h2>';
       return '<p class="task-kicker">Задание '+(currentTaskIndex+1)+' из '+getActiveTasks().length+'</p>'+
         '<h2 class="task-title" id="taskTitle">'+escapeHtml(task.title)+'</h2>'+
@@ -643,6 +667,19 @@
       $('#lessonStep').textContent=(currentTaskIndex+1)+'/'+getActiveTasks().length;
       $('#lessonProgressFill').style.width=((currentTaskIndex+1)/getActiveTasks().length*100)+'%';
 
+      if(workMode){
+        host.classList.remove('intro-task');
+        $('#lessonTitle').textContent='Урок '+(activeLesson+1)+' · '+window.TopaWork.lessons[activeLesson].title;
+      }
+      if(task.type==='workPicture'){
+        host.innerHTML=taskHeading(task)+'<div class="picture-choices">'+task.options.map((option,index)=>
+          '<button class="task-choice picture-choice" type="button" data-choice="'+index+'" aria-label="'+escapeHtml(option.text)+'"><img src="'+option.image+'" alt=""><span class="picture-choice__number">'+(index+1)+'</span></button>').join('')+'</div>';
+        bindChoices();
+      }
+      if(task.type==='workListen'){
+        host.innerHTML=taskHeading(task)+choiceMarkup(task.options);
+        bindChoices();
+      }
       if(task.type==='picture'){
         host.innerHTML=taskHeading(task)+'<div class="picture-choices">'+task.options.map((option,index)=>
           '<button class="task-choice picture-choice" type="button" data-choice="'+index+'" aria-label="'+escapeHtml(option.text)+'"><img src="'+option.image+'" alt="'+escapeHtml(option.alt)+'"><span>'+escapeHtml(option.text)+'</span><span class="picture-choice__number">'+(index+1)+'</span></button>'
@@ -650,7 +687,7 @@
         bindChoices();
       }
       if(task.type==='dialogue'){
-        host.innerHTML=taskHeading(task)+speechCard(task.speaker,task.translation,true)+choiceMarkup(task.options);
+        host.innerHTML=taskHeading(task)+(workMode?'':speechCard(task.speaker,task.translation,true))+choiceMarkup(task.options);
         bindSpeechButtons();
         bindChoices();
       }
@@ -670,6 +707,20 @@
         bindSpeechButtons();
         bindChoices();
       }
+      if(workMode)renderWorkSupport(task);
+    }
+    function renderWorkSupport(task){
+      const heading=host.querySelector('#taskTitle');
+      let html='';
+      if(task.visual)html+='<img class="work-task-art" src="work-assets/'+task.visual+'.svg" alt="">';
+      const line=window.TopaWork.audioText(task);
+      if(line){
+        const audioIndex=window.TopaWork.audioLines.indexOf(line);
+        html+='<div class="work-audio"><audio controls preload="none" aria-label="Прослушать русскую реплику" src="work-assets/audio/'+audioIndex+'.mp3"></audio>'+
+          (task.speaker?'<span><strong>Прораб:</strong> '+escapeHtml(line)+'</span>':'<details><summary>Показать текст реплики</summary><p>'+escapeHtml(line)+'</p></details>')+'</div>';
+      }
+      if(task.hint)html+='<details class="work-hint"><summary>Подсказка · Кыргызча</summary><p lang="ky">'+escapeHtml(task.hint)+'</p></details>';
+      if(html)heading.insertAdjacentHTML('afterend',html);
     }
     function renderMatchTask(task){
       const rightItems=task.pairs.map(function(pair,index){return {text:pair[1],pair:index}});
@@ -709,7 +760,7 @@
             }
           }else{
             const leftCard=taskState.left;
-            window.dispatchEvent(new CustomEvent('topa:answer',{detail:{lesson:activeLesson,words:[task.pairs[Number(leftCard.dataset.pair)][1],task.pairs[Number(card.dataset.pair)][1]],correct:false}}));
+            window.dispatchEvent(new CustomEvent('topa:answer',{detail:{lesson:activeLesson,words:[task.pairs[Number(leftCard.dataset.pair)][workMode?0:1],task.pairs[Number(card.dataset.pair)][workMode?0:1]],correct:false}}));
             leftCard.classList.add('is-error');
             card.classList.add('is-error');
             lessonFeedback.textContent='Эти слова не образуют пару. Попробуйте ещё.';
@@ -725,7 +776,7 @@
     }
     function renderOrderTask(task){
       host.innerHTML=taskHeading(task)+
-        '<div class="order-source"><button class="speak-btn" type="button" data-speak="'+escapeHtml(task.source)+'" aria-label="Прослушать фразу"><img class="speaker-icon" src="speaker-icon.svg" alt="" width="256" height="256"></button><span>'+escapeHtml(task.source)+'</span></div>'+
+        (workMode?(task.source?'<div class="order-source" lang="ky">'+escapeHtml(task.source)+'</div>':''):'<div class="order-source"><button class="speak-btn" type="button" data-speak="'+escapeHtml(task.source)+'" aria-label="Прослушать фразу"><img class="speaker-icon" src="speaker-icon.svg" alt="" width="256" height="256"></button><span>'+escapeHtml(task.source)+'</span></div>')+
         '<div class="token-answer" id="tokenAnswer"></div><div class="token-bank" id="tokenBank"></div>';
       bindSpeechButtons();
       renderOrderTokens(task);
@@ -761,7 +812,8 @@
       const task=getActiveTasks()[currentTaskIndex];
       let correct=false;
       if(task.type==='order'){
-        correct=taskState.order.map(function(item){return item.text}).join('|')===task.correct.join('|');
+        const selected=taskState.order.map(item=>item.text).join('|');
+        correct=[task.correct,...(task.accept||[])].some(answer=>answer.join('|')===selected);
       }else{
         correct=taskState.selectedIndex===task.answer;
       }
@@ -779,27 +831,33 @@
       }
       lessonFeedback.textContent=correct?'Верно! Отличная работа':'Почти! Правильный ответ показан зелёным.';
       if(task.type==='order'&&!correct)lessonFeedback.textContent='Правильный порядок: '+task.correct.join(' ');
+      if(workMode&&correct&&task.response)host.insertAdjacentHTML('beforeend','<p class="work-reply"><strong>Прораб:</strong> '+escapeHtml(task.response)+'</p>');
       lessonFeedback.className='lesson-feedback '+(correct?'good':'bad');
-      lessonAction.textContent='ДАЛЕЕ →';
+      if(workMode&&!correct&&(activeLesson===2||currentTaskIndex===getActiveTasks().length-1)){
+        taskState.retry=true;
+        lessonAction.textContent='ПОПРОБОВАТЬ ЕЩЁ';
+      }else lessonAction.textContent='ДАЛЕЕ →';
       lessonAction.disabled=false;
     }
     function advanceTask(){
-      const progress=getLanguageProgress(language),field=activeLesson===0?'introStep':'lesson1Step';
+      const progress=getLanguageProgress(language),field=lessonStepField(activeLesson);
       progress[field]=Math.max(progress[field],currentTaskIndex+1);saveProgress();
       if(currentTaskIndex===getActiveTasks().length-1){finishLessonOne();return}
       currentTaskIndex++;renderTask();lessonPlayer.scrollTop=0;
     }
 
+    function lessonStepField(number){return number===0?'introStep':number===2?'lesson2Step':'lesson1Step'}
     function finishLessonOne(){
       if(lessonFinishedView)return;
       const progress=getLanguageProgress(language),firstCompletion=!isLessonCompleted(activeLesson),intro=activeLesson===0,count=getActiveTasks().length;
       if(intro){progress.introDone=true;progress.introStep=count}
-      else{progress.completed=Math.max(1,progress.completed);progress.lesson1Step=count}
+      else{progress.completed=Math.max(activeLesson,progress.completed);progress[activeLesson===2?'lesson2Step':'lesson1Step']=count}
       if(firstCompletion)progress.today++;
       progress.streakCount++;saveProgress();syncLanguageState();renderProgress();lessonFinishedView=true;
       $('#lessonStep').textContent=count+'/'+count;$('#lessonProgressFill').style.width='100%';
       host.innerHTML='<div class="lesson-complete"><h2 id="taskTitle">'+(intro?'Знакомство состоялось!':'Урок завершён!')+'</h2><p>'+(intro?'Теперь вам знакомы слова для следующих уроков. Они уже в справочнике и карточках повторения.':'Вы познакомились с приветствиями и базовыми фразами на '+escapeHtml(language.toLowerCase())+' языке.')+'</p><div class="lesson-complete__badge">✓ '+count+' заданий выполнено</div></div>';
-      lessonFeedback.textContent=firstCompletion?'Прогресс сохранён отдельно для этого языка.':'Урок повторён — знания закреплены!';lessonFeedback.className='lesson-feedback good';
+      if(window.TopaWork?.active)host.innerHTML='<div class="lesson-complete"><h2 id="taskTitle">Урок завершён!</h2><p>Русские слова и фразы из урока доступны в справочнике и карточках.</p><div class="lesson-complete__badge">✓ '+count+' заданий выполнено</div></div>';
+      lessonFeedback.textContent=firstCompletion?'Прогресс сохранён.':'Урок повторён — знания закреплены!';lessonFeedback.className='lesson-feedback good';
       lessonAction.textContent='ВЕРНУТЬСЯ К ДОРОГЕ';lessonAction.disabled=false;
     }
 
@@ -1100,9 +1158,9 @@
       }
       if(number<0||number>2||!isLessonAvailable(number)){showToast('Сначала завершите предыдущий урок');return}
       activeLesson=number;
-      if(number===2){host.classList.remove('intro-task');openStory(Boolean(restart));return}
+      if(number===2&&!window.TopaWork?.active){host.classList.remove('intro-task');openStory(Boolean(restart));return}
       lessonPlayer.classList.remove('story-mode');
-      const savedStep=getLanguageProgress(language)[number===0?'introStep':'lesson1Step'],count=getActiveTasks().length;
+      const savedStep=getLanguageProgress(language)[number===0?'introStep':number===2?'lesson2Step':'lesson1Step'],count=getActiveTasks().length;
       currentTaskIndex=restart?0:(savedStep>=count?0:savedStep);
       modal.classList.add('open');document.body.style.overflow='hidden';lessonPlayer.scrollTop=0;renderTask();
       setTimeout(function(){host.querySelector('button')?.focus()},30);
@@ -1111,6 +1169,7 @@
     function closeLesson(){
       lessonOpenRequest++;document.body.classList.remove('assets-loading');
       window.speechSynthesis?.cancel();
+      host.querySelectorAll?.('audio').forEach(audio=>audio.pause());
       modal.classList.remove('open');
       lessonPlayer.classList.remove('story-mode');
       if(!repeatModal.classList.contains('open')&&!guideModal.classList.contains('open'))document.body.style.overflow='';
@@ -1123,7 +1182,7 @@
     function showSection(section){
       lessonOpenRequest++;document.body.classList.remove('assets-loading');
       const mobileOnly=section==='Статистика';
-      const views={'Обучение':'learningView','Курсы':'languagesView','Статистика':'statisticsView','Профиль':'profileView'};
+      const views={'Обучение':'learningView','Курсы':'languagesView','Статистика':'statisticsView','Профиль':'profileView','Режимы':'modesView'};
       if(views[section]&&(!mobileOnly||window.matchMedia('(max-width:860px)').matches)){
         document.querySelectorAll('.nav__item').forEach(function(item){item.classList.toggle('active',item.dataset.section===section)});
         Object.keys(views).forEach(function(name){$('#'+views[name]).classList.toggle('hidden',name!==section)});
@@ -1137,11 +1196,12 @@
 
     lessonAction.addEventListener('click',function(){
       if(lessonFinishedView){closeLesson();return}
-      if(activeLesson===2){
+      if(activeLesson===2&&!workMode){
         advanceStory();
         return;
       }
       if(!taskState.validated){validateTask();return}
+      if(taskState.retry){renderTask();return}
       advanceTask();
     });
     document.querySelectorAll('.lesson__button').forEach(function(button){
@@ -1178,7 +1238,7 @@
     });
     $('#goalEdit').addEventListener('click',function(){
       goal=goal===1?2:goal===2?3:1;
-      localStorage.setItem('topa-goal',goal);
+      localStorage.setItem(workMode?'topa-work-goal-v1':'topa-goal',goal);
       renderProgress();
       showToast('Дневная цель обновлена');
     });
@@ -1198,13 +1258,29 @@
         showToast('Выбран '+language.toLowerCase()+' язык');
       });
     });
+    $('#educationMode').addEventListener('click',()=>$('#educationNotice').showModal());
+    if(workMode){
+      $('.course-head .eyebrow').textContent='РУССКИЙ ДЛЯ РАБОТЫ · СТРОЙКА';
+      $('.trail-mascot').src='work-assets/work.svg';
+      window.TopaWork.lessons.forEach((lesson,index)=>$('.lesson__button[data-lesson="'+index+'"]').closest('.lesson').querySelector('.lesson__text span').textContent=lesson.title);
+      document.querySelectorAll('.lesson--3,.lesson--4').forEach(node=>node.remove());
+      document.querySelectorAll('.trail .path-svg path').forEach(node=>node.setAttribute('d','M350 100 C350 220 190 220 190 270 C190 365 190 410 190 455 S330 550 350 650'));
+      $('#languagesTitle').textContent='Русский для работы';
+      $('.course-source').hidden=true;
+      $('#availableCourses').replaceChildren();
+      $('#availableCourses').hidden=true;
+      $('#upcomingCourses').innerHTML='<article class="card work-course-card"><h2>Стройка · Первая смена</h2><p>Три урока русского языка с подсказками на киргизском.</p><button class="primary" id="workContinue" type="button">ПРОДОЛЖИТЬ</button></article>';
+      $('#upcomingCourses').hidden=false;
+      $('#workContinue').addEventListener('click',()=>{showSection('Обучение');requestLessonOpen(nextLessonId())});
+      $('#workMode').setAttribute('aria-current','true');
+    }else $('#personalMode').setAttribute('aria-current','true');
     syncLanguageState();
     renderLanguage();
     renderProgress();
   </script>
-  <script src="flashcards.js?v=10"></script>
+  <script src="flashcards.js?v=11"></script>
   <script src="mobile-layout.js?v=7"></script>
-  <script src="courses.js?v=1"></script>
+  <script src="courses.js?v=2"></script>
   <script src="mobile-viewport.js?v=1"></script>
 </body>
 </html>

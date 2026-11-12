@@ -1,5 +1,6 @@
 (function(){
   'use strict';
+  if(window.TopaWork?.active)return;
   const key='topa-source-language-v1';
   const names={Русский:'русский',Татарский:'татарский',Чувашский:'чувашский',Киргизский:'киргизский'};
   const selector=document.getElementById('courseSourceLanguage');
