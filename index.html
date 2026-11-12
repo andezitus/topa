@@ -202,7 +202,7 @@
     </aside>
   </div>
 
-  <div class="modal lesson-modal" id="lessonModal" role="dialog" aria-modal="true" aria-labelledby="taskTitle">
+  <div class="modal lesson-modal" id="lessonModal" role="dialog" aria-modal="true" aria-labelledby="lessonTitle">
     <section class="lesson-player">
       <header class="lesson-player__header">
         <div class="lesson-player__meta"><strong id="lessonTitle">Урок 1 · Приветствия</strong><span id="lessonLanguage">Татарский язык</span></div>
@@ -253,8 +253,6 @@
           {type:'choice',title:'Выберите верный вариант',help:'Что означает эта фраза?',source:'Сау булыгыз!',options:['До свидания!','Спасибо!','Здравствуйте!'],answer:0}
         ],
         story:{
-          title:'Яңа пальто',
-          intro:'Кибеттә бер хатын Марат белән сөйләшә.',
           lines:[
             'Исәнмесез!','Исәнмесез!','Сез монда эшлисезме?','Мин... э-э...',
             'Яхшы! Миңа ярдәм кирәк.','Миңа яңа пальто кирәк.','Кызыл пальто ошыймы?','Әллә коңгырт пальто ошыймы?',
@@ -276,8 +274,6 @@
           {type:'choice',title:'Выберите верный вариант',help:'Что означает эта фраза?',source:'Сывӑ пулӑр!',options:['До свидания!','Спасибо!','Здравствуйте!'],answer:0}
         ],
         story:{
-          title:'Ҫӗнӗ пальто',
-          intro:'Магазинта хӗрарӑм Сашӑпа калаҫать.',
           lines:[
             'Салам!','Салам!','Эсир кунта ӗҫлетӗр-и?','Эпӗ... э-э...',
             'Аван! Мана пулӑшу кирлӗ.','Мана ҫӗнӗ пальто кирлӗ.','Хӗрлӗ пальто килӗшет-и?','Е хӑмӑр пальто килӗшет-и?',
@@ -299,8 +295,6 @@
           {type:'choice',title:'Выберите верный вариант',help:'Что означает эта фраза?',source:'Кош болуңуз!',options:['До свидания!','Спасибо!','Здравствуйте!'],answer:0}
         ],
         story:{
-          title:'Жаңы пальто',
-          intro:'Дүкөндө бир аял Азамат менен сүйлөшөт.',
           lines:[
             'Саламатсызбы!','Саламатсызбы!','Сиз бул жерде иштейсизби?','Мен... ээ...',
             'Жакшы! Мага жардам керек.','Мага жаңы пальто керек.','Кызыл пальто жагабы?','Же күрөң пальто жагабы?',
@@ -688,7 +682,7 @@
 
       if(workMode){
         host.classList.remove('intro-task');
-        $('#lessonTitle').textContent='Урок '+(activeLesson+1)+' · '+window.TopaWork.lessons[activeLesson].title;
+        $('#lessonTitle').textContent='Урок '+(activeLesson+1)+(activeLesson===2?'':' · '+window.TopaWork.lessons[activeLesson].title);
       }
       if(task.type==='workPicture'){
         host.innerHTML=taskHeading(task)+'<div class="picture-choices">'+task.options.map((option,index)=>
@@ -731,7 +725,7 @@
     }
     function workChatMessage(text,mine=false){
       const audio=window.TopaWork.audioLines.indexOf(text);
-      return chatLineMarkup({text,mine,name:'Прораб',avatar:'work-assets/foreman.svg',locale:'ru-RU',audio});
+      return chatLineMarkup({text,mine,avatar:'work-assets/foreman.svg',locale:'ru-RU',audio});
     }
     function workAnswer(task){
       return task.type==='order'?task.correct.join(' ')+'.':task.options[task.answer];
@@ -750,7 +744,7 @@
       composer.className='chat-composer';
       composer.append(...Array.from(host.childNodes));
       if(task.hint)composer.insertAdjacentHTML('afterbegin','<details class="work-hint"><summary>Подсказка · Кыргызча</summary><p lang="ky">'+escapeHtml(task.hint)+'</p></details>');
-      host.innerHTML='<div class="story-feed" id="workChatFeed" aria-label="Диалог с прорабом">'+history+'</div>';
+      host.innerHTML='<div class="story-feed" id="workChatFeed" aria-label="Диалог">'+history+'</div>';
       host.append(composer);
       bindSpeechButtons($('#workChatFeed'));
       setChatAction('Отправить ответ',true);
@@ -924,25 +918,21 @@
       lessonAction.textContent='ВЕРНУТЬСЯ К ДОРОГЕ';lessonAction.disabled=false;
     }
 
-    function chatLineMarkup({text,mine=false,name,avatar,translation='',locale='',audio=-1,storyIndex,animated=false}){
+    function chatLineMarkup({text,mine=false,avatar,translation='',locale='',audio=-1,storyIndex,animated=false}){
       const icon='<img class="speaker-icon" src="speaker-icon.svg" alt="" width="256" height="256">';
       const playback=audio>=0?' data-clip="'+audio+'"':'';
       const index=storyIndex===undefined?'':' data-story-line="'+storyIndex+'"';
       return '<div class="chat-line'+(mine?' chat-line--mine':'')+(animated?' story-entry':'')+'"'+index+'>'+
         (mine?'':'<span class="chat-avatar" aria-hidden="true"><img src="'+avatar+'" alt=""></span>')+
-        '<div class="chat-bubble"><span class="chat-speaker">'+escapeHtml(mine?'Вы':name)+'</span>'+
+        '<div class="chat-bubble">'+
         '<div class="chat-message"><span>'+escapeHtml(text)+'</span><button class="speak-btn" type="button" data-speak="'+escapeHtml(text)+'" data-speak-lang="'+locale+'"'+playback+' aria-label="Прослушать фразу">'+icon+'</button></div>'+
         (translation?'<p class="chat-translation">'+escapeHtml(translation)+'</p>':'')+'</div></div>';
     }
     function storyLineMarkup(index,animated){
       const story=courseData[language].story;
       const mine=STORY_ROLES[index]==='learner';
-      return chatLineMarkup({text:story.lines[index],mine,name:'Покупательница',avatar:'story-girl.svg',
+      return chatLineMarkup({text:story.lines[index],mine,avatar:'story-girl.svg',
         translation:mine?'':STORY_TRANSLATIONS[index],storyIndex:index,animated});
-    }
-    function storyTaskCheckpointMarkup(event){
-      const step=STORY_STEPS[event.step];
-      return '<section class="story-task story-task--history"><p class="story-stage-label">Задание по истории</p><div class="story-task__summary">'+escapeHtml(step.question)+'</div></section>';
     }
     function scrollStoryToBottom(smooth){
       requestAnimationFrame(function(){
@@ -1057,12 +1047,10 @@
       const feed=$('#storyFeed');
       STORY_FLOW.slice(0,count).forEach(function(event){
         if(event.type==='line')feed.insertAdjacentHTML('beforeend',storyLineMarkup(event.line,false));
-        else feed.insertAdjacentHTML('beforeend',storyTaskCheckpointMarkup(event));
       });
       bindSpeechButtons(feed);
     }
     function renderStory(){
-      const story=courseData[language].story;
       activeLesson=2;
       storyPendingTask=null;
       activeStoryTask=null;
@@ -1070,17 +1058,20 @@
       lessonFinishedView=false;
       lessonFeedback.textContent='';
       lessonFeedback.className='lesson-feedback';
-      $('#lessonTitle').textContent='Урок 3 · В магазине';
+      $('#lessonTitle').textContent='Урок 3';
       $('#lessonLanguage').textContent=language+' язык';
-      host.innerHTML='<div class="story-continuous"><div class="story-cover"><div class="story-cover__art"><img src="intro-shop.svg" alt="Магазин" width="640" height="400"></div><p class="story-stage-label">Интерактивная история</p><h2 id="taskTitle">'+escapeHtml(story.title)+'</h2></div><div class="story-note"><button class="speak-btn" type="button" data-speak="'+escapeHtml(story.intro)+'" aria-label="Прослушать описание"><img class="speaker-icon" src="speaker-icon.svg" alt="" width="256" height="256"></button><span>'+escapeHtml(story.intro)+'</span></div><div class="story-feed" id="storyFeed"></div></div>';
-      bindSpeechButtons(host.querySelector('.story-note'));
-      renderStoryHistory(storyCursor);
-      updateStoryProgress();
-      setChatAction(storyCursor?'Продолжить':'Начать диалог');
-      lessonAction.disabled=false;
+      host.innerHTML='<div class="story-feed" id="storyFeed" aria-label="Диалог"></div>';
       storyReplyPending=false;
-      if(storyCursor>0)scrollStoryToBottom(false);
-      else host.scrollTop=0;
+      if(storyCursor===0){
+        host.scrollTop=0;
+        revealNextStoryItem();
+      }else{
+        renderStoryHistory(storyCursor);
+        updateStoryProgress();
+        setChatAction('Продолжить');
+        lessonAction.disabled=false;
+        scrollStoryToBottom(false);
+      }
     }
     function appendStoryLine(index){
       const feed=$('#storyFeed');
@@ -1101,7 +1092,7 @@
       const feed=$('#storyFeed');
       taskState={validated:false,selectedIndex:null,matched:0,left:null,order:[],cursorSaved:false};
       storyPendingTask=event;
-      feed.insertAdjacentHTML('beforeend','<section class="story-task story-entry"><p class="story-stage-label">Задание по истории</p><div class="story-task__content"></div></section>');
+      feed.insertAdjacentHTML('beforeend','<section class="story-task story-entry"><div class="story-task__content"></div></section>');
       activeStoryTask=feed.lastElementChild;
       const content=activeStoryTask.querySelector('.story-task__content');
       lessonFeedback.textContent='';
@@ -1168,7 +1159,7 @@
       if(event.type==='line'){
         if(STORY_ROLES[event.line]==='learner'){
           storyReplyPending=true;
-          $('#storyFeed').insertAdjacentHTML('afterend','<section class="chat-composer" id="storyDraft"><span class="chat-speaker">Ваша реплика</span><p class="chat-draft">'+escapeHtml(courseData[language].story.lines[event.line])+'</p></section>');
+          $('#storyFeed').insertAdjacentHTML('afterend','<section class="chat-composer" id="storyDraft"><p class="chat-draft">'+escapeHtml(courseData[language].story.lines[event.line])+'</p></section>');
           setChatAction('Отправить реплику',true);
           lessonAction.disabled=false;
           lessonFeedback.textContent='Отправьте реплику, чтобы продолжить диалог.';
@@ -1185,6 +1176,7 @@
       }
       if(storyPendingTask){
         if(!taskState.validated){validateStoryTask();return}
+        activeStoryTask.hidden=true;
         storyPendingTask=null;
         activeStoryTask=null;
         lessonFeedback.textContent='';
@@ -1207,8 +1199,8 @@
       renderProgress();
       updateStoryProgress();
       lessonFinishedView=true;
-      $('#storyFeed').insertAdjacentHTML('beforeend','<section class="lesson-complete story-result story-entry"><h2>История завершена!</h2><p>Вы прослушали диалог «'+escapeHtml(courseData[language].story.title)+'» и выполнили все задания.</p><div class="lesson-complete__badge">✓ Урок 3 пройден</div></section>');
-      lessonFeedback.textContent=firstCompletion?'Прогресс сохранён отдельно для этого языка.':'История пройдена ещё раз!';
+      $('#storyFeed').insertAdjacentHTML('beforeend','<section class="lesson-complete story-result story-entry"><h2>Урок завершён!</h2></section>');
+      lessonFeedback.textContent=firstCompletion?'Прогресс сохранён отдельно для этого языка.':'Урок пройден ещё раз!';
       lessonFeedback.className='lesson-feedback good';
       lessonAction.textContent='ВЕРНУТЬСЯ';
       lessonAction.disabled=false;
@@ -1229,7 +1221,7 @@
       if(window.TopaAssets){
         document.body.classList.add('assets-loading');
         await window.TopaAssets.prepare(number===2
-          ?(window.TopaWork?.active?['speaker-icon.svg','work-assets/foreman.svg']:['speaker-icon.svg','story-girl.svg','intro-shop.svg'])
+          ?(window.TopaWork?.active?['speaker-icon.svg','work-assets/foreman.svg']:['speaker-icon.svg','story-girl.svg'])
           :number===0?['intro-coat.svg','intro-shop.svg','speaker-icon.svg','story-mascot.svg']
           :['speaker-icon.svg','story-mascot.svg']);
         if(request!==lessonOpenRequest||requestedLanguage!==language)return;
