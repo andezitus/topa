@@ -403,9 +403,12 @@
     function getActiveTasks(){if(typeof window!=='undefined'&&window.TopaWork?.active)return window.TopaWork.lessons[activeLesson].tasks;return activeLesson===0?INTRO_DATA[language].tasks:courseData[language].tasks}
 
     const STORY_TRANSLATIONS={
-      0:'Здравствуйте!',2:'Вы здесь работаете?',4:'Хорошо! Мне нужна помощь.',
+      0:'Здравствуйте!',1:'Здравствуйте!',2:'Вы здесь работаете?',3:'Я… э-э…',4:'Хорошо! Мне нужна помощь.',
       5:'Мне нужно новое пальто.',6:'Вам нравится красное пальто?',7:'Или вам нравится коричневое пальто?',
-      13:'Ладно, возьму красное пальто!',14:'Спасибо! Вы хорошо знаете свою работу!',15:'Где заплатить за пальто?'
+      8:'Хм, ладно…',9:'Коричневое пальто красивое и недорогое.',10:'Но красное пальто очень красивое.',
+      11:'Оно тёплое.',12:'Оно вам очень идёт!',13:'Ладно, возьму красное пальто!',
+      14:'Спасибо! Вы хорошо знаете свою работу!',15:'Где заплатить за пальто?',
+      16:'Не знаю.',17:'Я здесь не работаю.'
     };
     const STORY_ROLES=['woman','learner','woman','learner','woman','woman','woman','woman','learner','learner','learner','learner','learner','woman','woman','woman','learner','learner'];
     const STORY_STEPS=[
@@ -726,9 +729,9 @@
       if(workMode&&activeLesson===2)renderWorkChat(task);
       else if(workMode)renderWorkSupport(task);
     }
-    function workChatMessage(text,mine=false){
+    function workChatMessage(text,mine=false,translation=''){
       const audio=window.TopaWork.audioLines.indexOf(text);
-      return chatLineMarkup({text,mine,avatar:'work-assets/foreman.svg',locale:'ru-RU',audio});
+      return chatLineMarkup({text,mine,avatar:'work-assets/foreman.svg',locale:'ru-RU',audio,translation,translationLang:'ky'});
     }
     function workAnswer(task){
       return task.type==='order'?task.correct.join(' ')+'.':task.options[task.answer];
@@ -738,7 +741,7 @@
       let last='';
       getActiveTasks().slice(0,currentTaskIndex).forEach(previous=>{
         if(previous.speaker!==last)history+=workChatMessage(previous.speaker);
-        history+=workChatMessage(workAnswer(previous),true);
+        history+=workChatMessage(workAnswer(previous),true,previous.answerTranslation);
         if(previous.response)history+=workChatMessage(previous.response);
         last=previous.response||'';
       });
@@ -757,7 +760,7 @@
     function appendWorkChatAnswer(task){
       const feed=$('#workChatFeed');
       const answer=task.type==='order'?taskState.order.map(item=>item.text).join(' ')+'.':task.options[taskState.selectedIndex];
-      feed.insertAdjacentHTML('beforeend',workChatMessage(answer,true));
+      feed.insertAdjacentHTML('beforeend',workChatMessage(answer,true,task.answerTranslation));
       bindSpeechButtons(feed.lastElementChild);
       if(task.response){
         feed.insertAdjacentHTML('beforeend',workChatMessage(task.response));
@@ -921,7 +924,7 @@
       lessonAction.textContent='ВЕРНУТЬСЯ К ДОРОГЕ';lessonAction.disabled=false;
     }
 
-    function chatLineMarkup({text,mine=false,avatar,translation='',locale='',audio=-1,storyIndex,animated=false}){
+    function chatLineMarkup({text,mine=false,avatar,translation='',translationLang='ru',locale='',audio=-1,storyIndex,animated=false}){
       const icon='<img class="speaker-icon" src="speaker-icon.svg" alt="" width="256" height="256">';
       const playback=audio>=0?' data-clip="'+audio+'"':'';
       const index=storyIndex===undefined?'':' data-story-line="'+storyIndex+'"';
@@ -929,13 +932,13 @@
         (mine?'':'<span class="chat-avatar" aria-hidden="true"><img src="'+avatar+'" alt=""></span>')+
         '<div class="chat-bubble">'+
         '<div class="chat-message"><span>'+escapeHtml(text)+'</span><button class="speak-btn" type="button" data-speak="'+escapeHtml(text)+'" data-speak-lang="'+locale+'"'+playback+' aria-label="Прослушать фразу">'+icon+'</button></div>'+
-        (translation?'<p class="chat-translation">'+escapeHtml(translation)+'</p>':'')+'</div></div>';
+        (translation?'<p class="chat-translation" lang="'+translationLang+'">'+escapeHtml(translation)+'</p>':'')+'</div></div>';
     }
     function storyLineMarkup(index,animated){
       const story=courseData[language].story;
       const mine=STORY_ROLES[index]==='learner';
       return chatLineMarkup({text:story.lines[index],mine,avatar:'story-girl.svg',
-        translation:mine?'':STORY_TRANSLATIONS[index],storyIndex:index,animated});
+        translation:STORY_TRANSLATIONS[index],storyIndex:index,animated});
     }
     function scrollStoryToBottom(smooth){
       requestAnimationFrame(function(){
