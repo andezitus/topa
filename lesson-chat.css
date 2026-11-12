@@ -39,7 +39,6 @@
 .chat-translation {margin:4px 0 0; color:#526881; font-size:.81rem; line-height:1.4}
 .chat-composer {margin-top:13px; border:1px solid #e8f0fa; border-radius:16px; padding:12px; background:#fbfdff}
 .chat-composer .task-title,.chat-composer .story-question {font-size:1rem; margin:0 0 9px; letter-spacing:0}
-.chat-draft {font-size:.94rem; color:#173378; margin:0}
 .chat-composer .task-choice {padding:8px 10px; font-size:.87rem; min-height:36px}
 .chat-composer .task-options {gap:6px}
 .chat-composer .token-answer {min-height:44px; margin-top:0}
