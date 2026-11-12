@@ -1,0 +1,61 @@
+.lesson-player.chat-mode {
+  width:min(550px,100%); height:min(760px,calc(100dvh - 48px));
+  display:flex; flex-direction:column; overflow:hidden; background:#fff; color:#20242c;
+  border-color:#e8f0fa; border-radius:32px;
+}
+.chat-mode .lesson-player__header {
+  flex:none; grid-template-columns:minmax(0,1fr) auto; gap:12px;
+  padding:18px 24px 12px; background:#fff; border-color:#e8f0fa;
+}
+.chat-mode .lesson-player__meta strong {font-size:1.18rem; color:#20242c}
+.chat-mode .lesson-player__meta span {font-size:.79rem; color:#60738e}
+.chat-mode .lesson-progress {grid-column:1/-1; grid-row:2; gap:10px}
+.chat-mode .lesson-progress__track {height:5px}
+.chat-mode .lesson-player__body {
+  min-height:0; flex:1; overflow:auto; overscroll-behavior:contain;
+  padding:18px 24px; scrollbar-width:thin;
+}
+.chat-mode .lesson-player__footer {
+  flex:none; position:static; display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center;
+  gap:10px; background:#fff; border-top:1px solid #e8f0fa; padding:12px 24px;
+}
+.chat-mode .lesson-feedback {margin:0; min-height:0; color:#60738e; font-size:.83rem; line-height:1.4}
+.chat-mode .lesson-feedback.good {color:#08755f}
+.chat-mode .lesson-feedback.bad {color:#ad2929}
+.chat-mode .lesson-action {width:auto; min-width:44px; min-height:44px; padding:10px 14px; border-radius:12px; background:#0066f5; font-size:.76rem}
+.chat-mode .lesson-action.chat-send {width:44px; padding:0; font-size:1.45rem}
+.chat-mode .lesson-action:disabled {opacity:.45}
+.chat-mode .story-continuous {padding:0}
+.chat-mode .story-cover {padding:0 0 16px; border:0; text-align:left}
+.chat-mode .story-cover__art {width:100%; height:auto; margin:0 0 12px; border-radius:18px; overflow:hidden; background:#edf5ff; box-shadow:none}
+.chat-mode .story-cover__art img {display:block; width:100%; height:clamp(110px,20vh,170px); object-fit:contain}
+.chat-mode .story-cover h2 {font-size:1.38rem; margin:0}
+.chat-mode .story-stage-label {display:inline-flex; padding:4px 9px; border-radius:8px; background:#edf5ff; color:#0059d7; font-size:.7rem; letter-spacing:0; margin:0 0 7px}
+.chat-mode .story-note {margin:0; background:#f7faff; border:0}
+.chat-mode .story-feed {display:flex; flex-direction:column; gap:14px; margin-top:14px; padding-bottom:2px}
+.chat-line {display:flex; align-items:flex-end; gap:8px}
+.chat-line--mine {justify-content:flex-end}
+.chat-avatar {flex:none; display:grid; place-items:center; width:34px; height:34px; border-radius:50%; background:#edf5ff}
+.chat-avatar img {width:100%; height:100%; object-fit:contain}
+.chat-bubble {max-width:min(88%,calc(100% - 42px)); padding:10px 13px; border-radius:18px 18px 18px 4px; background:#edf5ff; overflow-wrap:anywhere}
+.chat-line--mine .chat-bubble {border-radius:18px 18px 4px 18px; background:#0066f5; color:#fff}
+.chat-line--mine .chat-bubble .speak-btn {background:#fff}
+.chat-speaker {display:block; margin-bottom:2px; color:#526881; font-size:.69rem; font-weight:800}
+.chat-line--mine .chat-speaker {color:#fff}
+.chat-message {display:flex; gap:7px; align-items:center; font-weight:650; font-size:.98rem; line-height:1.36}
+.chat-message .speak-btn {flex:none; width:28px; height:28px; margin:0}
+.chat-message .speaker-icon {width:19px; height:19px}
+.chat-translation {margin:4px 0 0; color:#526881; font-size:.81rem; line-height:1.4}
+.chat-composer {margin-top:13px; border:1px solid #e8f0fa; border-radius:16px; padding:12px; background:#fbfdff}
+.chat-composer .task-title,.chat-composer .story-question {font-size:1rem; margin:0 0 9px; letter-spacing:0}
+.chat-draft {font-size:.94rem; color:#173378; margin:0}
+.chat-composer .task-choice {padding:8px 10px; font-size:.87rem; min-height:36px}
+.chat-composer .task-options {gap:6px}
+.chat-composer .token-answer {min-height:44px; margin-top:0}
+.chat-mode .story-task--history {display:none}
+.chat-mode .story-task:not(.story-task--history) {margin:0; box-shadow:none; padding:12px}
+.chat-mode .story-result,.chat-mode .lesson-complete {min-height:0; padding:18px}
+@media(max-width:620px){
+  .lesson-player.chat-mode {height:calc(100dvh - 16px); border-radius:23px}
+  .chat-mode .lesson-player__header,.chat-mode .lesson-player__body,.chat-mode .lesson-player__footer {padding-left:15px; padding-right:15px}
+}
