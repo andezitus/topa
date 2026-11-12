@@ -37,11 +37,7 @@
 .chat-message .speak-btn {flex:none; width:28px; height:28px; margin:0}
 .chat-message .speaker-icon {width:19px; height:19px}
 .chat-translation {margin:4px 0 0; color:#526881; font-size:.81rem; line-height:1.4}
-.chat-line--mine .chat-translation {
-  display:block; margin-top:7px; padding-top:7px; border-top:1px solid #ffffff70;
-  color:#fff; font-size:.93rem; font-weight:600;
-}
-.chat-translation__label {display:block; margin-bottom:2px; font-size:.72rem; font-weight:750}
+.chat-line--mine .chat-translation {color:#fff}
 .chat-composer {margin-top:13px; border:1px solid #e8f0fa; border-radius:16px; padding:12px; background:#fbfdff}
 .chat-composer .task-title,.chat-composer .story-question {font-size:1rem; margin:0 0 9px; letter-spacing:0}
 .chat-composer .task-choice {padding:8px 10px; font-size:.87rem; min-height:36px}

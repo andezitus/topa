@@ -20,7 +20,7 @@
   <link rel="preload" as="image" href="mascot-wave.svg">
   <link rel="preload" as="image" href="speaker-icon.svg">
   <link rel="preload" as="image" href="story-girl.svg">
-  <link rel="stylesheet" href="lesson-chat.css?v=2">
+  <link rel="stylesheet" href="lesson-chat.css?v=3">
   <link rel="preload" as="image" href="story-mascot.svg">
   <link rel="preload" as="image" href="streak-mascot.svg">
   <link rel="preload" as="image" href="streak-sky.svg">
@@ -932,8 +932,7 @@
         (mine?'':'<span class="chat-avatar" aria-hidden="true"><img src="'+avatar+'" alt=""></span>')+
         '<div class="chat-bubble">'+
         '<div class="chat-message"><span>'+escapeHtml(text)+'</span><button class="speak-btn" type="button" data-speak="'+escapeHtml(text)+'" data-speak-lang="'+locale+'"'+playback+' aria-label="Прослушать фразу">'+icon+'</button></div>'+
-        (translation?'<p class="chat-translation">'+(mine?'<span class="chat-translation__label" lang="ru">Перевод</span>':'')+
-          '<span lang="'+translationLang+'">'+escapeHtml(translation)+'</span></p>':'')+'</div></div>';
+        (translation?'<p class="chat-translation" lang="'+translationLang+'">'+escapeHtml(translation)+'</p>':'')+'</div></div>';
     }
     function storyLineMarkup(index,animated){
       const story=courseData[language].story;
