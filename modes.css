@@ -26,25 +26,27 @@
 .work-theme .path-progress{stroke:#ba7c13}
 .work-course-card{max-width:390px}
 .work-task-art{width:120px;height:112px;display:block;margin:0 auto}
-.work-hint,.work-audio details{margin:12px 0;color:#465e82;font-size:.92rem}
-.work-hint summary,.work-audio summary{cursor:pointer;text-decoration:underline;text-underline-offset:3px}
-.work-audio{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:4px 0 16px}
-.work-audio details{margin:0}
-.work-audio-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;width:min(100%,230px);min-height:52px;padding:9px 18px;border:1px solid #8ec7ff;border-bottom-width:3px;border-radius:15px;background:#edf7ff;color:#0875ef;cursor:pointer;vertical-align:middle;transition:background .18s,border-color .18s,color .18s}
-.work-audio-button:hover{background:#e0f0ff;border-color:#52a9fc}
-.work-audio-button:focus-visible{outline:3px solid #6fbaff;outline-offset:3px}
-.work-audio-button.is-playing{background:#1478ef;border-color:#0861d3;color:#fff}
-.work-audio-button svg{display:block;flex:none;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.5}
-.work-audio-button__speaker{width:23px;height:23px}
-.work-audio-button__wave{width:108px;height:27px;stroke-width:2}
-.work-audio-button__track{opacity:.7}
-.work-audio-button.is-playing .work-audio-button__track{opacity:.45}
-.work-audio-button__progress{clip-path:inset(0 calc(100% - var(--audio-progress,0%)) 0 0)}
+.work-audio{display:flex;align-items:center;gap:10px 12px;flex-wrap:wrap;margin:4px 0 16px}
+.work-audio-player{display:inline-flex;align-items:center;gap:4px;max-width:100%;padding:0 14px 0 2px;border-radius:15px;background:#edf7ff;color:#0875ef}
+.work-audio-button{display:grid;place-items:center;width:44px;height:44px;flex:none;padding:0;border:0;border-radius:11px;background:transparent;color:inherit;cursor:pointer}
+.work-audio-button:focus-visible,.work-transcript:focus-visible{outline:3px solid #6fbaff;outline-offset:2px}
+.work-audio-button svg{width:24px;height:24px;fill:currentColor}
+.work-audio-button__wave{display:block;width:112px;height:28px;min-width:0;pointer-events:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.work-audio-button__track{opacity:.35}
+.work-audio-button__progress{clip-path:inset(0 100% 0 0)}
 .work-audio-button__pause,.work-audio-button.is-playing .work-audio-button__play{display:none}
 .work-audio-button.is-playing .work-audio-button__pause{display:inline}
-.work-theme .chat-bubble .work-audio-button{width:min(100%,147px);min-height:42px;margin-top:8px;padding:5px 9px;gap:8px;border-radius:12px}
-.work-theme .chat-bubble .work-audio-button__speaker{width:19px;height:19px}
+.work-transcript{max-width:100%;padding:0;border:0;border-radius:13px;background:transparent;color:#163b68;font:inherit;text-align:left;cursor:pointer;perspective:650px}
+.work-transcript__faces{display:grid;transform-style:preserve-3d;transition:transform .42s cubic-bezier(.25,.7,.25,1)}
+.work-transcript[aria-expanded="true"] .work-transcript__faces{transform:rotateX(180deg)}
+.work-transcript__front,.work-transcript__back{grid-area:1/1;display:flex;align-items:center;gap:8px;min-height:44px;padding:9px 12px;border:1px solid #c8e2ff;border-radius:13px;background:#f5faff;backface-visibility:hidden;overflow-wrap:anywhere}
+.work-transcript__front{font-size:.86rem;font-weight:700}
+.work-transcript__front svg{width:17px;height:17px;flex:none;fill:none;stroke:#0875ef;stroke-width:2;stroke-linecap:round}
+.work-transcript__back{align-items:flex-start;justify-content:center;flex-direction:column;gap:3px;transform:rotateX(180deg);background:#eaf5ff}
+.work-theme .chat-bubble .work-audio{margin:0}
 .work-theme .chat-bubble .work-audio-button__wave{width:78px;height:23px}
+.work-theme .chat-bubble .work-transcript__back .chat-translation{margin:0;color:#47618a}
+@media(prefers-reduced-motion:reduce){.work-transcript__faces{transition:none}}
 .work-reply{background:#eaf3ff;color:#173d6a;border-radius:13px;padding:10px 13px;margin:14px 0 0}
 @media(max-width:860px){
  .nav{grid-template-columns:repeat(5,minmax(0,1fr))}

@@ -3,7 +3,7 @@
 
   let clip;
   let activeButton;
-  let progressFrame;
+  let progress;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const playLabel = 'Воспроизвести реплику';
 
@@ -11,38 +11,45 @@
     button.classList.toggle('is-playing', playing);
     button.setAttribute('aria-label', playing ? 'Приостановить реплику' : playLabel);
   }
-  function updateProgress() {
-    if (clip && Number.isFinite(clip.duration) && clip.duration > 0) {
-      const percent = Math.min(100, clip.currentTime / clip.duration * 100);
-      activeButton.style.setProperty('--audio-progress', percent + '%');
+
+  function syncProgress(running) {
+    if (!clip || !Number.isFinite(clip.duration) || clip.duration <= 0) return;
+    if (!progress) {
+      const wave = activeButton.parentElement.querySelector('.work-audio-button__progress');
+      progress = wave.animate(
+        [{clipPath: 'inset(0 100% 0 0)'}, {clipPath: 'inset(0 0% 0 0)'}],
+        {duration: clip.duration * 1000, fill: 'both'}
+      );
+    }
+    progress.pause();
+    progress.currentTime = clip.currentTime * 1000;
+    if (running && !reducedMotion.matches) {
+      progress.playbackRate = clip.playbackRate;
+      progress.play();
     }
   }
-  function stopAnimation() {
-    cancelAnimationFrame(progressFrame);
-    progressFrame = undefined;
-  }
-  function animateProgress() {
-    updateProgress();
-    if (clip && !clip.paused && !reducedMotion.matches) {
-      progressFrame = requestAnimationFrame(animateProgress);
-    } else {
-      progressFrame = undefined;
-    }
-  }
+
   function stop() {
-    stopAnimation();
     const previous = clip;
     clip = undefined;
-    if (activeButton) {
-      setPlaying(activeButton, false);
-      activeButton.style.removeProperty('--audio-progress');
-    }
+    if (activeButton) setPlaying(activeButton, false);
     activeButton = undefined;
+    progress?.cancel();
+    progress = undefined;
     previous?.pause();
   }
 
   window.TopaWorkAudio = {stop};
   document.getElementById('taskHost').addEventListener('click', event => {
+    const transcript = event.target.closest('[data-work-transcript]');
+    if (transcript) {
+      const expanded = transcript.getAttribute('aria-expanded') !== 'true';
+      transcript.setAttribute('aria-expanded', String(expanded));
+      transcript.querySelector('.work-transcript__front').setAttribute('aria-hidden', String(expanded));
+      transcript.querySelector('.work-transcript__back').setAttribute('aria-hidden', String(!expanded));
+      return;
+    }
+
     const button = event.target.closest('[data-work-audio]');
     if (!button) return;
     if (button !== activeButton) {
@@ -50,23 +57,22 @@
       clip = new Audio('work-assets/audio/' + button.dataset.workAudio + '.mp3?v=5');
       activeButton = button;
       const current = clip;
-      clip.addEventListener('playing', () => {
-        if (clip !== current || current.paused) return;
-        setPlaying(button, true);
-        stopAnimation();
-        animateProgress();
+      current.addEventListener('play', () => {
+        if (clip === current && !current.paused) setPlaying(button, true);
       });
-      clip.addEventListener('waiting', () => { if (clip === current) stopAnimation(); });
-      clip.addEventListener('timeupdate', () => {
-        if (clip === current && progressFrame === undefined) updateProgress();
+      current.addEventListener('playing', () => {
+        if (clip === current && !current.paused) syncProgress(true);
       });
-      clip.addEventListener('pause', () => {
-        if (clip !== current) return;
-        stopAnimation();
-        updateProgress();
+      current.addEventListener('waiting', () => { if (clip === current) syncProgress(false); });
+      current.addEventListener('timeupdate', () => {
+        if (clip === current && reducedMotion.matches) syncProgress(false);
+      });
+      current.addEventListener('pause', () => {
+        if (clip !== current || !current.paused) return;
+        syncProgress(false);
         setPlaying(button, false);
       });
-      clip.addEventListener('ended', () => { if (clip === current) stop(); });
+      current.addEventListener('ended', () => { if (clip === current) stop(); });
     }
     if (!clip.paused) {
       clip.pause();
