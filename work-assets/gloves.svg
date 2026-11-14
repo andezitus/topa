@@ -1,1 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 116"><path fill="#ffb63e" d="m21 91-8-27c-3-8 3-12 8-7l8 8V31c0-8 9-8 9 0v17-24c0-8 9-8 9 0v26-20c0-8 9-8 9 0v23-13c0-7 9-7 9 0v24c0 10-8 23-12 27z"/><path fill="#ef8e1c" d="m70 92 9-14-7-16c-4-9 5-12 9-5l4 5V37c0-7 8-7 8 0v14-21c0-7 8-7 8 0v22-16c0-7 8-7 8 0v37l-12 19z"/><path stroke="#234781" stroke-width="8" d="M22 92h30m19 0h26"/></svg>
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="icon-title">
+  <title id="icon-title">Пара строительных перчаток</title>
+  <g id="work-gloves" transform="translate(-23 -10)">
+    <g id="right-glove" transform="translate(250 -12) rotate(-14) scale(-.97 .97)">
+      <path id="right-glove-backing" fill="#f29a08" d="M104 198H57L54 173Q48 166 44 153L31 125Q28 118 34 114Q40 110 45 116L68 132V61Q68 53 75 53Q83 53 83 61V99V57Q83 48 91 48Q99 48 99 57V102V69Q99 61 106 61Q114 61 114 69V116V91Q114 83 121 83Q128 83 128 91V129Q128 153 116 171L111 196Z"/>
+      <path id="right-glove-palm-shadow" fill="#df8b08" d="M35 114Q41 112 45 116L59 136Q63 141 66 149Q54 142 48 137L55 153Q59 168 68 176L104 181L101 200H57L54 173Q48 166 44 153L31 125Q28 118 35 114Z"/>
+      <path id="right-glove-finger-shadow" fill="#d58206" d="M128 91V129Q128 153 116 171L111 196H97L103 174Q120 152 120 123V88Q120 85 121 83Q128 83 128 91Z"/>
+      <path id="right-glove-knuckle-panel" fill="#ffb31b" d="M67 116Q88 105 111 119L107 137Q88 128 67 137Z"/>
+      <path id="right-glove-cuff" fill="#0c326f" d="M54 179Q82 185 114 177L113 205Q113 211 107 212H60Q55 212 55 207Z"/>
+      <path id="right-glove-cuff-edge" fill="#c6cfdd" d="M54 179Q82 185 114 177L114 186Q84 195 54 187Z"/>
+    </g>
+    <g id="left-glove" transform="translate(-9 43) rotate(-17) scale(.97)">
+      <path id="left-glove-backing" fill="#ffb31b" d="M104 198H57L54 173Q48 166 44 153L31 125Q28 118 34 114Q40 110 45 116L68 132V61Q68 53 75 53Q83 53 83 61V99V57Q83 48 91 48Q99 48 99 57V102V69Q99 61 106 61Q114 61 114 69V116V91Q114 83 121 83Q128 83 128 91V129Q128 153 116 171L111 196Z"/>
+      <path id="left-glove-palm-shadow" fill="#ff9d05" d="M35 114Q41 112 45 116L59 136Q63 141 66 149Q54 142 48 137L55 153Q59 168 68 176L104 181L101 200H57L54 173Q48 166 44 153L31 125Q28 118 35 114Z"/>
+      <path id="left-glove-finger-shadow" fill="#da8700" d="M128 91V129Q128 153 116 171L111 196H97L103 174Q120 152 120 123V88Q120 85 121 83Q128 83 128 91Z"/>
+      <path id="left-glove-knuckle-panel" fill="#ffdb33" d="M67 116Q88 105 111 119L107 137Q88 128 67 137Z"/>
+      <path id="left-glove-cuff" fill="#203f99" d="M54 179Q82 185 114 177L113 205Q113 211 107 212H60Q55 212 55 207Z"/>
+      <path id="left-glove-cuff-edge" fill="#c6cfdd" d="M54 179Q82 185 114 177L114 186Q84 195 54 187Z"/>
+    </g>
+  </g>
+</svg>

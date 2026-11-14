@@ -1,1 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 116"><path fill="#ffad29" d="M25 29l21-9 12 24 12-24 21 9 12 64H13z"/><path fill="#f9e7a8" d="M19 64h78l3 12H16z"/><path stroke="#39517a" stroke-width="5" d="M58 44v49"/></svg>
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="icon-title">
+  <title id="icon-title">Светоотражающий строительный жилет</title>
+  <g id="safety-vest">
+    <path id="navy-binding" fill="#0c326f" d="M82 36L104 30Q114 45 128 51Q142 45 152 30L174 36Q174 77 207 102L213 209Q213 221 201 223Q128 230 55 223Q43 221 43 209L49 102Q82 77 82 36Z"/>
+    <path id="left-front" fill="#ff9d05" d="M87 43L102 38Q110 53 125 63V219Q85 219 56 214Q51 213 51 208L57 108Q83 85 87 43Z"/>
+    <path id="right-front" fill="#ff9d05" d="M169 43L154 38Q146 53 131 63V219Q171 219 200 214Q205 213 205 208L199 108Q173 85 169 43Z"/>
+    <path id="left-side-light" fill="#ffb31b" d="M87 43L98 40Q95 86 71 115L63 214L56 214Q51 213 51 208L57 108Q83 85 87 43Z"/>
+    <path id="right-side-shadow" fill="#f38d00" d="M169 43L160 40Q163 86 188 115L196 215L200 214Q205 213 205 208L199 108Q173 85 169 43Z"/>
+    <path id="left-shoulder-reflector" fill="#c6cfdd" d="M100 57Q108 69 115 74L108 154H91Z"/>
+    <path id="right-shoulder-reflector" fill="#c6cfdd" d="M156 57Q148 69 141 74L148 154H165Z"/>
+    <path id="left-waist-reflector" fill="#c7d0dd" d="M54 151Q89 157 125 157V180Q84 180 53 174Z"/>
+    <path id="right-waist-reflector" fill="#c7d0dd" d="M202 151Q167 157 131 157V180Q172 180 203 174Z"/>
+    <path id="zipper-pull" fill="#e4ebf3" d="M124 86H132V99Q132 103 128 103Q124 103 124 99Z"/>
+  </g>
+</svg>

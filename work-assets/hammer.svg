@@ -1,1 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 116"><path stroke="#e59331" stroke-width="15" stroke-linecap="round" d="M33 92 72 44"/><path fill="#294c80" d="M49 25l16-12 26 21 12 1-5 14-11 9-24-20-6 8-11-9z"/></svg>
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="icon-title">
+  <title id="icon-title">Молоток</title>
+  <g id="hammer" transform="translate(-12 7)">
+    <g id="angled-hammer" transform="rotate(30 128 128)">
+      <path id="handle" fill="#ffbd00" d="M114 67H142L145 214Q145 226 134 229H122Q111 226 111 214Z"/>
+      <path id="handle-shadow" fill="#da8700" d="M135 67H142L145 214Q145 226 134 229H125Q134 223 134 211Z"/>
+      <path id="handle-light" fill="#ffdb33" d="M116 79H122L120 179H114Z"/>
+      <path id="rubber-grip" fill="#203f99" d="M112 160Q128 166 144 160L145 218Q145 232 132 232H124Q111 232 111 218Z"/>
+      <path id="rubber-grip-shadow" fill="#0c326f" d="M135 164L144 160L145 218Q145 232 132 232H123Q135 228 135 216Z"/>
+      <path id="grip-highlight" fill="#3262b5" d="M117 173Q121 175 126 175V215Q126 222 122 222Q117 222 117 216Z"/>
+      <path id="head" fill="#c6cfdd" d="M61 44H79L88 50Q100 42 117 42H140Q176 42 197 74Q200 79 199 84Q182 70 165 73Q155 74 146 85H116Q100 85 87 78L79 84H61Q56 84 56 79V49Q56 44 61 44Z"/>
+      <path id="head-shadow" fill="#7389a8" d="M56 71H78L87 66Q102 74 118 74H143Q158 62 173 65Q187 68 199 84Q182 70 165 73Q155 74 146 85H116Q100 85 87 78L79 84H61Q56 84 56 79Z"/>
+      <path id="strike-face" fill="#aab6c7" d="M61 44H72V84H61Q56 84 56 79V49Q56 44 61 44Z"/>
+      <path id="head-highlight" fill="#e4ebf3" d="M93 53Q104 47 118 47H139Q161 47 177 60Q156 52 137 54H103Z"/>
+    </g>
+  </g>
+</svg>

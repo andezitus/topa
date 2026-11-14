@@ -1,1 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 116"><path fill="#6d8ab0" d="M21 84 74 36l14 15-49 44-3-6-4 3-2-5-5 2z"/><path fill="none" stroke="#e58a20" stroke-width="11" d="m72 36 12-14c6-6 17-4 22 2s3 12-2 17L88 52z"/></svg>
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="icon-title">
+  <title id="icon-title">Ручная пила</title>
+  <g id="hand-saw" transform="translate(10 -6)">
+    <g id="angled-saw" transform="rotate(-34 128 128)">
+      <path id="blade" fill="#c6cfdd" d="M84 91L222 102Q229 103 230 110V131L224 143L218 136L210 145L204 137L196 147L190 139L182 149L176 141L168 151L162 143L154 153L148 145L140 155L134 147L126 157L120 149L112 159L106 151L98 161L91 153L83 162L77 151Z"/>
+      <path id="blade-tooth-shadow" fill="#7389a8" d="M81 139L230 121V131L224 143L218 136L210 145L204 137L196 147L190 139L182 149L176 141L168 151L162 143L154 153L148 145L140 155L134 147L126 157L120 149L112 159L106 151L98 161L91 153L83 162L77 151Z"/>
+      <path id="blade-shine" fill="#e4ebf3" d="M94 96L221 106Q225 106 226 111L93 107Z"/>
+      <path id="handle" fill="#ff9d05" d="M44 76Q24 80 20 101L17 138Q16 161 38 170L68 179Q85 183 92 168L104 137Q107 129 103 121L93 96Q89 84 78 81ZM44 98L68 102Q74 103 77 110L83 126Q85 131 82 137L77 150Q75 155 69 153L45 146Q38 144 39 137L41 105Q41 100 44 98Z" fill-rule="evenodd"/>
+      <path id="grip-shadow" fill="#0c326f" d="M20 101Q23 84 37 79Q30 89 29 107L26 137Q25 153 43 160L72 171Q81 175 92 168Q85 183 68 179L38 170Q16 161 17 138Z"/>
+      <path id="handle-highlight" fill="#ffdb33" d="M47 82L77 86Q84 88 87 96L91 105Q84 95 74 94L49 89Q43 88 47 82Z"/>
+      <circle id="handle-rivet" cx="93" cy="129" r="3.6" fill="#0c326f"/>
+    </g>
+  </g>
+</svg>

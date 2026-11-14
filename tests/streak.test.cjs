@@ -1,8 +1,8 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const html=fs.readFileSync('index.html','utf8');
 const nodes=new Map(),storage=new Map(),toastMessages=[];
-function node(id){if(!nodes.has(id))nodes.set(id,{textContent:'',hidden:false,style:{setProperty(){}},classList:{toggle(name,value){this[name]=value}},setAttribute(name,value){this[name]=value},insertAdjacentHTML(){}});return nodes.get(id)}
-const context=vm.createContext({console,Number,Math,JSON,PROGRESS_KEY:'test-progress',language:'Татарский',progressStore:{},completed:0,today:0,goal:1,lessonFinishedView:false,activeLesson:1,STORY_FLOW:Array(28),STORY_STEPS:Array(7),storyCursor:0,courseData:{'Татарский':{story:{title:'Новое пальто'}}},$:node,host:node('host'),lessonAction:node('action'),lessonFeedback:node('feedback'),document:{querySelectorAll:()=>[]},localStorage:{setItem:(k,v)=>storage.set(k,v)},window:{dispatchEvent(){}},CustomEvent:class{constructor(type){this.type=type}},showToast(message){toastMessages.push(message)},updateStoryProgress(){},scrollStoryToBottom(){},escapeHtml:s=>s});
+function node(id){if(!nodes.has(id))nodes.set(id,{textContent:'',hidden:false,style:{setProperty(){}},prepend(){},classList:{toggle(name,value){this[name]=value}},setAttribute(name,value){this[name]=value},insertAdjacentHTML(){}});return nodes.get(id)}
+const context=vm.createContext({console,Number,Math,JSON,PROGRESS_KEY:'test-progress',language:'Татарский',progressStore:{},ACTIVE_LESSON_COUNT:3,completed:0,today:0,goal:1,lessonFinishedView:false,activeLesson:1,STORY_FLOW:Array(28),STORY_STEPS:Array(7),storyCursor:0,courseData:{'Татарский':{story:{title:'Новое пальто'}}},$:node,host:node('host'),lessonAction:node('action'),lessonFeedback:node('feedback'),document:{querySelectorAll:()=>[]},localStorage:{setItem:(k,v)=>storage.set(k,v)},window:{dispatchEvent(){}},CustomEvent:class{constructor(type){this.type=type}},showToast(message){toastMessages.push(message)},updateStoryProgress(){},scrollStoryToBottom(){},escapeHtml:s=>s});
 vm.runInContext(html.slice(html.indexOf('    const courseData='),html.indexOf('    const STORY_ROLES=')),context);
 for(const name of ['getLanguageProgress','saveProgress','syncLanguageState','renderProgress','finishLessonOne','finishStory']){
  const start=html.indexOf('    function '+name+'('),end=html.indexOf('\n    function ',start+5);
@@ -13,11 +13,14 @@ run('syncLanguageState();renderProgress()');assert.equal(node('#streakStart').hi
 run('finishLessonOne()');assert.equal(run('getLanguageProgress(language).streakCount'),1);assert.equal(run('completed'),1);assert.equal(node('#streakCount').textContent,1);
 run('finishLessonOne()');assert.equal(run('getLanguageProgress(language).streakCount'),1,'duplicate finish must not increment');
 run('lessonFinishedView=false;finishStory()');assert.equal(run('getLanguageProgress(language).streakCount'),2);assert.equal(run('completed'),2);
-run('lessonFinishedView=false;finishLessonOne()');assert.equal(run('getLanguageProgress(language).streakCount'),3,'a completed review counts as a new finished lesson');assert.equal(run('completed'),2,'review preserves completion gates');
+run('lessonFinishedView=false;finishLessonOne()');assert.equal(run('getLanguageProgress(language).streakCount'),2,'repeating a completed exercise lesson leaves the streak unchanged');assert.equal(run('completed'),2,'review preserves completion gates');
+run('lessonFinishedView=false;finishStory()');
+assert.equal(run('getLanguageProgress(language).streakCount'),2,'replaying the story leaves the streak unchanged');
+assert.equal(run('getLanguageProgress(language).today'),2,'replays do not count for the goal');
 run("language='Киргизский';lessonFinishedView=false;syncLanguageState();renderProgress()");assert.equal(node('#streakStart').hidden,false);assert.equal(run('getLanguageProgress(language).streakCount'),0);
 run('finishLessonOne()');assert.equal(run('getLanguageProgress(language).streakCount'),1);
-run("language='Татарский';syncLanguageState();renderProgress()");assert.equal(node('#streakCount').textContent,3);assert.equal(node('#streakValue').hidden,false);
-assert.equal(JSON.parse(storage.get('test-progress'))['Татарский'].streakCount,3);
+run("language='Татарский';syncLanguageState();renderProgress()");assert.equal(node('#streakCount').textContent,2);assert.equal(node('#streakValue').hidden,false);
+assert.equal(JSON.parse(storage.get('test-progress'))['Татарский'].streakCount,2);
 run("progressStore['Чувашский']={completed:2};language='Чувашский';syncLanguageState()");assert.equal(run('getLanguageProgress(language).streakCount'),2,'existing completed lessons migrate');
 console.log('PASS: initial prompt, first completion, repeated lesson, duplicate finish guard, language isolation, persistence and progress migration.');
 
@@ -29,8 +32,13 @@ assert.equal(run('getLanguageProgress(language).streakCount'),3);
 assert.equal(node('#percent').textContent,'100%');
 assert.equal(node('#progressText').textContent,'3 из 3 уроков');
 run('finishLessonOne()');assert.equal(run('getLanguageProgress(language).streakCount'),3,'double intro finish is guarded');
-run('lessonFinishedView=false;finishLessonOne()');assert.equal(run('getLanguageProgress(language).streakCount'),4,'intro review increments the streak');
+run('lessonFinishedView=false;finishLessonOne()');assert.equal(run('getLanguageProgress(language).streakCount'),3,'repeating the intro leaves the streak unchanged');
 run("language='Киргизский';syncLanguageState()");assert.equal(run('getLanguageProgress(language).introDone'),false,'intro is isolated by language');
 console.log('PASS: intro completion, review, existing lesson migration and total progress.');
+
+run("progressStore['Русский']={introDone:true,completed:1,streakCount:17};language='Русский';activeLesson=2;lessonFinishedView=false;window.TopaWork={active:true,lessons:[{}, {},{tasks:[{}]}]};syncLanguageState()");
+assert.equal(run('getLanguageProgress(language).streakCount'),2,'work mode corrects previously inflated streaks');
+run('finishLessonOne()');assert.equal(run('getLanguageProgress(language).streakCount'),3,'finishing the third work lesson adds to the streak');
+run('lessonFinishedView=false;finishLessonOne()');assert.equal(run('getLanguageProgress(language).streakCount'),3,'work mode also ignores repeats');
 
 assert.deepEqual(toastMessages,[],'intro, lesson and story completion do not announce points');

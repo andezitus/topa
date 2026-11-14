@@ -1,1 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 116"><path fill="#ffc341" d="M16 73c0-25 18-43 42-43s42 18 42 43H16Z"/><path fill="#ed941a" d="M52 29h13l6 44H46z"/><rect fill="#ffb021" x="8" y="71" width="100" height="14" rx="7"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="icon-title">
+  <title id="icon-title">Строительная каска, вид спереди</title>
+  <g id="hard-hat">
+    <path id="visor-underside" fill="#da8700" d="M53 174H203L189 199Q187 203 182 204Q128 218 74 204Q69 203 67 199Z"/>
+    <path id="front-visor" fill="#ffb31b" d="M58 180Q128 195 198 180L185 199Q128 211 71 199Z"/>
+    <path id="visor-highlight" fill="#ffdb33" d="M72 190Q129 202 187 188L181 197Q128 207 77 196Z"/>
+
+    <path id="helmet-shell" fill="#ffbd00" d="M39 138C44 107 62 85 84 74L94 56Q95 54 98 53C118 46 140 46 158 54Q161 55 162 57L172 74C195 86 212 109 217 138L231 150Q234 152 234 156V181Q234 184 231 184C196 191 165 196 128 196C91 196 60 191 25 184Q22 184 22 181V156Q22 152 25 150Z"/>
+    <path id="right-shell-shade" fill="#ffad05" d="M172 74C195 86 212 109 217 138L231 150Q234 152 234 156V181Q234 184 231 184C196 191 165 196 128 196C155 183 175 161 180 133C184 111 181 91 172 74Z"/>
+    <path id="left-shell-light" fill="#ffcb1e" d="M43 137C49 108 64 88 85 78C94 94 99 118 100 140C79 140 60 144 43 150Z"/>
+    <path id="raised-center" fill="#ffc700" d="M96 54C117 46 140 46 160 55C155 80 153 110 155 143C138 150 119 150 102 143C103 110 101 81 96 54Z"/>
+    <path id="ridge-left-bevel" fill="#ffdf39" d="M96 54L84 74C93 89 98 111 102 143C105 106 104 79 96 54Z"/>
+    <path id="ridge-right-bevel" fill="#ef9200" d="M160 55L172 74C163 90 158 111 155 143C152 106 152 78 160 55Z"/>
+    <path id="ridge-top-light" fill="#ffd523" d="M96 54C117 46 140 46 160 55L158 62C139 55 117 55 98 62Z"/>
+
+    <path id="left-rim-recess" fill="#ed9300" d="M27 157L36 149C35 165 43 176 57 182C46 181 36 179 27 177Z"/>
+    <path id="right-rim-recess" fill="#dc8400" d="M229 157L220 149C221 165 213 176 199 182C210 181 220 179 229 177Z"/>
+    <path id="lower-rim" fill="#ffce22" d="M22 177C60 185 95 189 128 189C161 189 196 185 234 177V181Q234 184 231 184C196 191 165 196 128 196C91 196 60 191 25 184Q22 184 22 181Z"/>
+  </g>
+</svg>

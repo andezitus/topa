@@ -1,6 +1,6 @@
 /* Data for the Russian-only construction course. Kyrgyz is the hint language. */
 window.TopaWork = (() => {
-  const image = (name, text) => ({image:'work-assets/'+name+'.svg',text,alt:text});
+  const image = (name, text) => ({image:'work-assets/'+name+'.svg?v=2',text,alt:text});
   const lesson = (title, words, tasks) => ({title,words,tasks});
   const picture = (audio,options,answer,words,hint='') => ({type:'workPicture',title:'Послушайте и выберите картинку',audio,options,answer,words,hint});
   const listen = (audio,options,answer,words,hint='',title='Что сказал прораб?') => ({type:'workListen',title,audio,options,answer,words,hint});
@@ -55,5 +55,12 @@ window.TopaWork = (() => {
     ])
   ];
   const audioText = task => task.audio || task.speaker || '';
-  return Object.freeze({active:new URLSearchParams(location.search).get('mode')==='work',lessons,audioText,audioLines:[...new Set(lessons.flatMap(lesson=>lesson.tasks.map(audioText)).filter(Boolean))]});
+  const answerText = task => task.type==='order' ? task.correct.join(' ')+'.' : task.options[task.answer];
+  const tasks = lessons.flatMap(lesson=>lesson.tasks);
+  // Preserve existing audio indices; give both sides of the dialogue recorded clips.
+  const audioLines = [...new Set([
+    ...tasks.map(audioText),
+    ...lessons[2].tasks.flatMap(task=>[answerText(task),task.response])
+  ].filter(Boolean))];
+  return Object.freeze({active:new URLSearchParams(location.search).get('mode')==='work',lessons,audioText,answerText,audioLines});
 })();

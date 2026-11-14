@@ -1,1 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 116"><path stroke="#df903b" stroke-width="10" stroke-linecap="round" d="M42 77 78 35"/><path fill="none" stroke="#234781" stroke-width="8" d="m75 37-6-6a12 12 0 0 1 17-17l7 6z"/><path fill="#5476a4" d="m37 62 22 19-13 17-22 4-2-22z"/></svg>
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="icon-title">
+  <title id="icon-title">Строительная лопата</title>
+  <g id="shovel" transform="translate(-2 4)">
+    <g id="angled-shovel" transform="rotate(31 128 128)">
+      <path id="shaft" fill="#ffbd00" d="M121 68H135V169H121Z"/>
+      <path id="shaft-shadow" fill="#da8700" d="M130 68H135V169H130Z"/>
+      <path id="shaft-highlight" fill="#ffdb33" d="M122 75H125V161H122Z"/>
+      <path id="d-grip" fill="#203f99" d="M108 25Q128 21 148 25Q158 27 158 38Q158 62 140 74L138 80H118L116 74Q98 62 98 38Q98 27 108 25ZM111 38Q111 52 121 60Q128 66 135 60Q145 52 145 38Z" fill-rule="evenodd"/>
+      <path id="grip-bottom-shadow" fill="#0c326f" d="M99 44Q103 65 122 72H134Q153 65 157 44Q155 64 140 74L138 80H118L116 74Q101 64 99 44Z"/>
+      <path id="grip-highlight" fill="#3262b5" d="M107 31Q128 27 149 31Q153 32 153 36Q130 32 104 36Q104 32 107 31Z"/>
+      <path id="spade-blade" fill="#c6cfdd" d="M94 158H162Q170 158 170 166V183Q168 213 132 231Q128 233 124 231Q88 213 86 183V166Q86 158 94 158Z"/>
+      <path id="spade-blade-shadow" fill="#7389a8" d="M157 158H162Q170 158 170 166V183Q168 213 132 231Q128 233 124 231Q110 224 100 213Q117 225 128 226Q157 203 157 179Z"/>
+      <path id="spade-highlight" fill="#e4ebf3" d="M94 163H118L112 171H93V183Q93 196 100 207Q89 196 89 182V169Q89 163 94 163Z"/>
+      <path id="shaft-socket" fill="#aab6c7" d="M117 147Q128 143 139 147V178Q139 188 128 196Q117 188 117 178Z"/>
+      <path id="socket-shadow" fill="#7389a8" d="M132 145L139 147V178Q139 188 128 196Q132 186 132 176Z"/>
+    </g>
+  </g>
+</svg>
