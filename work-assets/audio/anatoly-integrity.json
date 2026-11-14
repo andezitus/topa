@@ -1,0 +1,396 @@
+{
+  "voice": "Anatoly (HeyGen)",
+  "clips_count": 39,
+  "files": [
+    {
+      "index": 0,
+      "name": "work-assets/audio/0.mp3",
+      "text": "Каска.",
+      "seconds": 0.888,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 14210,
+      "sha256": "f1e24b71c3ad7c0c4fad86fa86411ee8278b2a4d559cf2e641a47e054f2c7108"
+    },
+    {
+      "index": 1,
+      "name": "work-assets/audio/1.mp3",
+      "text": "Надень каску.",
+      "seconds": 1.149,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 18390,
+      "sha256": "f8064b9f73c16e2bb16829d0852f17178e13c24e21e3c9239cc919d702a5ea02"
+    },
+    {
+      "index": 2,
+      "name": "work-assets/audio/2.mp3",
+      "text": "Стой!",
+      "seconds": 0.758,
+      "cut_seconds": 0.287,
+      "method": "mp3-frame-cut",
+      "bytes": 12120,
+      "sha256": "013e81898ba6a6106d5ea9006fa93ff3b154256f66c503057fda79eadcd8463d"
+    },
+    {
+      "index": 3,
+      "name": "work-assets/audio/3.mp3",
+      "text": "Надень перчатки.",
+      "seconds": 1.672,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 26749,
+      "sha256": "73fd9415e28b508c89f0951ba19e7978d1f4cbd76576d1f66fc56316f8c70057"
+    },
+    {
+      "index": 4,
+      "name": "work-assets/audio/4.mp3",
+      "text": "Отойди! Опасно!",
+      "seconds": 1.567,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 25077,
+      "sha256": "ba8a8a18ecd9d7d9f6dfdb4c98fc0d83917e554883e6e016efc6342f781db5cf"
+    },
+    {
+      "index": 5,
+      "name": "work-assets/audio/5.mp3",
+      "text": "Надень жилет.",
+      "seconds": 1.202,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 19226,
+      "sha256": "0b3db4be1e156be6d5e3be51146b267b99313c71ce5516ff60e9c284728f3212"
+    },
+    {
+      "index": 6,
+      "name": "work-assets/audio/6.mp3",
+      "text": "Стой! Надень каску!",
+      "seconds": 2.142,
+      "cut_seconds": 0.287,
+      "method": "mp3-frame-cut",
+      "bytes": 34272,
+      "sha256": "44a0110f1bf957dca84ebab7bf54129f5411f532097788e24de481150f7678b8"
+    },
+    {
+      "index": 7,
+      "name": "work-assets/audio/7.mp3",
+      "text": "Лопата.",
+      "seconds": 0.94,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 15046,
+      "sha256": "7f54002ddda592e76d4e865c28d3160cba7856669b2bd993ce210fee2f45bb67"
+    },
+    {
+      "index": 8,
+      "name": "work-assets/audio/8.mp3",
+      "text": "Принеси молоток!",
+      "seconds": 1.463,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 23405,
+      "sha256": "7940532203096bbed30a10bff3d5fab4220b958cbcb11b46340e401747435442"
+    },
+    {
+      "index": 9,
+      "name": "work-assets/audio/9.mp3",
+      "text": "Возьми лопату.",
+      "seconds": 1.202,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 19226,
+      "sha256": "ebf53aabcdcaee1461c7f8c9a4a494f9aaffbfd50442cad22819a1d98875e42f"
+    },
+    {
+      "index": 10,
+      "name": "work-assets/audio/10.mp3",
+      "text": "Убери мусор!",
+      "seconds": 1.097,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 17554,
+      "sha256": "1818a8b2e554874faee08af1965f70350323acc18411abdd30bfca2694864ba4"
+    },
+    {
+      "index": 11,
+      "name": "work-assets/audio/11.mp3",
+      "text": "Копай здесь.",
+      "seconds": 1.228,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 19644,
+      "sha256": "aed856125eb68b9d5848404c7fc5a49fee0d13b328e9bfe80ec38f2bc625373c"
+    },
+    {
+      "index": 12,
+      "name": "work-assets/audio/12.mp3",
+      "text": "Работай!",
+      "seconds": 0.888,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 14210,
+      "sha256": "54d5cfae3f26accd2b80f9ef5f7881069f804c996e552e678d8d93df95e7b553"
+    },
+    {
+      "index": 13,
+      "name": "work-assets/audio/13.mp3",
+      "text": "Возьми лопату и копай!",
+      "seconds": 1.933,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 30929,
+      "sha256": "189a45861a343b8c599fdff3eef795fe2872b34d554508ab6c395a5164274020"
+    },
+    {
+      "index": 14,
+      "name": "work-assets/audio/14.mp3",
+      "text": "Привет! Ты новый рабочий?",
+      "seconds": 2.038,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 32600,
+      "sha256": "96d0abc56be09691dabffce307ccd93436f05cb29eda808050255d7f3097a787"
+    },
+    {
+      "index": 15,
+      "name": "work-assets/audio/15.mp3",
+      "text": "Ты уже надел каску?",
+      "seconds": 1.646,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 26331,
+      "sha256": "eec99f9e326b313bc79bcf47ea164fbab00fae8722e9ca2979d22796bc632964"
+    },
+    {
+      "index": 16,
+      "name": "work-assets/audio/16.mp3",
+      "text": "Возьми кирпичи.",
+      "seconds": 1.28,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 20480,
+      "sha256": "377a5a779c644895cdbba5a2ed241f3be415fd1599a19b3f9fc14286180d7da4"
+    },
+    {
+      "index": 17,
+      "name": "work-assets/audio/17.mp3",
+      "text": "Кирпичи вон там, у стены.",
+      "seconds": 2.586,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 41377,
+      "sha256": "a11f1fcadaa99922a81e6953996804883214eea4f595d07cd4ca073014a365a7"
+    },
+    {
+      "index": 18,
+      "name": "work-assets/audio/18.mp3",
+      "text": "Возьми кирпичи и отнеси на третий этаж.",
+      "seconds": 2.978,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 47647,
+      "sha256": "c0d0f6c539d4a31d7ad0f2424d537ba90023428134329d89d394f25bd033314f"
+    },
+    {
+      "index": 19,
+      "name": "work-assets/audio/19.mp3",
+      "text": "Десять штук. На третий этаж.",
+      "seconds": 2.168,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 34690,
+      "sha256": "bbd42104f6ee251ebae3a16a786b4d61cc44175f62c01756a9c60a47e9cab803"
+    },
+    {
+      "index": 20,
+      "name": "work-assets/audio/20.mp3",
+      "text": "Тебе нужна тачка?",
+      "seconds": 1.332,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 21315,
+      "sha256": "5452816f428873718063dbd3a1691973e1a7802c661efbbcb4a06f88f5c64c3a"
+    },
+    {
+      "index": 21,
+      "name": "work-assets/audio/21.mp3",
+      "text": "Тачка у входа. И не забудь перчатки!",
+      "seconds": 3.37,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 53916,
+      "sha256": "b0bfe951d2716bbf9d1cc2cc4b801115e9f79647bb4321567252bae12c614fc8"
+    },
+    {
+      "index": 22,
+      "name": "work-assets/audio/22.mp3",
+      "text": "Перчатки в ящике, всё понятно?",
+      "seconds": 3.03,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 48483,
+      "sha256": "713e2eb9a38b8cd11eba6ada7276cd76db6cd90132320239602fa32bed792d2d"
+    },
+    {
+      "index": 23,
+      "name": "work-assets/audio/23.mp3",
+      "text": "Хорошо. Если что-то нужно, зови меня.",
+      "seconds": 2.978,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 47647,
+      "sha256": "ff2f91b0157d604a10e9dd173ba8c13ed63a73fee6ac5930824a223e96a5dea2"
+    },
+    {
+      "index": 24,
+      "name": "work-assets/audio/24.mp3",
+      "text": "Здравствуйте! Да, я новый.",
+      "seconds": 2.638,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 42213,
+      "sha256": "e5a937b26780334d0249165906096979156e75f19aeb9b31ac647de0e364979a"
+    },
+    {
+      "index": 25,
+      "name": "work-assets/audio/25.mp3",
+      "text": "Понятно, добро пожаловать!",
+      "seconds": 2.247,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 35944,
+      "sha256": "db09ed301fc2730d1da07d5a06721361865816d997efb8f7c5a7631b02b2f625"
+    },
+    {
+      "index": 26,
+      "name": "work-assets/audio/26.mp3",
+      "text": "Да, каска на мне.",
+      "seconds": 1.855,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 29675,
+      "sha256": "936aa3752cbf72ae20daa59617badd223b5265ce896a1e2769e275862fabb698"
+    },
+    {
+      "index": 27,
+      "name": "work-assets/audio/27.mp3",
+      "text": "Хорошо.",
+      "seconds": 0.862,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 13792,
+      "sha256": "4525a5ded4f1b257b4729558939f1f019c2c92e3fcc6664758e81fa85685ff96"
+    },
+    {
+      "index": 28,
+      "name": "work-assets/audio/28.mp3",
+      "text": "Хорошо, беру.",
+      "seconds": 1.358,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 21733,
+      "sha256": "124abe69030dfa140d44a025fe6983f32affc64c0dd438a32977a8bb6b4f5cb6"
+    },
+    {
+      "index": 29,
+      "name": "work-assets/audio/29.mp3",
+      "text": "Хорошо, я вижу их.",
+      "seconds": 1.881,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 30093,
+      "sha256": "4e62caaf845008639ab772813fddec571b46e412c7adb014c82424bb5d12136b"
+    },
+    {
+      "index": 30,
+      "name": "work-assets/audio/30.mp3",
+      "text": "Повторите, пожалуйста, сколько штук?",
+      "seconds": 3.03,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 48483,
+      "sha256": "f5bfa01a7edf73061a02d7f07167777393f1f786c6c52543e84349c39c67daee"
+    },
+    {
+      "index": 31,
+      "name": "work-assets/audio/31.mp3",
+      "text": "Десять штук на третий этаж.",
+      "seconds": 1.829,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 29257,
+      "sha256": "d7af4df4a93ba51477b07a98a19c1feb68d97204c7f81a529072e8a9dc1195e8"
+    },
+    {
+      "index": 32,
+      "name": "work-assets/audio/32.mp3",
+      "text": "Верно. Тебе нужна тачка?",
+      "seconds": 2.09,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 33436,
+      "sha256": "ea3d4224ea504fdde6858d44c550cb4141b83fd8bc850b6495ac091e3de442a7"
+    },
+    {
+      "index": 33,
+      "name": "work-assets/audio/33.mp3",
+      "text": "Дайте тачку пожалуйста.",
+      "seconds": 1.489,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 23823,
+      "sha256": "578d27cc956896f205dfd34d6bd2f61ae48bbd5c129b60c39debb3d8d5080ebe"
+    },
+    {
+      "index": 34,
+      "name": "work-assets/audio/34.mp3",
+      "text": "Где перчатки?",
+      "seconds": 1.437,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 22987,
+      "sha256": "c246f1e9a2601ae5ffd8cfdb28a7ed4e7bcb6a09f41e93967d0732e241b8d18f"
+    },
+    {
+      "index": 35,
+      "name": "work-assets/audio/35.mp3",
+      "text": "Перчатки в ящике.",
+      "seconds": 1.802,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 28839,
+      "sha256": "a21d76948644b49e9651d27d7753638715e38a17396bc888787fe23960ce83f8"
+    },
+    {
+      "index": 36,
+      "name": "work-assets/audio/36.mp3",
+      "text": "Да, все понятно.",
+      "seconds": 1.907,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 30511,
+      "sha256": "95269f7348a656ac01f4441fa2e54994245d67b7701280eb68d44b859502f795"
+    },
+    {
+      "index": 37,
+      "name": "work-assets/audio/37.mp3",
+      "text": "Спасибо, я позову.",
+      "seconds": 1.959,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 31346,
+      "sha256": "4c67b5826913e52ef0bc8ccea103356e739576ac97dfd3343a4ede4bc3981e86"
+    },
+    {
+      "index": 38,
+      "name": "work-assets/audio/38.mp3",
+      "text": "Договорились…",
+      "seconds": 1.149,
+      "cut_seconds": 0.0,
+      "method": "copy",
+      "bytes": 18390,
+      "sha256": "60280baae50cd7a1cbc7270110836793a6afa769f76570f12e74f6d4aa90f352"
+    }
+  ]
+}
