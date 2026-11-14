@@ -91,7 +91,7 @@
   <link rel="stylesheet" href="courses.css?v=3">
   <link rel="stylesheet" href="intro-lesson.css?v=2">
   <link rel="stylesheet" href="mobile-viewport.css?v=2">
-  <link rel="stylesheet" href="modes.css?v=9">
+  <link rel="stylesheet" href="modes.css?v=10">
   <script src="work-course.js?v=5"></script>
   <script src="work-waveforms.js?v=1"></script>
   <script src="work-audio.js?v=8" defer></script>
@@ -242,7 +242,7 @@
     </section>
   </div>
   <div class="toast" id="toast" role="status"></div>
-  <script src="work-locale.js?v=1"></script>
+  <script src="work-locale.js?v=2"></script>
 
   <script>
     const courseData={
@@ -1319,7 +1319,7 @@
       else if(repeatModal.classList.contains('open'))closeRepeatDialog();
       else if(modal.classList.contains('open'))closeLesson();
     });
-    $('#goalEdit').addEventListener('click',function(){
+    $('#goalEdit')?.addEventListener('click',function(){
       goal=goal===1?2:goal===2?3:1;
       localStorage.setItem(workMode?'topa-work-goal-v1':'topa-goal',goal);
       renderProgress();
@@ -1345,6 +1345,7 @@
     if(workMode){
       $('.course-head .eyebrow').textContent='ЖУМУШ ҮЧҮН ОРУС ТИЛИ · КУРУЛУШ';
       $('.trail-mascot').remove();
+      $('.goal__icon img').src='work-assets/goal-star.svg';
       document.querySelectorAll('.trail :is(.lesson-letter-icon,.lesson-lock-icon)').forEach(icon=>{
         icon.src='work-assets/'+icon.getAttribute('src');
       });

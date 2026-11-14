@@ -26,6 +26,11 @@
 .work-theme .path-progress{stroke:#ba7c13}
 .work-theme .trail-footer #continueBtn{background:#123C7A}
 
+.work-theme .ring{background:conic-gradient(#F3E2B8 calc(var(--value)*1%),#e2ecf7 0)}
+.work-theme #wordBadge{background:#F3E2B8;color:#123C7A;box-shadow:0 8px 16px #123c7a14}
+.work-theme .goal__icon img{filter:drop-shadow(0 7px 12px #123c7a14)}
+.work-theme .meter i{background:#F3E2B8}
+
 .work-theme .trail .lesson--intro .lesson__button{background:#123C7A}
 .work-theme .trail .lesson__button:not([data-lesson="0"]){color:#123C7A}
 .work-theme .review-launch__icon{background:#123C7A}

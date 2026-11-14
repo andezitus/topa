@@ -58,11 +58,9 @@
     '.account__copy span':'Окуудагы жетишкендиктериңизди сактаңыз',
     '#accountBtn':'АККАУНТ ТҮЗҮҮ',
     '#progressCard h2':'Окуудагы жетишкендиктер',
-    '#progressCard .card__title span':'1-бөлүм',
     '#progressCard .progress-copy span':'аяктады',
     '#wordCard small':'Күндүн сөзү',
     '#goalCard h2':'Бүгүнкү максат',
-    '#goalEdit':'Өзгөртүү',
     '#streakStart':'Баштоого убакыт келди!',
     '#guideTitle':'Сөздүк',
     '#guideReviewBtn':'КАЙТАЛООГО ӨТҮҮ',
@@ -90,6 +88,8 @@
     const node = document.querySelector(selector);
     for (const [name, value] of Object.entries(values)) node.setAttribute(name, value);
   }
+  document.querySelector('#progressCard .card__title span').remove();
+  document.querySelector('#goalEdit').remove();
   document.documentElement.lang = 'ky';
   document.title = 'Курулушта орус тили · ТОПА';
   window.TopaWorkLocale = {
