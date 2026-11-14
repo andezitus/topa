@@ -13,7 +13,7 @@
     return {node,anchor};
   });
   function updateLanguage(){
-    document.getElementById('statisticsLanguage').textContent=language+' язык';
+    document.getElementById('statisticsLanguage').textContent=window.TopaWorkLocale?.language??language+' язык';
   }
   function layout(){
     if(mobile.matches)document.getElementById('profileSettingsSlot').append(settings);

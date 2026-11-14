@@ -5,11 +5,12 @@
   let activeButton;
   let progress;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const playLabel = 'Воспроизвести реплику';
+  const translate = window.TopaWorkLocale?.translate ?? (text => text);
+  const playLabel = translate('Воспроизвести реплику');
 
   function setPlaying(button, playing) {
     button.classList.toggle('is-playing', playing);
-    button.setAttribute('aria-label', playing ? 'Приостановить реплику' : playLabel);
+    button.setAttribute('aria-label', playing ? translate('Приостановить реплику') : playLabel);
   }
 
   function syncProgress(running) {

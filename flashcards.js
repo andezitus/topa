@@ -7,6 +7,34 @@
   const KEY=window.TopaWork?.active?'topa-work-word-review-v1':'topa-word-review-v1';
   const DAY=86400000;
   const intervals=[1,3,7,14,30,60];
+  const workLocale = window.TopaWorkLocale;
+  const reviewLabels = {
+    'Карточки повторения':'Кайталоо карточкалары',
+    'Закрыть повторение':'Кайталоону жабуу',
+    'Слова появятся после урока':'Сөздөр сабактан кийин чыгат',
+    'Всё повторено на сегодня':'Бүгүнкү кайталоо аяктады',
+    'Добавлено для повторения':'Кайталоого кошулду',
+    'Добавить для повторения':'Кайталоого кошуу',
+    'Сначала познакомимся со словами':'Адегенде сөздөрдү үйрөнүңүз',
+    'Вы можете выбрать любое изученное слово в справочнике и добавить его в карточки.':'Сөздүктөн каалаган үйрөнгөн сөзүңүздү кайталоого кошо аласыз.',
+    'Завершите ознакомительный урок. Его слова появятся здесь автоматически — вместе с переводом и удобным планом повторения.':'Биринчи сабакты аяктаңыз. Андагы сөздөр жана алардын котормосу бул жерде автоматтык түрдө чыгат.',
+    'ОТКРЫТЬ СПРАВОЧНИК':'СӨЗДҮКТҮ АЧУУ',
+    'К УРОКАМ':'САБАКТАРГА КАЙТУУ',
+    'Слова стали ближе':'Кайталоо аяктады',
+    'Ещё изучаю':'Үйрөнүп жатам',
+    'Знаю':'Билем',
+    'ГОТОВО':'ДАЯР',
+    'ЕЩЁ КАРТОЧКИ':'ДАГЫ КАРТОЧКАЛАР',
+    'ОТМЕНИТЬ ПОСЛЕДНИЙ ОТВЕТ':'АКЫРКЫ ЖООПТУ ЖОККО ЧЫГАРУУ',
+    'Повторение карточек':'Карточкаларды кайталоо',
+    'Показать перевод':'Котормосун көрсөтүү',
+    'Вернуться к слову':'Сөзгө кайтуу',
+    'Нажмите, чтобы увидеть перевод':'Котормосун көрүү үчүн басыңыз',
+    'Перевод на русский':'Кыргызча котормосу',
+    'Прослушать слово':'Сөздү угуу',
+    'Отменить':'Жокко чыгаруу'
+  };
+  const reviewText = label => workLocale ? reviewLabels[label] ?? label : label;
   let store={version:1,languages:{}};
   try{
     const saved=JSON.parse(localStorage.getItem(KEY)||'null');
@@ -17,7 +45,7 @@
   const root=document.createElement('div');
   root.id='reviewModal';root.className='modal review-modal';
   root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-labelledby','reviewTitle');
-  root.innerHTML='<section class="review-dialog" tabindex="-1"><header class="review-header"><div class="review-header__title"><span class="review-header__symbol">'+icon+'</span><div><h2 id="reviewTitle">Карточки повторения</h2><p id="reviewLanguage"></p></div></div><button class="close" id="closeReview" type="button" aria-label="Закрыть повторение">×</button></header><div id="reviewContent"></div></section>';
+  root.innerHTML='<section class="review-dialog" tabindex="-1"><header class="review-header"><div class="review-header__title"><span class="review-header__symbol">'+icon+'</span><div><h2 id="reviewTitle">' + reviewText('Карточки повторения') + '</h2><p id="reviewLanguage"></p></div></div><button class="close" id="closeReview" type="button" aria-label="'+reviewText('Закрыть повторение')+'">×</button></header><div id="reviewContent"></div></section>';
   document.body.append(root);
   const content=root.querySelector('#reviewContent');
   const clone=value=>JSON.parse(JSON.stringify(value));
@@ -71,8 +99,8 @@
     const pending=saved&&Array.isArray(saved.queue)?saved.queue.slice(saved.index).filter(id=>words.some(word=>word.id===id)):[];
     const count=new Set([...pending,...due.map(word=>word.id)]).size;
     $('#reviewDueCount').textContent=count;
-    $('#reviewDueLabel').textContent=!words.length?'Слова появятся после урока':count?count+' '+plural(count,'карточка ждёт','карточки ждут','карточек ждут')+' повторения':'Всё повторено на сегодня';
-    $('#reviewBtn').setAttribute('aria-label','Повторить. '+$('#reviewDueLabel').textContent);
+    $('#reviewDueLabel').textContent=workLocale?(!words.length?reviewText('Слова появятся после урока'):count?count+' карточка кайталоого даяр':reviewText('Всё повторено на сегодня')):!words.length?'Слова появятся после урока':count?count+' '+plural(count,'карточка ждёт','карточки ждут','карточек ждут')+' повторения':'Всё повторено на сегодня';
+    $('#reviewBtn').setAttribute('aria-label',(workLocale?'Кайталоо. ':'Повторить. ')+$('#reviewDueLabel').textContent);
   }
   function plural(n,one,few,many){return n%10===1&&n%100!==11?one:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?few:many}
   function refreshGuide(){
@@ -80,7 +108,7 @@
     document.querySelectorAll('[data-review-add]').forEach(button=>{
       const id=button.dataset.reviewAdd;
       const queued=valid.has(id)&&record(id).manual;
-      button.textContent=queued?'Добавлено для повторения':'Добавить для повторения';
+      button.textContent=reviewText(queued?'Добавлено для повторения':'Добавить для повторения');
       button.disabled=queued||!valid.has(id);
     });
     document.querySelectorAll('[data-review-lesson]').forEach(checkbox=>{
@@ -110,7 +138,7 @@
     const saved=state().session;
     session=saved&&Array.isArray(saved.queue)&&Number.isInteger(saved.index)&&saved.index>=0&&saved.index<saved.queue.length&&saved.queue.every(id=>allowed.has(id))?saved:createSession();
     saveSession();
-    $('#reviewLanguage').textContent=language+' язык';
+    $('#reviewLanguage').textContent=workLocale?.language??language+' язык';
     root.classList.add('open');document.body.style.overflow='hidden';
     root.querySelector('.review-dialog').scrollTop=0;
     render();$('#closeReview').focus();
@@ -125,12 +153,12 @@
   function emptyIcon(){return '<div class="review-empty__icon">'+icon+'</div>'}
   function renderEmpty(){
     const words=unlockedWords();
-    content.innerHTML='<div class="review-empty">'+emptyIcon()+'<h3>'+(words.length?'Всё повторено на сегодня':'Сначала познакомимся со словами')+'</h3><p>'+(words.length?'Вы можете выбрать любое изученное слово в справочнике и добавить его в карточки.':'Завершите ознакомительный урок. Его слова появятся здесь автоматически — вместе с переводом и удобным планом повторения.')+'</p><button class="primary" id="reviewEmptyAction" type="button">'+(words.length?'ОТКРЫТЬ СПРАВОЧНИК':'К УРОКАМ')+'</button></div>';
+    content.innerHTML='<div class="review-empty">'+emptyIcon()+'<h3>'+reviewText(words.length?'Всё повторено на сегодня':'Сначала познакомимся со словами')+'</h3><p>'+reviewText(words.length?'Вы можете выбрать любое изученное слово в справочнике и добавить его в карточки.':'Завершите ознакомительный урок. Его слова появятся здесь автоматически — вместе с переводом и удобным планом повторения.')+'</p><button class="primary" id="reviewEmptyAction" type="button">'+reviewText(words.length?'ОТКРЫТЬ СПРАВОЧНИК':'К УРОКАМ')+'</button></div>';
     $('#reviewEmptyAction').onclick=()=>{close();if(words.length)openGuide();else showSection('Обучение')};
   }
   function renderResult(){
     const counts=counters(),total=Object.keys(session.ratings).length;
-    content.innerHTML='<div class="review-empty">'+emptyIcon()+'<h3>Слова стали ближе</h3><p>Вы повторили '+total+' '+plural(total,'слово','слова','слов')+' на '+language.toLowerCase()+' языке. Мы сохранили результат и запланировали следующие повторения.</p><div class="review-summary"><span><strong>'+counts.learning+'</strong>Ещё изучаю</span><span><strong>'+counts.known+'</strong>Знаю</span></div><div class="review-empty__actions"><button class="primary" id="reviewDone" type="button">ГОТОВО</button><button class="secondary" id="reviewMore" type="button"'+(!dueWords().length?' hidden':'')+'>ЕЩЁ КАРТОЧКИ</button><button class="secondary" id="reviewResultUndo" type="button"'+(!session.undo?' hidden':'')+'>ОТМЕНИТЬ ПОСЛЕДНИЙ ОТВЕТ</button></div></div>';
+    content.innerHTML='<div class="review-empty">'+emptyIcon()+'<h3>' + reviewText('Слова стали ближе') + '</h3><p>'+(workLocale?total+' сөздү кайталадыңыз. Жыйынтык сакталды.':'Вы повторили '+total+' '+plural(total,'слово','слова','слов')+' на '+language.toLowerCase()+' языке. Мы сохранили результат и запланировали следующие повторения.')+'</p><div class="review-summary"><span><strong>'+counts.learning+'</strong>' + reviewText('Ещё изучаю') + '</span><span><strong>'+counts.known+'</strong>' + reviewText('Знаю') + '</span></div><div class="review-empty__actions"><button class="primary" id="reviewDone" type="button">' + reviewText('ГОТОВО') + '</button><button class="secondary" id="reviewMore" type="button"'+(!dueWords().length?' hidden':'')+'>' + reviewText('ЕЩЁ КАРТОЧКИ') + '</button><button class="secondary" id="reviewResultUndo" type="button"'+(!session.undo?' hidden':'')+'>' + reviewText('ОТМЕНИТЬ ПОСЛЕДНИЙ ОТВЕТ') + '</button></div></div>';
     $('#reviewDone').onclick=close;
     $('#reviewMore').onclick=()=>{session=createSession();saveSession();render()};
     $('#reviewResultUndo').onclick=undo;
@@ -144,36 +172,36 @@
     const counts=counters();
     content.innerHTML=`
       <div class="review-counters">
-        <span class="review-counter"><b>${counts.learning}</b>Ещё изучаю</span>
-        <span class="review-counter review-counter--known">Знаю<b>${counts.known}</b></span>
+        <span class="review-counter"><b>${counts.learning}</b>${reviewText('Ещё изучаю')}</span>
+        <span class="review-counter review-counter--known">${reviewText('Знаю')}<b>${counts.known}</b></span>
       </div>
-      <div class="review-track" role="progressbar" aria-label="Повторение карточек" aria-valuemin="0" aria-valuemax="${session.queue.length}" aria-valuenow="${session.index}">
+      <div class="review-track" role="progressbar" aria-label="${reviewText('Повторение карточек')}" aria-valuemin="0" aria-valuemax="${session.queue.length}" aria-valuenow="${session.index}">
         <i style="width:${session.index/session.queue.length*100}%"></i>
       </div>
       <div class="review-card-shell">
-        <button class="review-flip" id="reviewFlip" type="button" aria-label="${escapeHtml(word.word)}. Показать перевод" aria-pressed="false">
+        <button class="review-flip" id="reviewFlip" type="button" aria-label="${escapeHtml(word.word)}. ${reviewText('Показать перевод')}" aria-pressed="false">
           <span class="review-flip__inner">
             <span class="review-face review-face--front" aria-hidden="false">
-              <strong>${escapeHtml(word.word)}</strong>
-              <span class="review-face__hint">Нажмите, чтобы увидеть перевод</span>
+              <strong${workLocale?' lang="ru"':''}>${escapeHtml(word.word)}</strong>
+              <span class="review-face__hint">${reviewText('Нажмите, чтобы увидеть перевод')}</span>
             </span>
             <span class="review-face review-face--back" aria-hidden="true" hidden>
-              <span class="review-face__label">Перевод на русский</span>
+              <span class="review-face__label">${reviewText('Перевод на русский')}</span>
               <strong>${escapeHtml(word.translation)}</strong>
             </span>
           </span>
         </button>
         <div class="review-card-tools">
-          <button class="review-audio" id="reviewAudio" type="button" aria-label="Прослушать слово"><img src="speaker-icon.svg" alt=""></button>
+          <button class="review-audio" id="reviewAudio" type="button" aria-label="${reviewText('Прослушать слово')}"><img src="speaker-icon.svg" alt=""></button>
         </div>
       </div>
       <div class="review-bottom">
-        <span class="review-position" aria-label="Карточка ${session.index+1} из ${session.queue.length}">Карточка ${session.index+1} из ${session.queue.length}</span>
+        <span class="review-position" aria-label="${workLocale?session.queue.length+' карточканын '+(session.index+1)+'и':'Карточка '+(session.index+1)+' из '+session.queue.length}">${workLocale?session.queue.length+' карточканын '+(session.index+1)+'и':'Карточка '+(session.index+1)+' из '+session.queue.length}</span>
         <div class="review-ratings">
-          <button class="review-rate review-rate--learning" id="reviewLearning" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>Ещё изучаю</button>
-          <button class="review-rate review-rate--known" id="reviewKnown" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Знаю</button>
+          <button class="review-rate review-rate--learning" id="reviewLearning" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>${reviewText('Ещё изучаю')}</button>
+          <button class="review-rate review-rate--known" id="reviewKnown" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>${reviewText('Знаю')}</button>
         </div>
-        <button class="review-undo" id="reviewUndo" type="button"${!session.undo?' disabled':''}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5-5 5 5 5M4 10h10a6 6 0 0 1 0 12h-4"/></svg>Отменить</button>
+        <button class="review-undo" id="reviewUndo" type="button"${!session.undo?' disabled':''}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5-5 5 5 5M4 10h10a6 6 0 0 1 0 12h-4"/></svg>${reviewText('Отменить')}</button>
       </div>`;
     $('#reviewFlip').onclick=flip;
     $('#reviewAudio').onclick=()=>speak(word.word);
@@ -185,7 +213,7 @@
     if(!currentWord())return;
     flipped=!flipped;
     $('#reviewFlip').setAttribute('aria-pressed',String(flipped));
-    $('#reviewFlip').setAttribute('aria-label',flipped?currentWord().translation+'. Вернуться к слову':currentWord().word+'. Показать перевод');
+    $('#reviewFlip').setAttribute('aria-label',flipped?currentWord().translation+'. '+reviewText('Вернуться к слову'):currentWord().word+'. '+reviewText('Показать перевод'));
     root.querySelector('.review-face--front').hidden=flipped;
     root.querySelector('.review-face--front').setAttribute('aria-hidden',String(flipped));
     root.querySelector('.review-face--back').hidden=!flipped;
