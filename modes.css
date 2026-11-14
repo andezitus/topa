@@ -36,12 +36,15 @@
 .work-audio-button.is-playing{background:#1478ef;border-color:#0861d3;color:#fff}
 .work-audio-button svg{display:block;flex:none;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.5}
 .work-audio-button__speaker{width:23px;height:23px}
-.work-audio-button__wave{width:84px;height:27px}
+.work-audio-button__wave{width:108px;height:27px;stroke-width:2}
+.work-audio-button__track{opacity:.7}
+.work-audio-button.is-playing .work-audio-button__track{opacity:.45}
+.work-audio-button__progress{clip-path:inset(0 calc(100% - var(--audio-progress,0%)) 0 0)}
 .work-audio-button__pause,.work-audio-button.is-playing .work-audio-button__play{display:none}
 .work-audio-button.is-playing .work-audio-button__pause{display:inline}
 .work-theme .chat-bubble .work-audio-button{width:min(100%,147px);min-height:42px;margin-top:8px;padding:5px 9px;gap:8px;border-radius:12px}
 .work-theme .chat-bubble .work-audio-button__speaker{width:19px;height:19px}
-.work-theme .chat-bubble .work-audio-button__wave{width:65px;height:23px}
+.work-theme .chat-bubble .work-audio-button__wave{width:78px;height:23px}
 .work-reply{background:#eaf3ff;color:#173d6a;border-radius:13px;padding:10px 13px;margin:14px 0 0}
 @media(max-width:860px){
  .nav{grid-template-columns:repeat(5,minmax(0,1fr))}
