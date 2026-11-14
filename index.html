@@ -20,7 +20,7 @@
   <link rel="preload" as="image" href="mascot-wave.svg">
   <link rel="preload" as="image" href="speaker-icon.svg">
   <link rel="preload" as="image" href="story-girl.svg">
-  <link rel="stylesheet" href="lesson-chat.css?v=3">
+  <link rel="stylesheet" href="lesson-chat.css?v=4">
   <link rel="preload" as="image" href="story-mascot.svg">
   <link rel="preload" as="image" href="streak-mascot.svg">
   <link rel="preload" as="image" href="streak-sky.svg">
@@ -681,13 +681,10 @@
         });
       });
     }
-    function setChatAction(label,send=false){
-      lessonAction.textContent=send?'↑':label;
-      lessonAction.classList.toggle('chat-send',send);
-      if(send)lessonAction.setAttribute('aria-label',label);
-      else lessonAction.removeAttribute('aria-label');
+    function setChatAction(label){
+      lessonAction.textContent=label;
     }
-    function renderTask(){
+    function renderTask(showWorkTask=false){
       if(workMode)window.TopaWorkAudio?.stop();
       const task=getActiveTasks()[currentTaskIndex];
       taskState={validated:false,selectedIndex:null,matched:0,left:null,order:[]};
@@ -742,7 +739,7 @@
         bindSpeechButtons();
         bindChoices();
       }
-      if(workMode&&activeLesson===2)renderWorkChat(task);
+      if(workMode&&activeLesson===2)renderWorkChat(task,showWorkTask);
       else if(workMode)renderWorkSupport(task);
     }
     function workChatMessage(text,mine=false,translation=''){
@@ -752,7 +749,7 @@
     function workAnswer(task){
       return window.TopaWork.answerText(task);
     }
-    function renderWorkChat(task){
+    function renderWorkChat(task,showTask){
       let history='';
       let last='';
       getActiveTasks().slice(0,currentTaskIndex).forEach(previous=>{
@@ -767,9 +764,22 @@
       composer.append(...Array.from(host.childNodes));
       host.innerHTML='<div class="story-feed" id="workChatFeed" aria-label="Диалог">'+history+'</div>';
       host.append(composer);
-      setChatAction('Отправить ответ',true);
-      lessonFeedback.textContent='Ответьте по-русски…';
+      if(showTask)revealWorkChatTask();
+      else{
+        composer.hidden=true;
+        setChatAction('ПЕРЕЙТИ К ЗАДАНИЮ');
+        lessonAction.disabled=false;
+      }
       scrollStoryToBottom(false);
+    }
+    function revealWorkChatTask(){
+      const composer=host.querySelector('.chat-composer');
+      composer.hidden=false;
+      setChatAction('ПРОВЕРИТЬ');
+      lessonAction.disabled=true;
+      lessonFeedback.textContent='Ответьте по-русски…';
+      composer.querySelector('button')?.focus({preventScroll:true});
+      scrollStoryToBottom();
     }
     function appendWorkChatAnswer(task){
       const feed=$('#workChatFeed');
@@ -904,14 +914,19 @@
       if(workMode&&!correct&&(activeLesson===2||currentTaskIndex===getActiveTasks().length-1)){
         taskState.retry=true;
         setChatAction('ПОПРОБОВАТЬ ЕЩЁ');
+      }else if(workMode&&activeLesson===2){
+        const next=getActiveTasks()[currentTaskIndex+1];
+        setChatAction(!next?'ЗАВЕРШИТЬ':next.speaker===task.response?'ПЕРЕЙТИ К ЗАДАНИЮ':'ДАЛЕЕ');
       }else setChatAction('ДАЛЕЕ →');
       lessonAction.disabled=false;
     }
     function advanceTask(){
+      const tasks=getActiveTasks(),next=tasks[currentTaskIndex+1];
       const progress=getLanguageProgress(language),field=lessonStepField(activeLesson);
       progress[field]=Math.max(progress[field],currentTaskIndex+1);saveProgress();
-      if(currentTaskIndex===getActiveTasks().length-1){finishLessonOne();return}
-      currentTaskIndex++;renderTask();
+      if(!next){finishLessonOne();return}
+      const showWorkTask=workMode&&activeLesson===2&&next.speaker===tasks[currentTaskIndex].response;
+      currentTaskIndex++;renderTask(showWorkTask);
       if(!lessonPlayer.classList.contains('chat-mode'))lessonPlayer.scrollTop=0;
     }
 
@@ -1037,14 +1052,7 @@
             taskState.matched++;
             lessonFeedback.textContent='Пара найдена!';
             lessonFeedback.className='lesson-feedback good';
-            if(taskState.matched===pairs.length){
-              taskState.validated=true;
-              lessonFeedback.textContent='Все пары собраны верно!';
-              lessonFeedback.className='lesson-feedback good';
-              completeStoryTask();
-              lessonAction.textContent='ЗАВЕРШИТЬ →';
-              lessonAction.disabled=false;
-            }
+            if(taskState.matched===pairs.length)lessonAction.disabled=false;
           }else{
             const leftCard=taskState.left;
             window.dispatchEvent(new CustomEvent('topa:answer',{detail:{lesson:2,words:[pairs[Number(leftCard.dataset.pair)][0],pairs[Number(card.dataset.pair)][0]],correct:false}}));
@@ -1111,20 +1119,16 @@
       const content=activeStoryTask.querySelector('.story-task__content');
       lessonFeedback.textContent='';
       lessonFeedback.className='lesson-feedback';
+      setChatAction('ПРОВЕРИТЬ');
+      lessonAction.disabled=true;
       if(step.type==='quiz'){
         content.innerHTML='<h2 class="story-question">'+escapeHtml(step.question)+'</h2>'+choiceMarkup(step.options);
         bindStoryChoices(content);
-        lessonAction.textContent='ПРОВЕРИТЬ';
-        lessonAction.disabled=true;
       }else if(step.type==='order'){
         content.innerHTML='<h2 class="story-question">'+escapeHtml(step.question)+'</h2><div class="story-order"><div class="token-answer"></div><div class="token-bank"></div></div>';
         renderStoryOrderTokens(content);
-        lessonAction.textContent='ПРОВЕРИТЬ';
-      }else if(step.type==='match'){
-        renderStoryMatch(content,step);
-        lessonAction.textContent='СОБЕРИТЕ ПАРЫ';
-        lessonAction.disabled=true;
-      }
+      }else if(step.type==='match')renderStoryMatch(content,step);
+      content.querySelector('button')?.focus({preventScroll:true});
       scrollStoryToBottom();
     }
     function completeStoryTask(correct){
@@ -1156,6 +1160,13 @@
         if(selected)selected.classList.add(correct?'is-correct':'is-wrong');
         if(!correct&&right)right.classList.add('is-correct');
         lessonFeedback.textContent=correct?'Верно! История продолжается':'Почти! Правильный ответ показан зелёным.';
+      }else if(step.type==='match'){
+        taskState.validated=true;
+        lessonFeedback.textContent='Все пары собраны верно!';
+        lessonFeedback.className='lesson-feedback good';
+        completeStoryTask();
+        setStoryNextAction();
+        return;
       }
       window.dispatchEvent(new CustomEvent('topa:answer',{detail:{lesson:2,task:storyPendingTask.step,correct:correct}}));
       taskState.validated=true;
@@ -1165,8 +1176,7 @@
     }
     function setStoryNextAction(){
       const next=STORY_FLOW[storyCursor];
-      const send=next?.type==='line'&&STORY_ROLES[next.line]==='learner';
-      setChatAction(send?'Отправить реплику':next?'Продолжить':'ЗАВЕРШИТЬ →',send);
+      setChatAction(next?.type==='task'?'ПЕРЕЙТИ К ЗАДАНИЮ':next?'ДАЛЕЕ':'ЗАВЕРШИТЬ');
       lessonAction.disabled=false;
     }
     function revealNextStoryItem(){
@@ -1272,8 +1282,12 @@
         advanceStory();
         return;
       }
-      if(!taskState.validated){validateTask();return}
-      if(taskState.retry){renderTask();return}
+      if(!taskState.validated){
+        if(workMode&&activeLesson===2&&host.querySelector('.chat-composer').hidden)revealWorkChatTask();
+        else validateTask();
+        return;
+      }
+      if(taskState.retry){renderTask(activeLesson===2);return}
       advanceTask();
     });
     document.querySelectorAll('.lesson__button').forEach(function(button){
