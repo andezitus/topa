@@ -90,16 +90,6 @@
     source: 'HeyGen URLs (preview only)'
   });
 
-  const label = document.createElement('aside');
-  label.textContent = 'ДЕМО · Озвучка Анатолий · 39 реплик';
-  Object.assign(label.style, {
-    position: 'fixed', left: '12px', bottom: '12px', zIndex: '9999',
-    background: '#0b50c5', color: 'white', padding: '7px 11px',
-    borderRadius: '10px', font: '600 12px system-ui, sans-serif',
-    boxShadow: '0 4px 15px rgba(0,0,0,0.15)', pointerEvents: 'none'
-  });
-  document.body.appendChild(label);
-
   const host = document.getElementById('taskHost');
   if (!host) return;
 
