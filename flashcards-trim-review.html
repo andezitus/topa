@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ТОПА — сравнение 6 исправленных окончаний</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f3f8ff;color:#092867;font:15px/1.5 system-ui,Arial,sans-serif}
+main{max-width:910px;padding:26px 16px 95px;margin:auto}h1{font-size:clamp(24px,4vw,34px);margin:0 0 5px}
+p{color:#5a7198}.stats{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0}.stats span{background:#fff;border:1px solid #dbe8fc;border-radius:12px;padding:9px 12px;font-weight:700}
+.card{background:#fff;border:1px solid #dee9fb;border-radius:20px;padding:19px;margin:14px 0;box-shadow:0 6px 18px #0c42820b}
+.card h2{font-size:21px;margin:5px 0 14px}.tag{color:#1268d8;font-size:12px;font-weight:700}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px}.track{background:#f5f9ff;border-radius:13px;padding:12px;min-width:0}
+.track strong{font-size:14px}.track p{font-size:12px;margin:3px 0 9px}audio{width:100%}
+.controls{display:flex;gap:17px;margin-top:14px;flex-wrap:wrap}label{display:flex;gap:6px;align-items:center;cursor:pointer}
+input[type=radio]{accent-color:#126ef0;width:17px;height:17px}textarea{display:block;width:100%;min-height:51px;resize:vertical;padding:11px;margin-top:12px;border:1px solid #d2deef;border-radius:11px;font:inherit}
+footer{position:sticky;bottom:0;background:#eaf3ffee;backdrop-filter:blur(10px);border-radius:15px;padding:12px 15px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+button{padding:12px 16px;background:#126fee;color:#fff;border:0;border-radius:11px;font:inherit;font-weight:700;cursor:pointer}
+@media(max-width:600px){.compare{grid-template-columns:1fr}footer{flex-direction:column;align-items:stretch}}
+</style></head><body><main>
+<h1>ТОПА · Повторная проверка</h1>
+<p>Шесть записей, отмеченных «Переделать» в твоём JSON. У каждой физически удалено примерно 0,3 секунды с конца. Слева — исходный MP3, справа — новый. Другие 58 принятых файлов не изменялись.</p>
+<div class="stats"><span>6 MP3</span><span>−0,3 с с конца</span><span>58 без изменений</span></div>
+<div id="items"></div>
+<footer><strong id="counter">Проверено 0 из 6</strong><button id="export">Скачать результаты JSON</button></footer>
+<p style="font-size:12px">Для воспроизведения нужен интернет: MP3 сохранены в отдельной ветке GitHub. Это проверка новых обрезок, не публикация на основном сайте.</p>
+</main><script>
+const DATA=[{"key":"tt_06","lang":"Татарский","word":"Яхшы","file":"tt_06.mp3","before":"https://raw.githubusercontent.com/andezitus/topa/flashcard-audio-demo-20261115/flashcard-assets/originals/tt_06.mp3?v=20261115","after":"https://raw.githubusercontent.com/andezitus/topa/flashcard-audio-demo-20261115/flashcard-assets/audio/tt_06.mp3?v=trim03"},{"key":"cv_05","lang":"Чувашский","word":"Епӗ … ятлӑ","file":"cv_05.mp3","before":"https://raw.githubusercontent.com/andezitus/topa/flashcard-audio-demo-20261115/flashcard-assets/originals/cv_05.mp3?v=20261115","after":"https://raw.githubusercontent.com/andezitus/topa/flashcard-audio-demo-20261115/flashcard-assets/audio/cv_05.mp3?v=trim03"},{"key":"cv_07","lang":"Чувашский","word":"магазин","file":"cv_07.mp3","before":"https://raw.githubusercontent.com/andezitus/topa/flashcard-audio-demo-20261115/flashcard-assets/originals/cv_07.mp3?v=20261115","after":"https://raw.githubusercontent.com/andezitus/topa/flashcard-audio-demo-20261115/flashcard-assets/audio/cv_07.mp3?v=trim03"},{"key":"ky_05","lang":"Киргизский","word":"Менин атым…","file":"ky_05.mp3","before":"https://raw.githubusercontent.com/andezitus/topa/flashcard-audio-demo-20261115/flashcard-assets/originals/ky_05.mp3?v=20261115","after":"https://raw.githubusercontent.com/andezitus/topa/flashcard-audio-demo-20261115/flashcard-assets/audio/ky_05.mp3?v=trim03"},{"key":"work_04","lang":"Русский для компаний","word":"опасно","file":"work_04.mp3","before":"https://raw.githubusercontent.com/andezitus/topa/flashcard-audio-demo-20261115/flashcard-assets/originals/work_04.mp3?v=20261115","after":"https://raw.githubusercontent.com/andezitus/topa/flashcard-audio-demo-20261115/flashcard-assets/audio/work_04.mp3?v=trim03"},{"key":"work_10","lang":"Русский для компаний","word":"работа","file":"work_10.mp3","before":"https://raw.githubusercontent.com/andezitus/topa/flashcard-audio-demo-20261115/flashcard-assets/originals/work_10.mp3?v=20261115","after":"https://raw.githubusercontent.com/andezitus/topa/flashcard-audio-demo-20261115/flashcard-assets/audio/work_10.mp3?v=trim03"}];
+const STORE="topa_flashcard_trim_6_review_v1";let results={};try{results=JSON.parse(localStorage.getItem(STORE)||"{}")}catch{}
+const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function save(){localStorage.setItem(STORE,JSON.stringify(results));count()}
+function count(){document.getElementById("counter").textContent="Проверено "+DATA.filter(x=>results[x.key]?.status).length+" из 6"}
+document.getElementById("items").innerHTML=DATA.map(x=>{
+ const a=results[x.key]||{};
+ return '<section class="card" data-key="'+escapeHtml(x.key)+'"><span class="tag">'+escapeHtml(x.lang)+' · '+escapeHtml(x.key)+'</span><h2>'+escapeHtml(x.word)+'</h2><div class="compare"><div class="track"><strong>Было</strong><p>Исходный файл, до обрезки</p><audio controls preload="none" src="'+escapeHtml(x.before)+'"></audio></div><div class="track"><strong>Стало</strong><p>Окончание сокращено на 0,3 с</p><audio controls preload="none" src="'+escapeHtml(x.after)+'"></audio></div></div><div class="controls"><label><input type="radio" name="'+escapeHtml(x.key)+'" value="good" '+(a.status==="good"?"checked":"")+'> Принять</label><label><input type="radio" name="'+escapeHtml(x.key)+'" value="bad" '+(a.status==="bad"?"checked":"")+'> Ещё укоротить</label></div><textarea placeholder="Замечание: лишний звук или обрезано окончание">'+escapeHtml(a.note||"")+'</textarea></section>';
+}).join("");
+document.querySelectorAll(".card").forEach(card=>{
+ const key=card.dataset.key;
+ card.querySelectorAll('input[type=radio]').forEach(input=>input.onchange=()=>{results[key]={...results[key],status:input.value};save()});
+ card.querySelector("textarea").oninput=e=>{results[key]={...results[key],note:e.target.value};save()};
+});
+document.getElementById("export").onclick=()=>{
+const payload={project:"ТОПА — шесть окончаний после удаления 0,3 с",entries:DATA.map(x=>({...x,review:results[x.key]||{status:"unchecked"}}))};
+const url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}));
+const a=document.createElement("a");a.href=url;a.download="topa_flashcard_trim_6_feedback.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)
+};count();
+</script></body></html>
