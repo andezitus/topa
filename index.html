@@ -810,7 +810,7 @@
     function renderWorkSupport(task){
       const heading=host.querySelector('#taskTitle');
       let html='';
-      if(task.visual)html+='<img class="work-task-art" src="work-assets/'+task.visual+'.svg?v=3" alt="">';
+      if(task.visual)html+='<img class="work-task-art'+(task.visual==='barrier'?' work-task-art--barrier':'')+'" src="work-assets/'+task.visual+'.svg?v=3" alt="">';
       const line=window.TopaWork.audioText(task);
       if(line){
         const audioIndex=window.TopaWork.audioLines.indexOf(line);

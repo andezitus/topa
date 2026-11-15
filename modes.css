@@ -39,6 +39,7 @@
 .work-theme .review-launch__count{background:#F3E2B8;border-color:#F3E2B8;color:#123C7A}
 .work-course-card{max-width:390px}
 .work-task-art{width:120px;height:112px;display:block;margin:0 auto}
+.work-task-art--barrier{width:180px;height:168px}
 .work-audio{display:flex;align-items:center;gap:10px 12px;flex-wrap:wrap;margin:4px 0 16px}
 .work-audio-player{display:inline-flex;align-items:center;gap:4px;max-width:100%;padding:0 14px 0 2px;border-radius:15px;background:#edf7ff;color:#0875ef}
 .work-audio-button{display:grid;place-items:center;width:44px;height:44px;flex:none;padding:0;border:0;border-radius:11px;background:transparent;color:inherit;cursor:pointer}
