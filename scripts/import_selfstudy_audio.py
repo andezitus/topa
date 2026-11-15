@@ -19,11 +19,11 @@ def duration(path):
     return float(command(["ffprobe","-v","error","-show_entries","format=duration","-of","default=noprint_wrappers=1:nokey=1",str(path)]))
 def download(url,path):
     if path.exists() and path.stat().st_size>1000: return
-    request=urllib.request.Request(url,headers={"User-Agent":"TOПА-audio-import/1.0"})
+    request=urllib.request.Request(url,headers={"User-Agent":"TOPA-audio-import/1.0"})
     with urllib.request.urlopen(request,timeout=45) as res:
         content=res.read()
-    if len(content)<1000 or content[:3] != b"ID3" and content[:2] != b"\xff\xfb":
-        raise RuntimeError("Unexpected audio content for "+path.name)
+    if len(content)<1000:
+        raise RuntimeError("Unexpectedly short audio content for "+path.name)
     path.write_bytes(content)
 def items():
     women=set(CONF["storyWomanIndices"])
