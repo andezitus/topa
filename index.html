@@ -141,7 +141,7 @@
         <div class="mode-grid">
           <a class="mode-card" href="./" id="personalMode"><span class="mode-illustration"><img src="work-assets/topa-chuvash.svg" alt="" loading="lazy" width="491" height="763"></span><span class="mode-copy"><strong>Для самостоятельного изучения</strong><small>Нажмите, чтобы перейти</small></span></a>
           <a class="mode-card mode-card--work" href="?mode=work" id="workMode"><span class="mode-illustration"><img src="work-assets/topa-builder.svg" alt="" loading="lazy" width="492" height="778"></span><span class="mode-copy"><strong>Для компаний</strong><small>Нажмите, чтобы перейти</small></span></a>
-          <button class="mode-card mode-card--edu" type="button" id="educationMode" aria-haspopup="dialog"><span class="mode-illustration"><img src="work-assets/topa-business.svg" alt="" loading="lazy" width="504" height="785"></span><span class="mode-copy"><strong>Для образовательных учреждений</strong><small>Нажмите, чтобы перейти</small></span></button>
+          <button class="mode-card mode-card--edu" type="button" id="educationMode" aria-haspopup="dialog"><span class="mode-illustration"><img src="work-assets/topa-business.svg?v=2" alt="" loading="lazy" width="1045" height="1605"></span><span class="mode-copy"><strong>Для образовательных учреждений</strong><small>Нажмите, чтобы перейти</small></span></button>
         </div>
       </section>
       <dialog class="mode-notice" id="educationNotice" aria-labelledby="educationTitle">
@@ -810,7 +810,7 @@
     function renderWorkSupport(task){
       const heading=host.querySelector('#taskTitle');
       let html='';
-      if(task.visual)html+='<img class="work-task-art" src="work-assets/'+task.visual+'.svg?v=2" alt="">';
+      if(task.visual)html+='<img class="work-task-art" src="work-assets/'+task.visual+'.svg?v=3" alt="">';
       const line=window.TopaWork.audioText(task);
       if(line){
         const audioIndex=window.TopaWork.audioLines.indexOf(line);
