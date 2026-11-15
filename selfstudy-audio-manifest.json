@@ -1,6 +1,6 @@
 {
   "project": "ТОПА — языки народов России",
-  "version": "selfstudy-heygen-approved-2026-11-15",
+  "version": "selfstudy-heygen-71-2026-11-15",
   "sourceBase": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/",
   "voices": {
     "woman": "cc484a0bd95445c589a86316513cc64c",
@@ -110,6 +110,73 @@
       "orderText": "Менин атым Айгүл.",
       "choiceText": "Кош болуңуз!",
       "greeting": "Саламатсызбы!"
+    }
+  },
+  "intro": {
+    "common": [
+      {
+        "text": "тёплый",
+        "asset": "01416674f4a84d4f8291d22caf29ff15",
+        "file": "intro_ru_warm.mp3"
+      },
+      {
+        "text": "Здравствуйте",
+        "asset": "a4812e5423504dc4933e7f10b04bac31",
+        "file": "intro_ru_hello.mp3"
+      },
+      {
+        "text": "Спасибо",
+        "asset": "40d81f410cb84119945286085df269a3",
+        "file": "intro_ru_thanks.mp3"
+      },
+      {
+        "text": "помощь",
+        "asset": "9ce16d89cc3346949b296c294b897c81",
+        "file": "intro_ru_help.mp3"
+      },
+      {
+        "text": "красивый",
+        "asset": "1998aabfcf5143c4a97d61f99730c3bb",
+        "file": "intro_ru_beautiful.mp3"
+      }
+    ],
+    "byLanguage": {
+      "Татарский": [
+        {
+          "text": "Җылы пальто.",
+          "asset": "a5265257e1d84fd28f5c924fefbffe56",
+          "file": "tt_intro_warm.mp3"
+        },
+        {
+          "text": "Матур һәм җылы пальто.",
+          "asset": "53a86e72ae984525bf3e66bccbfc22b4",
+          "file": "tt_intro_description.mp3"
+        }
+      ],
+      "Чувашский": [
+        {
+          "text": "Ӑшӑ пальто.",
+          "asset": "acceabef230d451ba6e4373fc93055ba",
+          "file": "cv_intro_warm.mp3"
+        },
+        {
+          "text": "Илемлӗ тата ӑшӑ пальто.",
+          "asset": "ba33a5883df34392ae791bcdae0476a4",
+          "file": "cv_intro_description.mp3"
+        }
+      ],
+      "Киргизский": [
+        {
+          "text": "Жылуу пальто.",
+          "asset": "1435b3fcb9bd44999839566ea563564f",
+          "file": "ky_intro_warm.mp3"
+        },
+        {
+          "text": "Кооз жана жылуу пальто.",
+          "asset": "5ba5f37782694b0a863f8dc516812aa7",
+          "file": "ky_intro_description.mp3"
+        }
+      ]
     }
   }
 }
