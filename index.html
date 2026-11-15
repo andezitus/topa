@@ -21,7 +21,7 @@
   <link rel="preload" as="image" href="speaker-icon.svg">
   <link rel="preload" as="image" href="story-girl.svg">
   <link rel="stylesheet" href="lesson-chat.css?v=5">
-  <link rel="preload" as="image" href="story-mascot.svg">
+  <link rel="preload" as="image" href="story-mascot.svg?v=2">
   <link rel="preload" as="image" href="streak-mascot.svg">
   <link rel="preload" as="image" href="streak-sky.svg">
   <link rel="preload" as="image" href="streak-status.svg">
@@ -639,7 +639,7 @@
     }
     function speechCard(text,translation,withMascot){
       return '<div class="task-prompt">'+
-        (withMascot?'<img class="task-prompt__mascot" src="story-mascot.svg" alt="" width="360" height="288">':'')+
+        (withMascot?'<img class="task-prompt__mascot" src="story-mascot.svg?v=2" alt="" width="1254" height="1254">':'')+
         '<div class="speech-bubble"><button class="speak-btn" type="button" data-speak="'+escapeHtml(text)+'" aria-label="Прослушать фразу"><img class="speaker-icon" src="speaker-icon.svg" alt="" width="256" height="256"></button>'+
         '<span>'+escapeHtml(text)+'</span></div></div>'+
         (translation?'<p class="task-help" style="margin-top:-15px">'+escapeHtml(translation)+'</p>':'');
@@ -1250,8 +1250,8 @@
         document.body.classList.add('assets-loading');
         await window.TopaAssets.prepare(number===2
           ?(window.TopaWork?.active?['speaker-icon.svg','work-assets/foreman.svg']:['speaker-icon.svg','story-girl.svg'])
-          :number===0?['intro-coat.svg','intro-shop.svg','speaker-icon.svg','story-mascot.svg']
-          :['speaker-icon.svg','story-mascot.svg']);
+          :number===0?['intro-coat.svg','intro-shop.svg','speaker-icon.svg','story-mascot.svg?v=2']
+          :['speaker-icon.svg','story-mascot.svg?v=2']);
         if(request!==lessonOpenRequest||requestedLanguage!==language)return;
         document.body.classList.remove('assets-loading');
       }
