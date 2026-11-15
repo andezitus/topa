@@ -3,7 +3,8 @@
 
   let clip;
   let activeButton;
-  let progress;
+  let wave;
+  let frame;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const translate = window.TopaWorkLocale?.translate ?? (text => text);
   const playLabel = translate('Воспроизвести реплику');
@@ -13,21 +14,23 @@
     button.setAttribute('aria-label', playing ? translate('Приостановить реплику') : playLabel);
   }
 
-  function syncProgress(running) {
-    if (!clip || !Number.isFinite(clip.duration) || clip.duration <= 0) return;
-    if (!progress) {
-      const wave = activeButton.parentElement.querySelector('.work-audio-button__progress');
-      progress = wave.animate(
-        [{clipPath: 'inset(0 100% 0 0)'}, {clipPath: 'inset(0 0% 0 0)'}],
-        {duration: clip.duration * 1000, fill: 'both'}
-      );
+  function syncProgress() {
+    if (!wave || !Number.isFinite(clip.duration) || clip.duration <= 0) return;
+    const remaining = 100 * (1 - Math.min(1, clip.currentTime / clip.duration));
+    wave.style.clipPath = `inset(0 ${remaining}% 0 0)`;
+  }
+
+  function updateFrame() {
+    frame = undefined;
+    syncProgress();
+    if (!reducedMotion.matches && !clip.paused && !clip.ended && !clip.seeking && clip.readyState >= 3) {
+      frame = requestAnimationFrame(updateFrame);
     }
-    progress.pause();
-    progress.currentTime = clip.currentTime * 1000;
-    if (running && !reducedMotion.matches) {
-      progress.playbackRate = clip.playbackRate;
-      progress.play();
-    }
+  }
+
+  function stopFrames() {
+    if (frame !== undefined) cancelAnimationFrame(frame);
+    frame = undefined;
   }
 
   function stop() {
@@ -35,8 +38,9 @@
     clip = undefined;
     if (activeButton) setPlaying(activeButton, false);
     activeButton = undefined;
-    progress?.cancel();
-    progress = undefined;
+    stopFrames();
+    wave?.style.removeProperty('clip-path');
+    wave = undefined;
     previous?.pause();
   }
 
@@ -57,21 +61,31 @@
       stop();
       clip = new Audio('work-assets/audio/' + button.dataset.workAudio + '.mp3?v=5');
       activeButton = button;
+      wave = button.parentElement.querySelector('.work-audio-button__progress');
       const current = clip;
-      current.addEventListener('play', () => {
-        if (clip === current && !current.paused) setPlaying(button, true);
-      });
       current.addEventListener('playing', () => {
-        if (clip === current && !current.paused) syncProgress(true);
+        if (clip !== current || current.paused) return;
+        setPlaying(button, true);
+        stopFrames();
+        updateFrame();
       });
-      current.addEventListener('waiting', () => { if (clip === current) syncProgress(false); });
-      current.addEventListener('timeupdate', () => {
-        if (clip === current && reducedMotion.matches) syncProgress(false);
-      });
-      current.addEventListener('pause', () => {
-        if (clip !== current || !current.paused) return;
-        syncProgress(false);
-        setPlaying(button, false);
+      for (const event of ['waiting', 'seeking', 'pause']) {
+        current.addEventListener(event, () => {
+          if (clip !== current) return;
+          stopFrames();
+          syncProgress();
+          if (current.paused) setPlaying(button, false);
+        });
+      }
+      for (const event of ['timeupdate', 'durationchange', 'seeked']) {
+        current.addEventListener(event, () => {
+          if (clip === current) syncProgress();
+        });
+      }
+      current.addEventListener('error', () => {
+        if (clip !== current) return;
+        stop();
+        showToast('Не удалось воспроизвести аудио. Попробуйте ещё раз.');
       });
       current.addEventListener('ended', () => { if (clip === current) stop(); });
     }

@@ -30,9 +30,12 @@
     const audio = new Audio('flashcard-assets/audio/' + file + '?v=1');
     const item = {audio, button, label: button.getAttribute('aria-label') || 'Прослушать слово'};
     active = item;
-    button.classList.add('is-playing');
-    button.setAttribute('aria-pressed', 'true');
-    button.setAttribute('aria-label', 'Остановить озвучку');
+    audio.addEventListener('playing', () => {
+      if (active !== item || audio.paused) return;
+      button.classList.add('is-playing');
+      button.setAttribute('aria-pressed', 'true');
+      button.setAttribute('aria-label', 'Остановить озвучку');
+    });
     audio.addEventListener('ended', () => { if (active === item) stop(); });
     audio.addEventListener('error', () => {
       if (active !== item) return;

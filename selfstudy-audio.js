@@ -62,8 +62,11 @@
     const myToken = ++token;
     const state = {audio:audio,button:opts.button,raf:0};
     active = state;
-    opts.button.classList.add('is-speaking');
-    opts.button.setAttribute('aria-pressed','true');
+    audio.addEventListener('playing', () => {
+      if (!isActive() || audio.paused) return;
+      opts.button.classList.add('is-speaking');
+      opts.button.setAttribute('aria-pressed','true');
+    });
     function isActive() { return active === state && myToken === token; }
     function checkCutoff() {
       if (!isActive()) return;
@@ -87,7 +90,7 @@
     audio.src = item.url;
     const started = audio.play();
     if (started && typeof started.then === 'function') started.then(function(){
-      if (isActive()) state.raf = requestAnimationFrame(checkCutoff);
+      if (isActive() && item.trim) state.raf = requestAnimationFrame(checkCutoff);
     }).catch(fallback);
     return true;
   }
