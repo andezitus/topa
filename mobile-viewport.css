@@ -1,8 +1,45 @@
-:root{--app-height:100vh;--visible-top:0px;--visible-bottom:0px;--mobile-nav-height:calc(72px + env(safe-area-inset-bottom,0px))}
+:root{--app-height:100vh;--visible-top:0px;--mobile-nav-height:calc(72px + env(safe-area-inset-bottom,0px))}
 @supports(height:100dvh){:root{--app-height:100dvh}}
+/* Every lesson uses the same bounds. The visible viewport already excludes
+   browser chrome, while safe-area insets protect the screen edges. */
+#lessonModal {
+  --lesson-gutter:24px;
+  top:var(--visible-top);
+  bottom:auto;
+  height:var(--app-height);
+  padding:calc(var(--lesson-gutter) + env(safe-area-inset-top,0px))
+    calc(var(--lesson-gutter) + env(safe-area-inset-right,0px))
+    calc(var(--lesson-gutter) + env(safe-area-inset-bottom,0px))
+    calc(var(--lesson-gutter) + env(safe-area-inset-left,0px));
+  grid-template:minmax(0,1fr) / minmax(0,1fr);
+  overflow:hidden;
+}
+.lesson-player {
+  display:flex;
+  flex-direction:column;
+  width:min(720px,100%);
+  height:min(760px,100%);
+  min-height:0;
+  overflow:hidden;
+}
+.lesson-player__header,.lesson-player__footer{flex:none}
+.lesson-player__body {
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  overscroll-behavior-y:contain;
+}
+@media(max-width:860px),(hover:none) and (pointer:coarse){
+  #lessonModal{--lesson-gutter:8px}
+  .lesson-player{border-radius:23px}
+  .viewport-tight #lessonModal .lesson-player__header,
+  .viewport-tight #lessonModal .lesson-player__footer{padding-block:8px}
+}
 @media(max-width:860px){
   html,body{touch-action:pan-y}
-  .sidebar{bottom:var(--visible-bottom);height:var(--mobile-nav-height);padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:calc(var(--mobile-nav-height) + 6px)}
+  /* A fixed element already follows the browser's bottom edge. */
+  .sidebar{bottom:0;height:var(--mobile-nav-height);padding:8px max(10px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px))}
   html.mobile-static-page,body.mobile-static-page{height:var(--app-height);min-height:0;overflow:hidden;overscroll-behavior:none}
   body.mobile-static-page{position:fixed;top:var(--visible-top);left:0;right:0;width:100%;padding-bottom:0}
   .mobile-static-page .app{height:100%;min-height:0;overflow:hidden}

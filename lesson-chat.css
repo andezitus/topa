@@ -1,7 +1,6 @@
 .lesson-player.chat-mode {
-  width:min(550px,100%); height:min(760px,calc(100dvh - 48px));
-  display:flex; flex-direction:column; overflow:hidden; background:#fff; color:#20242c;
-  border-color:#e8f0fa; border-radius:32px;
+  background:#fff; color:#20242c;
+  border-color:#e8f0fa;
 }
 .chat-mode .lesson-player__header {
   flex:none; grid-template-columns:minmax(0,1fr) auto; gap:12px;
@@ -12,7 +11,6 @@
 .chat-mode .lesson-progress {grid-column:1/-1; grid-row:2; gap:10px}
 .chat-mode .lesson-progress__track {height:5px}
 .chat-mode .lesson-player__body {
-  min-height:0; flex:1; overflow:auto; overscroll-behavior:contain;
   padding:18px 24px; scrollbar-width:thin;
 }
 .chat-mode .lesson-player__footer {
@@ -45,6 +43,5 @@
 .chat-mode .story-task {margin:0; box-shadow:none; padding:12px}
 .chat-mode .story-result,.chat-mode .lesson-complete {min-height:0; padding:18px}
 @media(max-width:620px){
-  .lesson-player.chat-mode {height:calc(100dvh - 16px); border-radius:23px}
   .chat-mode .lesson-player__header,.chat-mode .lesson-player__body,.chat-mode .lesson-player__footer {padding-left:15px; padding-right:15px}
 }

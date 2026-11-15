@@ -12,7 +12,6 @@
     const top=viewport?viewport.offsetTop:0;
     root.style.setProperty('--app-height',height+'px');
     root.style.setProperty('--visible-top',top+'px');
-    root.style.setProperty('--visible-bottom',Math.max(0,window.innerHeight-height-top)+'px');
     body.classList.toggle('viewport-compact',height<620);
     body.classList.toggle('viewport-tight',height<500);
   }
