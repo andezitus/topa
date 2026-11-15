@@ -1,0 +1,130 @@
+{
+  "language": "Чувашский",
+  "voice": "Евгения",
+  "voiceId": "cc484a0bd95445c589a86316513cc64c",
+  "approved": false,
+  "items": [
+    {
+      "index": 0,
+      "original_text": "Салам",
+      "tts_text": "Салам!",
+      "file": "cv_00.mp3",
+      "reuse": "selfstudy-assets/audio/cv_story_00.mp3"
+    },
+    {
+      "index": 1,
+      "original_text": "Тавтапуҫ",
+      "tts_text": "Тавтапущ.",
+      "file": "cv_01.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=72ce58d92081404596166c73f59b5449.mp3",
+      "duration": 1.211156462585034
+    },
+    {
+      "index": 2,
+      "original_text": "Ҫапла",
+      "tts_text": "Щапла.",
+      "file": "cv_02.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=3a4c894894c14ae2b7dbcbe689a0b0e5.mp3",
+      "duration": 0.8449433106575964
+    },
+    {
+      "index": 3,
+      "original_text": "Ҫук",
+      "tts_text": "Щук.",
+      "file": "cv_03.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=48d19cd513b544af8a592d90b134f8f6.mp3",
+      "duration": 0.8315646258503402
+    },
+    {
+      "index": 4,
+      "original_text": "Сывӑ пулӑр",
+      "tts_text": "Сыва пулар!",
+      "file": "cv_04.mp3",
+      "reuse": "selfstudy-assets/audio/cv_choice.mp3"
+    },
+    {
+      "index": 5,
+      "original_text": "Епӗ … ятлӑ",
+      "tts_text": "Епэ ятла.",
+      "file": "cv_05.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=f1571b2ca6e44311a797429e5f745740.mp3",
+      "duration": 1.6574603174603175
+    },
+    {
+      "index": 6,
+      "original_text": "Аван",
+      "tts_text": "Аван.",
+      "file": "cv_06.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=53c7aad4a5c54c5d9e5d5cfb614366be.mp3",
+      "duration": 0.8440136054421769
+    },
+    {
+      "index": 7,
+      "original_text": "магазин",
+      "tts_text": "Магазин.",
+      "file": "cv_07.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=ab189cf323fb489795f46955e6751e0d.mp3",
+      "duration": 1.1280725623582766
+    },
+    {
+      "index": 8,
+      "original_text": "пальто",
+      "tts_text": "Пальто.",
+      "file": "cv_08.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=08998c194eef446b9bbd74a635d1d3ce.mp3",
+      "duration": 0.8975963718820862
+    },
+    {
+      "index": 9,
+      "original_text": "пулӑшу",
+      "tts_text": "Пулашу.",
+      "file": "cv_09.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=9caede4699c943fe919e270a67b4a4b8.mp3",
+      "duration": 0.9609070294784581
+    },
+    {
+      "index": 10,
+      "original_text": "ӗҫлетӗр",
+      "tts_text": "Эщлетэр.",
+      "file": "cv_10.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=bbda8935626b432b91c7756016dd3c36.mp3",
+      "duration": 1.111201814058957
+    },
+    {
+      "index": 11,
+      "original_text": "илемлӗ",
+      "tts_text": "Илемлэ.",
+      "file": "cv_11.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=ea05491e4c3a45bbbd7e82986cb875a8.mp3",
+      "duration": 1.0449433106575963
+    },
+    {
+      "index": 12,
+      "original_text": "хаклӑ мар",
+      "tts_text": "Хакла мар.",
+      "file": "cv_12.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=50c8e1d52b4f4dd38d6550db79a52a2a.mp3",
+      "duration": 1.093673469387755
+    },
+    {
+      "index": 13,
+      "original_text": "ӑшӑ",
+      "tts_text": "Аша.",
+      "file": "cv_13.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=c537a1b9735949e68110f9f1a30e6da2.mp3",
+      "duration": 0.7217460317460317
+    }
+  ]
+}
