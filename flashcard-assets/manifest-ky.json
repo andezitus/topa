@@ -1,0 +1,130 @@
+{
+  "language": "Киргизский",
+  "voice": "Евгения",
+  "voiceId": "cc484a0bd95445c589a86316513cc64c",
+  "approved": false,
+  "items": [
+    {
+      "index": 0,
+      "original_text": "Саламатсызбы",
+      "tts_text": "Саламатсызбы!",
+      "file": "ky_00.mp3",
+      "reuse": "selfstudy-assets/audio/ky_story_00.mp3"
+    },
+    {
+      "index": 1,
+      "original_text": "Рахмат",
+      "tts_text": "Рахмат.",
+      "file": "ky_01.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=9128aad268a246718612016b613927f4.mp3",
+      "duration": 1.0732199546485262
+    },
+    {
+      "index": 2,
+      "original_text": "Ооба",
+      "tts_text": "Ооба.",
+      "file": "ky_02.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=580aed055ad040949ed20636acc7863c.mp3",
+      "duration": 0.9040816326530612
+    },
+    {
+      "index": 3,
+      "original_text": "Жок",
+      "tts_text": "Жок.",
+      "file": "ky_03.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=76b6a98e294248a2b105d9e5e083522c.mp3",
+      "duration": 0.7747165532879818
+    },
+    {
+      "index": 4,
+      "original_text": "Кош болуңуз",
+      "tts_text": "Кош болунгуз!",
+      "file": "ky_04.mp3",
+      "reuse": "selfstudy-assets/audio/ky_choice.mp3"
+    },
+    {
+      "index": 5,
+      "original_text": "Менин атым…",
+      "tts_text": "Менин атым.",
+      "file": "ky_05.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=e94218ede2e041d3bb57a5e047b629ac.mp3",
+      "duration": 1.7312698412698413
+    },
+    {
+      "index": 6,
+      "original_text": "Жакшы",
+      "tts_text": "Жакшы.",
+      "file": "ky_06.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=85b17b3b28de431a996e1fd577a03932.mp3",
+      "duration": 0.9085487528344671
+    },
+    {
+      "index": 7,
+      "original_text": "дүкөн",
+      "tts_text": "Дюкён.",
+      "file": "ky_07.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=737fd75353604cbb99ca9ee33710cf5b.mp3",
+      "duration": 0.9436734693877551
+    },
+    {
+      "index": 8,
+      "original_text": "пальто",
+      "tts_text": "Пальто.",
+      "file": "ky_08.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=e67ab1ccec6c43ed9eba66cd9e536326.mp3",
+      "duration": 0.8975963718820862
+    },
+    {
+      "index": 9,
+      "original_text": "жардам",
+      "tts_text": "Жардам.",
+      "file": "ky_09.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=0f0ebb277a21412489e503de1442a6fb.mp3",
+      "duration": 1.0242857142857142
+    },
+    {
+      "index": 10,
+      "original_text": "иштейсиз",
+      "tts_text": "Иштейсиз.",
+      "file": "ky_10.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=27ad85971b0e48708e4b9b0ba0e5353a.mp3",
+      "duration": 1.3118820861678004
+    },
+    {
+      "index": 11,
+      "original_text": "кооз",
+      "tts_text": "Кооз.",
+      "file": "ky_11.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=0abc2409f960423c98250a79ef44429c.mp3",
+      "duration": 1.0584807256235829
+    },
+    {
+      "index": 12,
+      "original_text": "арзан",
+      "tts_text": "Арзан.",
+      "file": "ky_12.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=d180e903c88f4a9ab63cd8b2eae93b0a.mp3",
+      "duration": 0.8502947845804989
+    },
+    {
+      "index": 13,
+      "original_text": "жылуу",
+      "tts_text": "Жылуу.",
+      "file": "ky_13.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=1e89d3eb0e634322a6623a09abc90d50.mp3",
+      "duration": 0.9324943310657596
+    }
+  ]
+}
