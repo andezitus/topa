@@ -1,0 +1,30 @@
+{
+  "source": "User reviewed 64 cards; 58 accepted and 6 flagged",
+  "secondsToTrim": 0.3,
+  "flagged": {
+    "tt_06.mp3": {
+      "language": "Татарский",
+      "word": "Яхшы"
+    },
+    "cv_05.mp3": {
+      "language": "Чувашский",
+      "word": "Епӗ … ятлӑ"
+    },
+    "cv_07.mp3": {
+      "language": "Чувашский",
+      "word": "магазин"
+    },
+    "ky_05.mp3": {
+      "language": "Киргизский",
+      "word": "Менин атым…"
+    },
+    "work_04.mp3": {
+      "language": "Русский · для компаний",
+      "word": "опасно"
+    },
+    "work_10.mp3": {
+      "language": "Русский · для компаний",
+      "word": "работа"
+    }
+  }
+}

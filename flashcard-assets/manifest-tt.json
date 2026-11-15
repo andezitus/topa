@@ -1,0 +1,130 @@
+{
+  "language": "Татарский",
+  "voice": "Евгения",
+  "voiceId": "cc484a0bd95445c589a86316513cc64c",
+  "approved": false,
+  "items": [
+    {
+      "index": 0,
+      "original_text": "Исәнмесез",
+      "tts_text": "Исьэнмесез!",
+      "file": "tt_00.mp3",
+      "reuse": "selfstudy-assets/audio/tt_story_00.mp3"
+    },
+    {
+      "index": 1,
+      "original_text": "Рәхмәт",
+      "tts_text": "Рьэхмьэт!",
+      "file": "tt_01.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=9ebe53ebfc1644ab9c4f1ae08fb24074.mp3",
+      "duration": 1.0777551020408163
+    },
+    {
+      "index": 2,
+      "original_text": "Әйе",
+      "tts_text": "Эйе.",
+      "file": "tt_02.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=1b5377c9671b481db690dd34a366c0d3.mp3",
+      "duration": 0.8794557823129252
+    },
+    {
+      "index": 3,
+      "original_text": "Юк",
+      "tts_text": "Юк.",
+      "file": "tt_03.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=3cecd1364051424da337102322296336.mp3",
+      "duration": 0.9366666666666666
+    },
+    {
+      "index": 4,
+      "original_text": "Сау булыгыз",
+      "tts_text": "Сау булыгыз!",
+      "file": "tt_04.mp3",
+      "reuse": "selfstudy-assets/audio/tt_choice.mp3"
+    },
+    {
+      "index": 5,
+      "original_text": "Минем исемем…",
+      "tts_text": "Минем исемем.",
+      "file": "tt_05.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=2eb440c2f80f4752ad9880009e48fde3.mp3",
+      "duration": 1.4556689342403628
+    },
+    {
+      "index": 6,
+      "original_text": "Яхшы",
+      "tts_text": "Яхшы.",
+      "file": "tt_06.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=41c9dadd58664413afeb130107522941.mp3",
+      "duration": 1.0462585034013605
+    },
+    {
+      "index": 7,
+      "original_text": "кибет",
+      "tts_text": "Кибет.",
+      "file": "tt_07.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=7bcc28e7a5f240d4afc028b5caa5be4a.mp3",
+      "duration": 0.919750566893424
+    },
+    {
+      "index": 8,
+      "original_text": "пальто",
+      "tts_text": "Пальто.",
+      "file": "tt_08.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=3f5658da0dc94fa79ae04248cd8e12bd.mp3",
+      "duration": 0.8975963718820862
+    },
+    {
+      "index": 9,
+      "original_text": "ярдәм",
+      "tts_text": "Ярдьэм.",
+      "file": "tt_09.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=e6229e9b2d76451dbeb4d33dd332aa23.mp3",
+      "duration": 1.1275736961451248
+    },
+    {
+      "index": 10,
+      "original_text": "эшлисез",
+      "tts_text": "Эшлисез.",
+      "file": "tt_10.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=7f46a9b8aedf4b40a49a3449afeadc01.mp3",
+      "duration": 1.210408163265306
+    },
+    {
+      "index": 11,
+      "original_text": "матур",
+      "tts_text": "Матур.",
+      "file": "tt_11.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=324a87cd584c4fb292be3a4c051ea07b.mp3",
+      "duration": 0.8608390022675737
+    },
+    {
+      "index": 12,
+      "original_text": "арзан",
+      "tts_text": "Арзан.",
+      "file": "tt_12.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=34f5a05f63a549ac8435e001f0f21312.mp3",
+      "duration": 0.8502947845804989
+    },
+    {
+      "index": 13,
+      "original_text": "җылы",
+      "tts_text": "Жылы.",
+      "file": "tt_13.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/cc484a0bd95445c589a86316513cc64c/id=ed61d65e8f114b389838b248b0a57619.mp3",
+      "duration": 0.7742403628117914
+    }
+  ]
+}
