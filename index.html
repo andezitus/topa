@@ -653,9 +653,10 @@
       (scope||host).querySelectorAll('[data-speak]').forEach(function(button){
         button.addEventListener('click',function(){
           const line=button.closest('[data-story-line]');
-          if(!workMode && activeLesson!==0 && window.TopaSelfStudyAudio &&
+          if(!workMode && window.TopaSelfStudyAudio &&
              window.TopaSelfStudyAudio.play({
                language:language,
+               lesson:activeLesson,
                text:button.dataset.speak,
                storyIndex:line?line.dataset.storyLine:null,
                button:button,
@@ -1383,6 +1384,6 @@
   <script src="mobile-layout.js?v=8"></script>
   <script src="courses.js?v=2"></script>
   <script src="mobile-viewport.js?v=1"></script>
-  <script src="selfstudy-audio.js?v=1"></script>
+  <script src="selfstudy-audio.js?v=2"></script>
 </body>
 </html>
