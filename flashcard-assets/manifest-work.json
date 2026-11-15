@@ -1,0 +1,194 @@
+{
+  "language": "Русский",
+  "voice": "Анатолий",
+  "voiceId": "9df4585a838b4cafa49498bd01f60fe4",
+  "approved": false,
+  "items": [
+    {
+      "index": 0,
+      "original_text": "каска",
+      "tts_text": "Каска.",
+      "file": "work_00.mp3",
+      "reuse": "work-assets/audio/0.mp3"
+    },
+    {
+      "index": 1,
+      "original_text": "перчатки",
+      "tts_text": "Перчатки.",
+      "file": "work_01.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=60395bbba4b3478f816c4cf48209faee.mp3",
+      "duration": 1.0560090702947846
+    },
+    {
+      "index": 2,
+      "original_text": "жилет",
+      "tts_text": "Жилет.",
+      "file": "work_02.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=a3986c524441476c87f26027fc73bbb9.mp3",
+      "duration": 0.8462131519274376
+    },
+    {
+      "index": 3,
+      "original_text": "стой",
+      "tts_text": "Стой!",
+      "file": "work_03.mp3",
+      "reuse": "work-assets/audio/2.mp3"
+    },
+    {
+      "index": 4,
+      "original_text": "опасно",
+      "tts_text": "Опасно.",
+      "file": "work_04.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=433a083d14aa4d8b87279be9e6486172.mp3",
+      "duration": 1.1685714285714286
+    },
+    {
+      "index": 5,
+      "original_text": "не подходи",
+      "tts_text": "Не подходи.",
+      "file": "work_05.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=4ce804facb884336a40563e5837e3cf6.mp3",
+      "duration": 1.067936507936508
+    },
+    {
+      "index": 6,
+      "original_text": "надень каску",
+      "tts_text": "Надень каску.",
+      "file": "work_06.mp3",
+      "reuse": "work-assets/audio/1.mp3"
+    },
+    {
+      "index": 7,
+      "original_text": "лопата",
+      "tts_text": "Лопата.",
+      "file": "work_07.mp3",
+      "reuse": "work-assets/audio/7.mp3"
+    },
+    {
+      "index": 8,
+      "original_text": "молоток",
+      "tts_text": "Молоток.",
+      "file": "work_08.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=5ad44c2f28e9488e977278936eab1b02.mp3",
+      "duration": 0.9296371882086167
+    },
+    {
+      "index": 9,
+      "original_text": "пила",
+      "tts_text": "Пила.",
+      "file": "work_09.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=eef119d846024edda78c4cac60d088e0.mp3",
+      "duration": 0.687936507936508
+    },
+    {
+      "index": 10,
+      "original_text": "работа",
+      "tts_text": "Работа.",
+      "file": "work_10.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=0a2a96a7208e44e88d076eb4f7ee8fdf.mp3",
+      "duration": 0.8853514739229025
+    },
+    {
+      "index": 11,
+      "original_text": "принеси",
+      "tts_text": "Принеси.",
+      "file": "work_11.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=c4cf0fb1e6b8487ab68f57b758e3477b.mp3",
+      "duration": 1.037936507936508
+    },
+    {
+      "index": 12,
+      "original_text": "возьми",
+      "tts_text": "Возьми.",
+      "file": "work_12.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=e86dbb573e2a4fe4979258cb320d775f.mp3",
+      "duration": 0.9613832199546485
+    },
+    {
+      "index": 13,
+      "original_text": "копай",
+      "tts_text": "Копай.",
+      "file": "work_13.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=5573a18364874ec49782dd35caf88686.mp3",
+      "duration": 0.7827891156462585
+    },
+    {
+      "index": 14,
+      "original_text": "убери мусор",
+      "tts_text": "Убери мусор!",
+      "file": "work_14.mp3",
+      "reuse": "work-assets/audio/10.mp3"
+    },
+    {
+      "index": 15,
+      "original_text": "кирпичи",
+      "tts_text": "Кирпичи.",
+      "file": "work_15.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=30d03e7bfa6148fd94b40d6c4990000d.mp3",
+      "duration": 1.1384807256235827
+    },
+    {
+      "index": 16,
+      "original_text": "этаж",
+      "tts_text": "Этаж.",
+      "file": "work_16.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=59d84a078eed4f8a807718eb79bd75b5.mp3",
+      "duration": 0.8836734693877552
+    },
+    {
+      "index": 17,
+      "original_text": "тачка",
+      "tts_text": "Тачка.",
+      "file": "work_17.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=b2f5bd00d7eb4dd7842a6d9d13e78c50.mp3",
+      "duration": 0.9579818594104308
+    },
+    {
+      "index": 18,
+      "original_text": "повторите, пожалуйста",
+      "tts_text": "Повторите, пожалуйста.",
+      "file": "work_18.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=cf232dc700dc4585aa398076e2e3500d.mp3",
+      "duration": 1.5959637188208617
+    },
+    {
+      "index": 19,
+      "original_text": "где перчатки",
+      "tts_text": "Где перчатки?",
+      "file": "work_19.mp3",
+      "reuse": "work-assets/audio/34.mp3"
+    },
+    {
+      "index": 20,
+      "original_text": "всё понятно",
+      "tts_text": "Всё понятно.",
+      "file": "work_20.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=96d8f115b8f3472b885ac1bfe49b1ad5.mp3",
+      "duration": 1.2782766439909297
+    },
+    {
+      "index": 21,
+      "original_text": "я позову",
+      "tts_text": "Я позову.",
+      "file": "work_21.mp3",
+      "reuse": null,
+      "sourceUrl": "https://resource2.heygen.ai/text_to_speech/bfd2f9fc26574304a049c08af0c386cb/9df4585a838b4cafa49498bd01f60fe4/id=1714922d45134d97a6df3ca682796a8d.mp3",
+      "duration": 1.089546485260771
+    }
+  ]
+}
