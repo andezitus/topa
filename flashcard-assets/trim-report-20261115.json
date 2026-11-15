@@ -1,0 +1,75 @@
+{
+  "source": "topa_card_audio_64_feedback.json",
+  "approved_untouched": 58,
+  "flagged_trimmed": 6,
+  "seconds_requested_per_clip": 0.3,
+  "changes": [
+    {
+      "file": "tt_06.mp3",
+      "language": "Татарский",
+      "word": "Яхшы",
+      "requested_cut_seconds": 0.3,
+      "actual_cut_seconds": 0.3,
+      "duration_before_seconds": 1.0971,
+      "duration_after_seconds": 0.7971,
+      "original_sha256": "57ea15503e25200fe881475195730a47c04879cebded9baa1598e2f231766533",
+      "trimmed_sha256": "ab7b9702ca341c91967d9b4c19afce51759a50c4b12ee02b7cd4dd4dc9ddd348"
+    },
+    {
+      "file": "cv_05.mp3",
+      "language": "Чувашский",
+      "word": "Епӗ … ятлӑ",
+      "requested_cut_seconds": 0.3,
+      "actual_cut_seconds": 0.3,
+      "duration_before_seconds": 1.6979,
+      "duration_after_seconds": 1.3979,
+      "original_sha256": "675c689d814e63dfb18ff4a3193f39ef2ddc7918d7cc3305a1ab84eb943cda8d",
+      "trimmed_sha256": "632775a1afe3dd0c0499d34bc5cb634b14b87ce9d8d7cef8d4f393f59bf0b5a8"
+    },
+    {
+      "file": "cv_07.mp3",
+      "language": "Чувашский",
+      "word": "магазин",
+      "requested_cut_seconds": 0.3,
+      "actual_cut_seconds": 0.3,
+      "duration_before_seconds": 1.1755,
+      "duration_after_seconds": 0.8755,
+      "original_sha256": "e0839ff1b110de158ffbf8ae5b2af1f6a69f1045cb5f68d42b175d61a0ba28d3",
+      "trimmed_sha256": "96574875735d11ce383ad7e984b56a68dbbae17706b921d0bbe7d60a72be71b0"
+    },
+    {
+      "file": "ky_05.mp3",
+      "language": "Киргизский",
+      "word": "Менин атым…",
+      "requested_cut_seconds": 0.3,
+      "actual_cut_seconds": 0.3,
+      "duration_before_seconds": 1.7763,
+      "duration_after_seconds": 1.4763,
+      "original_sha256": "4b053aa35f0098ddbd67fe39e197fc6f8e07d48461d14bee211307e511fa20ff",
+      "trimmed_sha256": "97324c205c42bf61a6b4a1bb15f1967738debfc31dfec2b6fb0b1a5e08ebaba6"
+    },
+    {
+      "file": "work_04.mp3",
+      "language": "Русский · для компаний",
+      "word": "опасно",
+      "requested_cut_seconds": 0.3,
+      "actual_cut_seconds": 0.3,
+      "duration_before_seconds": 1.2016,
+      "duration_after_seconds": 0.9016,
+      "original_sha256": "45fbc9e73acff1e1416006a343516bb3ade6d96e86a1b82eaf088faa9e83b986",
+      "trimmed_sha256": "591e7ee320c77a921dcd38f8c3c0e27f5d02cc4a311eb3c84b98f56ff350b2ac"
+    },
+    {
+      "file": "work_10.mp3",
+      "language": "Русский · для компаний",
+      "word": "работа",
+      "requested_cut_seconds": 0.3,
+      "actual_cut_seconds": 0.3,
+      "duration_before_seconds": 0.9143,
+      "duration_after_seconds": 0.6142,
+      "original_sha256": "912b1683ccdae4b1f5c91d13ad0085a38d5909271696e3e111f2f989b6caf6d4",
+      "trimmed_sha256": "7306261a1bfb590333bbef5a777c392e219b71ca83d102485e14274c6425e846"
+    }
+  ],
+  "other_58_mp3_byte_identical": true
+}
