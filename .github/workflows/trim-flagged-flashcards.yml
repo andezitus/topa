@@ -1,0 +1,51 @@
+name: Trim six flagged TOPA flashcard MP3 endings
+on:
+  push:
+    branches: [flashcard-audio-demo-20261115]
+    paths:
+      - .github/workflows/trim-flagged-flashcards.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  trim-audio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout isolated audio demo branch
+        uses: actions/checkout@v4
+        with:
+          ref: flashcard-audio-demo-20261115
+      - name: Install ffmpeg and ffprobe
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Apply 0.3 second end trim to exactly six selected MP3
+        run: python3 scripts/trim_flagged_flashcards.py
+      - name: Verify edited MP3 and unchanged approved files
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          a=Path('flashcard-assets/audio')
+          o=Path('flashcard-assets/originals')
+          r=json.loads(Path('flashcard-assets/trim-report-20261115.json').read_text(encoding='utf-8'))
+          assert len(list(a.glob('*.mp3')))==64
+          assert len(list(o.glob('*.mp3')))==6
+          assert len(r['changes'])==6 and r['other_58_mp3_byte_identical']
+          assert all(0.25 <= x['actual_cut_seconds'] <= 0.34 for x in r['changes'])
+          assert all(hashlib.sha256((o/x['file']).read_bytes()).hexdigest()==x['original_sha256'] for x in r['changes'])
+          print('Verified 64 MP3, six cuts of ~0.3s, and 58 preserved files.')
+          PY
+      - name: Commit trimmed audio and backed-up originals only to demo branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f flashcard-assets/audio flashcard-assets/originals flashcard-assets/trim-report-20261115.json
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "Demo: trim six flagged flashcards by 0.3s and preserve originals"
+            git push origin HEAD:flashcard-audio-demo-20261115
+          fi
