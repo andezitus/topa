@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch 60 HeyGen clips and physically apply the 6 user-approved end trims.
+"""Fetch 71 HeyGen clips and physically apply the 6 user-approved end trims.
 Run from repository root: python scripts/import_selfstudy_audio.py
 Requires Python 3, ffmpeg and ffprobe, and access to the HeyGen URLs.
 Does NOT change the original speech or update index.html automatically.
@@ -35,6 +35,11 @@ def items():
             yield language,index,role,asset,file
         yield language,None,"narrator",group["order"],prefix+"_order.mp3"
         yield language,None,"narrator",group["choice"],prefix+"_choice.mp3"
+    for row in CONF["intro"]["common"]:
+        yield "Русский",None,"narrator",row["asset"],row["file"]
+    for language, group_rows in CONF["intro"]["byLanguage"].items():
+        for row in group_rows:
+            yield language,None,"narrator",row["asset"],row["file"]
 def main():
     DEST.mkdir(parents=True,exist_ok=True)
     RAW.mkdir(parents=True,exist_ok=True)
