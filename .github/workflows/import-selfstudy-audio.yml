@@ -33,7 +33,7 @@ jobs:
           d=Path("selfstudy-assets/audio")
           mp3=list(d.glob("*.mp3"))
           report=json.loads((d/"import_report.json").read_text(encoding="utf-8"))
-          assert len(mp3)==len(report)==60,(len(mp3),len(report))
+          assert len(mp3)==len(report)==71,(len(mp3),len(report))
           assert sum(x["trimmed_seconds"]>0 for x in report)==6
           assert all(p.stat().st_size>1000 for p in mp3)
           print("Verified",len(mp3),"MP3; 6 approved end trims.")
@@ -46,6 +46,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Audio assets already committed."
           else
-            git commit -m "Demo: import 60 reviewed HeyGen self-study MP3"
+            git commit -m "Demo: import 71 reviewed HeyGen self-study MP3"
             git push origin HEAD:selfstudy-heygen-audio-demo
           fi
