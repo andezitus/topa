@@ -651,7 +651,18 @@
     }
     function bindSpeechButtons(scope){
       (scope||host).querySelectorAll('[data-speak]').forEach(function(button){
-        button.addEventListener('click',()=>speak(button.dataset.speak,button.dataset.speakLang));
+        button.addEventListener('click',function(){
+          const line=button.closest('[data-story-line]');
+          if(!workMode && activeLesson!==0 && window.TopaSelfStudyAudio &&
+             window.TopaSelfStudyAudio.play({
+               language:language,
+               text:button.dataset.speak,
+               storyIndex:line?line.dataset.storyLine:null,
+               button:button,
+               fallback:()=>speak(button.dataset.speak,button.dataset.speakLang)
+             }))return;
+          speak(button.dataset.speak,button.dataset.speakLang);
+        });
       });
     }
     function workAudioButton(index){
@@ -1372,5 +1383,6 @@
   <script src="mobile-layout.js?v=8"></script>
   <script src="courses.js?v=2"></script>
   <script src="mobile-viewport.js?v=1"></script>
+  <script src="selfstudy-audio.js?v=1"></script>
 </body>
 </html>
