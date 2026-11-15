@@ -19,13 +19,15 @@ jobs:
         with:
           ref: selfstudy-heygen-audio-demo
           persist-credentials: true
-      - name: Check ffmpeg availability
+      - name: Install ffmpeg and ffprobe
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
           ffmpeg -version | head -n 1
           ffprobe -version | head -n 1
       - name: Download and apply 6 approved trims
         run: python3 scripts/import_selfstudy_audio.py
-      - name: Validate 60 local MP3 files
+      - name: Validate 71 local MP3 files
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -38,11 +40,27 @@ jobs:
           assert all(p.stat().st_size>1000 for p in mp3)
           print("Verified",len(mp3),"MP3; 6 approved end trims.")
           PY
+      - name: Switch demo to local files after successful import
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path=Path("selfstudy-audio.js")
+          content=path.read_text(encoding="utf-8")
+          old="let useLocal = false;"
+          if old in content:
+              path.write_text(content.replace(old,"let useLocal = true;",1),encoding="utf-8")
+          elif "let useLocal = true;" not in content:
+              raise SystemExit("Cannot locate local audio flag")
+          index=Path("index.html")
+          html=index.read_text(encoding="utf-8")
+          if 'selfstudy-audio.js?v=2' in html:
+              index.write_text(html.replace('selfstudy-audio.js?v=2','selfstudy-audio.js?v=3',1),encoding="utf-8")
+          PY
       - name: Commit audio assets only to demo branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f selfstudy-assets/audio
+          git add -f selfstudy-assets/audio selfstudy-audio.js index.html
           if git diff --cached --quiet; then
             echo "Audio assets already committed."
           else
