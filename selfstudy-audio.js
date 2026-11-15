@@ -7,7 +7,7 @@
   const WOMEN = new Set(CONFIG.storyWomanIndices);
   let active = null;
   let token = 0;
-  let useLocal = false;
+  let useLocal = true;
   function stop() {
     const current = active;
     active = null;
