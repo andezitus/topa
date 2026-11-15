@@ -1,0 +1,570 @@
+[
+  {
+    "language": "Татарский",
+    "story_index": 0,
+    "voice": "woman",
+    "file": "tt_story_00.mp3",
+    "trimmed_seconds": 0,
+    "size": 27167
+  },
+  {
+    "language": "Татарский",
+    "story_index": 1,
+    "voice": "learner",
+    "file": "tt_story_01.mp3",
+    "trimmed_seconds": 0,
+    "size": 20480
+  },
+  {
+    "language": "Татарский",
+    "story_index": 2,
+    "voice": "woman",
+    "file": "tt_story_02.mp3",
+    "trimmed_seconds": 0,
+    "size": 34690
+  },
+  {
+    "language": "Татарский",
+    "story_index": 3,
+    "voice": "learner",
+    "file": "tt_story_03.mp3",
+    "trimmed_seconds": 0.46,
+    "size": 27211
+  },
+  {
+    "language": "Татарский",
+    "story_index": 4,
+    "voice": "woman",
+    "file": "tt_story_04.mp3",
+    "trimmed_seconds": 0,
+    "size": 43885
+  },
+  {
+    "language": "Татарский",
+    "story_index": 5,
+    "voice": "woman",
+    "file": "tt_story_05.mp3",
+    "trimmed_seconds": 0,
+    "size": 37616
+  },
+  {
+    "language": "Татарский",
+    "story_index": 6,
+    "voice": "woman",
+    "file": "tt_story_06.mp3",
+    "trimmed_seconds": 0,
+    "size": 30093
+  },
+  {
+    "language": "Татарский",
+    "story_index": 7,
+    "voice": "woman",
+    "file": "tt_story_07.mp3",
+    "trimmed_seconds": 0,
+    "size": 41795
+  },
+  {
+    "language": "Татарский",
+    "story_index": 8,
+    "voice": "learner",
+    "file": "tt_story_08.mp3",
+    "trimmed_seconds": 0.28,
+    "size": 25644
+  },
+  {
+    "language": "Татарский",
+    "story_index": 9,
+    "voice": "learner",
+    "file": "tt_story_09.mp3",
+    "trimmed_seconds": 0,
+    "size": 49319
+  },
+  {
+    "language": "Татарский",
+    "story_index": 10,
+    "voice": "learner",
+    "file": "tt_story_10.mp3",
+    "trimmed_seconds": 0,
+    "size": 51409
+  },
+  {
+    "language": "Татарский",
+    "story_index": 11,
+    "voice": "learner",
+    "file": "tt_story_11.mp3",
+    "trimmed_seconds": 0,
+    "size": 22151
+  },
+  {
+    "language": "Татарский",
+    "story_index": 12,
+    "voice": "learner",
+    "file": "tt_story_12.mp3",
+    "trimmed_seconds": 0,
+    "size": 35526
+  },
+  {
+    "language": "Татарский",
+    "story_index": 13,
+    "voice": "woman",
+    "file": "tt_story_13.mp3",
+    "trimmed_seconds": 0,
+    "size": 37616
+  },
+  {
+    "language": "Татарский",
+    "story_index": 14,
+    "voice": "woman",
+    "file": "tt_story_14.mp3",
+    "trimmed_seconds": 0,
+    "size": 75650
+  },
+  {
+    "language": "Татарский",
+    "story_index": 15,
+    "voice": "woman",
+    "file": "tt_story_15.mp3",
+    "trimmed_seconds": 0,
+    "size": 33436
+  },
+  {
+    "language": "Татарский",
+    "story_index": 16,
+    "voice": "learner",
+    "file": "tt_story_16.mp3",
+    "trimmed_seconds": 0,
+    "size": 14210
+  },
+  {
+    "language": "Татарский",
+    "story_index": 17,
+    "voice": "learner",
+    "file": "tt_story_17.mp3",
+    "trimmed_seconds": 0,
+    "size": 29257
+  },
+  {
+    "language": "Татарский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "tt_order.mp3",
+    "trimmed_seconds": 0,
+    "size": 29675
+  },
+  {
+    "language": "Татарский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "tt_choice.mp3",
+    "trimmed_seconds": 0,
+    "size": 19226
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 0,
+    "voice": "woman",
+    "file": "cv_story_00.mp3",
+    "trimmed_seconds": 0,
+    "size": 15046
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 1,
+    "voice": "learner",
+    "file": "cv_story_01.mp3",
+    "trimmed_seconds": 0,
+    "size": 15464
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 2,
+    "voice": "woman",
+    "file": "cv_story_02.mp3",
+    "trimmed_seconds": 0,
+    "size": 39706
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 3,
+    "voice": "learner",
+    "file": "cv_story_03.mp3",
+    "trimmed_seconds": 0,
+    "size": 24241
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 4,
+    "voice": "woman",
+    "file": "cv_story_04.mp3",
+    "trimmed_seconds": 0,
+    "size": 34272
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 5,
+    "voice": "woman",
+    "file": "cv_story_05.mp3",
+    "trimmed_seconds": 0.42,
+    "size": 36093
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 6,
+    "voice": "woman",
+    "file": "cv_story_06.mp3",
+    "trimmed_seconds": 0,
+    "size": 33854
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 7,
+    "voice": "woman",
+    "file": "cv_story_07.mp3",
+    "trimmed_seconds": 0.42,
+    "size": 67440
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 8,
+    "voice": "learner",
+    "file": "cv_story_08.mp3",
+    "trimmed_seconds": 0,
+    "size": 23405
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 9,
+    "voice": "learner",
+    "file": "cv_story_09.mp3",
+    "trimmed_seconds": 0,
+    "size": 57260
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 10,
+    "voice": "learner",
+    "file": "cv_story_10.mp3",
+    "trimmed_seconds": 0,
+    "size": 55170
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 11,
+    "voice": "learner",
+    "file": "cv_story_11.mp3",
+    "trimmed_seconds": 0,
+    "size": 20480
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 12,
+    "voice": "learner",
+    "file": "cv_story_12.mp3",
+    "trimmed_seconds": 0,
+    "size": 39706
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 13,
+    "voice": "woman",
+    "file": "cv_story_13.mp3",
+    "trimmed_seconds": 0,
+    "size": 50155
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 14,
+    "voice": "woman",
+    "file": "cv_story_14.mp3",
+    "trimmed_seconds": 0,
+    "size": 45975
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 15,
+    "voice": "woman",
+    "file": "cv_story_15.mp3",
+    "trimmed_seconds": 0,
+    "size": 41377
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 16,
+    "voice": "learner",
+    "file": "cv_story_16.mp3",
+    "trimmed_seconds": 0,
+    "size": 21733
+  },
+  {
+    "language": "Чувашский",
+    "story_index": 17,
+    "voice": "learner",
+    "file": "cv_story_17.mp3",
+    "trimmed_seconds": 0,
+    "size": 35108
+  },
+  {
+    "language": "Чувашский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "cv_order.mp3",
+    "trimmed_seconds": 0,
+    "size": 35108
+  },
+  {
+    "language": "Чувашский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "cv_choice.mp3",
+    "trimmed_seconds": 0,
+    "size": 19226
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 0,
+    "voice": "woman",
+    "file": "ky_story_00.mp3",
+    "trimmed_seconds": 0,
+    "size": 20480
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 1,
+    "voice": "learner",
+    "file": "ky_story_01.mp3",
+    "trimmed_seconds": 0,
+    "size": 18808
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 2,
+    "voice": "woman",
+    "file": "ky_story_02.mp3",
+    "trimmed_seconds": 0,
+    "size": 30511
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 3,
+    "voice": "learner",
+    "file": "ky_story_03.mp3",
+    "trimmed_seconds": 0,
+    "size": 24659
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 4,
+    "voice": "woman",
+    "file": "ky_story_04.mp3",
+    "trimmed_seconds": 0,
+    "size": 40542
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 5,
+    "voice": "woman",
+    "file": "ky_story_05.mp3",
+    "trimmed_seconds": 0,
+    "size": 42213
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 6,
+    "voice": "woman",
+    "file": "ky_story_06.mp3",
+    "trimmed_seconds": 0,
+    "size": 31764
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 7,
+    "voice": "woman",
+    "file": "ky_story_07.mp3",
+    "trimmed_seconds": 0.42,
+    "size": 41317
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 8,
+    "voice": "learner",
+    "file": "ky_story_08.mp3",
+    "trimmed_seconds": 0,
+    "size": 20897
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 9,
+    "voice": "learner",
+    "file": "ky_story_09.mp3",
+    "trimmed_seconds": 0,
+    "size": 58096
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 10,
+    "voice": "learner",
+    "file": "ky_story_10.mp3",
+    "trimmed_seconds": 0,
+    "size": 51409
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 11,
+    "voice": "learner",
+    "file": "ky_story_11.mp3",
+    "trimmed_seconds": 0,
+    "size": 22569
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 12,
+    "voice": "learner",
+    "file": "ky_story_12.mp3",
+    "trimmed_seconds": 0.44,
+    "size": 58035
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 13,
+    "voice": "woman",
+    "file": "ky_story_13.mp3",
+    "trimmed_seconds": 0,
+    "size": 49319
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 14,
+    "voice": "woman",
+    "file": "ky_story_14.mp3",
+    "trimmed_seconds": 0,
+    "size": 66873
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 15,
+    "voice": "woman",
+    "file": "ky_story_15.mp3",
+    "trimmed_seconds": 0,
+    "size": 35108
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 16,
+    "voice": "learner",
+    "file": "ky_story_16.mp3",
+    "trimmed_seconds": 0,
+    "size": 22987
+  },
+  {
+    "language": "Киргизский",
+    "story_index": 17,
+    "voice": "learner",
+    "file": "ky_story_17.mp3",
+    "trimmed_seconds": 0,
+    "size": 31346
+  },
+  {
+    "language": "Киргизский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "ky_order.mp3",
+    "trimmed_seconds": 0,
+    "size": 32600
+  },
+  {
+    "language": "Киргизский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "ky_choice.mp3",
+    "trimmed_seconds": 0,
+    "size": 21315
+  },
+  {
+    "language": "Русский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "intro_ru_warm.mp3",
+    "trimmed_seconds": 0,
+    "size": 13792
+  },
+  {
+    "language": "Русский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "intro_ru_hello.mp3",
+    "trimmed_seconds": 0,
+    "size": 18390
+  },
+  {
+    "language": "Русский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "intro_ru_thanks.mp3",
+    "trimmed_seconds": 0,
+    "size": 14210
+  },
+  {
+    "language": "Русский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "intro_ru_help.mp3",
+    "trimmed_seconds": 0,
+    "size": 14210
+  },
+  {
+    "language": "Русский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "intro_ru_beautiful.mp3",
+    "trimmed_seconds": 0,
+    "size": 15882
+  },
+  {
+    "language": "Татарский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "tt_intro_warm.mp3",
+    "trimmed_seconds": 0,
+    "size": 21733
+  },
+  {
+    "language": "Татарский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "tt_intro_description.mp3",
+    "trimmed_seconds": 0,
+    "size": 29675
+  },
+  {
+    "language": "Чувашский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "cv_intro_warm.mp3",
+    "trimmed_seconds": 0,
+    "size": 21315
+  },
+  {
+    "language": "Чувашский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "cv_intro_description.mp3",
+    "trimmed_seconds": 0,
+    "size": 27585
+  },
+  {
+    "language": "Киргизский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "ky_intro_warm.mp3",
+    "trimmed_seconds": 0,
+    "size": 21315
+  },
+  {
+    "language": "Киргизский",
+    "story_index": null,
+    "voice": "narrator",
+    "file": "ky_intro_description.mp3",
+    "trimmed_seconds": 0,
+    "size": 36362
+  }
+]
