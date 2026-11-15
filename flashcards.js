@@ -144,6 +144,7 @@
     render();$('#closeReview').focus();
   }
   function close(){
+    window.TopaCardAudio?.stop();
     root.classList.remove('open');
     if(!document.querySelector('.modal.open'))document.body.style.overflow='';
     if('speechSynthesis' in window)window.speechSynthesis.cancel();
@@ -164,6 +165,7 @@
     $('#reviewResultUndo').onclick=undo;
   }
   function render(){
+    window.TopaCardAudio?.stop();
     flipped=false;
     if(!session){renderEmpty();return}
     if(session.index>=session.queue.length){renderResult();return}
@@ -204,13 +206,18 @@
         <button class="review-undo" id="reviewUndo" type="button"${!session.undo?' disabled':''}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5-5 5 5 5M4 10h10a6 6 0 0 1 0 12h-4"/></svg>${reviewText('Отменить')}</button>
       </div>`;
     $('#reviewFlip').onclick=flip;
-    $('#reviewAudio').onclick=()=>speak(word.word);
+    $('#reviewAudio').onclick=()=>{
+      const button=$('#reviewAudio');
+      if(window.TopaCardAudio?.play(language,word.word,button))return;
+      speak(word.word);
+    };
     $('#reviewLearning').onclick=()=>rate(false);
     $('#reviewKnown').onclick=()=>rate(true);
     $('#reviewUndo').onclick=undo;
   }
   function flip(){
     if(!currentWord())return;
+    window.TopaCardAudio?.stop();
     flipped=!flipped;
     $('#reviewFlip').setAttribute('aria-pressed',String(flipped));
     $('#reviewFlip').setAttribute('aria-label',flipped?currentWord().translation+'. '+reviewText('Вернуться к слову'):currentWord().word+'. '+reviewText('Показать перевод'));
