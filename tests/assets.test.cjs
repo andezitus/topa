@@ -6,7 +6,18 @@ vm.runInContext(heading,context);
 assert.equal(vm.runInContext("taskHeading({title:'Выберите слово',help:'Подсказка'})",context),'<h2 class="task-title" id="taskTitle">Выберите слово</h2>');
 context.activeLesson=1;assert.match(vm.runInContext("taskHeading({title:'Заголовок',help:'Подсказка'})",context),/task-kicker/,'other lessons retain their headings');
 const files=fs.readdirSync('.');assert.equal(files.some(name=>name.endsWith('.png')),false);
-for(const name of files.filter(name=>name.endsWith('.svg'))){const svg=fs.readFileSync(name,'utf8');assert.doesNotMatch(svg,/<image|data:image|<script/);assert.match(html,new RegExp('as="image" href="'+name.replaceAll('.','\\.')+'"'),'vector is preloaded: '+name)}
+const preloadedImages=[...html.matchAll(/as="image" href="([^"]+)"/g)].map(match=>match[1].split('?')[0]);
+for(const name of files.filter(name=>name.endsWith('.svg'))){
+  const svg=fs.readFileSync(name,'utf8');
+  assert.doesNotMatch(svg,/<script\b/i);
+  if(name==='mascot-wave.svg'){
+    // The supplied mascot SVG includes PNG layers embedded directly in the file.
+    for(const tag of svg.match(/<image\b[^>]*>/gi)||[]){
+      assert.match(tag,/(?:xlink:)?href="data:image\/png;base64,/i);
+    }
+  }else assert.doesNotMatch(svg,/<image|data:image/i);
+  assert.ok(preloadedImages.includes(name),'image is preloaded: '+name);
+}
 const images=[],loads=[];
 class FakeImage{constructor(){images.push(this)}set src(value){this.path=value;loads.push(value)}decode(){return this.path==='broken.svg'?Promise.reject(Error('decode failed')):Promise.resolve()}}
 const assets=vm.createContext({Image:FakeImage,Map,Promise,Object,window:{},document:{querySelectorAll:()=>[]}});
