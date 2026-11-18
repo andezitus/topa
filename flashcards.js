@@ -8,6 +8,18 @@
   const DAY=86400000;
   const intervals=[1,3,7,14,30,60];
   const workLocale = window.TopaWorkLocale;
+  function reviewWordMarkup(text){
+    const pronunciation=window.TopaPronunciation.forWord(text,language);
+    if(!pronunciation)return '<strong'+(workLocale?' lang="ru"':'')+'>'+escapeHtml(text)+'</strong>';
+    const words=String(text).trim().split(/\s+/u);
+    const readingLang=language==='Русский'?'ky':'ru';
+    const lang={'Татарский':'tt','Чувашский':'cv','Киргизский':'ky','Русский':'ru'}[language];
+    return '<strong class="review-words">'+words.map((word,index)=>
+      '<span class="review-word"><span class="review-word__text" lang="'+lang+'">'+escapeHtml(word)+'</span>'+
+      (pronunciation[index]?'<span class="review-word__reading" lang="'+readingLang+'">['+escapeHtml(pronunciation[index])+']</span>':'')+
+      '</span>'
+    ).join('')+'</strong>';
+  }
   const reviewLabels = {
     'Карточки повторения':'Кайталоо карточкалары',
     'Закрыть повторение':'Кайталоону жабуу',
@@ -184,7 +196,7 @@
         <button class="review-flip" id="reviewFlip" type="button" aria-label="${escapeHtml(word.word)}. ${reviewText('Показать перевод')}" aria-pressed="false">
           <span class="review-flip__inner">
             <span class="review-face review-face--front" aria-hidden="false">
-              <strong${workLocale?' lang="ru"':''}>${escapeHtml(word.word)}</strong>
+              ${reviewWordMarkup(word.word)}
               <span class="review-face__hint">${reviewText('Нажмите, чтобы увидеть перевод')}</span>
             </span>
             <span class="review-face review-face--back" aria-hidden="true" hidden>

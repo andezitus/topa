@@ -14,3 +14,21 @@
 .review-face--front{padding-bottom:76px}
 .review-face__hint{position:absolute;left:18px;right:18px;bottom:22px;color:#647fa5;font-size:.84rem;line-height:1.35;font-weight:600;letter-spacing:normal;text-align:center}
 @media(max-width:560px){.review-face--front{padding-bottom:72px}.review-face__hint{font-size:.74rem;bottom:20px}}
+
+/* Each word and its reading share a column, including after wrapping. */
+.review-face .review-words{
+  display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;
+  column-gap:.34em;row-gap:.55em;max-width:100%;
+}
+.review-word{
+  display:inline-flex;flex-direction:column;align-items:center;gap:.2em;min-width:0;max-width:100%;
+}
+.review-word__text{display:block;white-space:nowrap;letter-spacing:-.035em}
+.review-word__reading{
+  display:block;color:#667da1;font-size:max(.875rem,.48em);font-weight:400;line-height:1.35;
+  white-space:nowrap;letter-spacing:0;text-align:center;
+}
+
+.guide-word .guide-words{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;max-width:100%}
+.guide-word .guide-word-text{margin:0;color:inherit;font-size:inherit}
+.guide-word .guide-word-reading{margin:0;color:#667da1;font-size:.875rem;font-weight:400;white-space:normal}

@@ -86,7 +86,7 @@
     .story-avatar--woman img{transform:scale(1.08);transform-origin:center bottom}
     .story-avatar--mascot img{transform:scale(1.12);transform-origin:center bottom}
   </style>
-  <link rel="stylesheet" href="flashcards.css?v=6">
+  <link rel="stylesheet" href="flashcards.css?v=9">
   <link rel="stylesheet" href="mobile-layout.css?v=7">
   <link rel="stylesheet" href="courses.css?v=3">
   <link rel="stylesheet" href="intro-lesson.css?v=2">
@@ -587,6 +587,16 @@
       repeatModal.classList.remove('open');
       if(!modal.classList.contains('open')&&!guideModal.classList.contains('open'))document.body.style.overflow='';
     }
+    function guideWordMarkup(text){
+      const pronunciation=window.TopaPronunciation.forWord(text,language);
+      if(!pronunciation)return '<strong'+(workMode?' lang="ru"':'')+'>'+escapeHtml(text)+'</strong>';
+      const lang={'Татарский':'tt','Чувашский':'cv','Киргизский':'ky','Русский':'ru'}[language];
+      const readingLang=language==='Русский'?'ky':'ru';
+      const words=String(text).trim().split(/\s+/u);
+      const reading=words.map((word,index)=>pronunciation[index]||word).join(' ');
+      return '<strong class="guide-words"><span class="guide-word-text" lang="'+lang+'">'+escapeHtml(text)+'</span>'+
+        '<span class="guide-word-reading" lang="'+readingLang+'">['+escapeHtml(reading)+']</span></strong>';
+    }
     function renderGuide(){
       const unlocked=getGuideSections(language),wordCount=unlocked.reduce((total,section)=>total+section.words.length,0);
       $('#guideLanguage').textContent=languageLabel();
@@ -596,7 +606,7 @@
       }
       $('#guideContent').innerHTML='<div class="guide-summary"><strong>'+(workMode?'Үйрөнгөн сөздөр: ':'Изучено слов: ')+wordCount+'</strong><span>'+(workMode?'Ар бир сөз бир эле жолу кошулат':'Каждое слово добавляется один раз')+'</span></div>'+unlocked.map(section=>
         '<section class="guide-section"><div class="guide-section__head"><h3>'+escapeHtml(section.title)+'</h3><span>'+section.words.length+(workMode?' сөз':' слов')+'</span></div><label class="guide-select-all"><input type="checkbox" data-review-lesson="'+section.lesson+'" aria-label="'+(workMode?(section.lesson+1)+'-сабактагы бардык сөздөрдү тандоо':'Выбрать все слова урока '+(section.lesson+1))+'"><span>'+(workMode?'Баарын тандоо':'Выбрать все')+'</span></label><div class="guide-grid">'+section.words.map(word=>
-          '<article class="guide-word"><strong'+(workMode?' lang="ru"':'')+'>'+escapeHtml(word.word)+'</strong><span>'+escapeHtml(word.translation)+'</span><button class="guide-review-add" type="button" data-review-add="'+word.id+'">'+(workMode?'Кайталоого кошуу':'Добавить для повторения')+'</button></article>'
+          '<article class="guide-word">'+guideWordMarkup(word.word)+'<span>'+escapeHtml(word.translation)+'</span><button class="guide-review-add" type="button" data-review-add="'+word.id+'">'+(workMode?'Кайталоого кошуу':'Добавить для повторения')+'</button></article>'
         ).join('')+'</div></section>'
       ).join('');
       window.dispatchEvent(new CustomEvent('topa:guide'));
@@ -1381,7 +1391,8 @@
     if(location.hash==='#modes')showSection('Режимы');
   </script>
   <script src="flashcard-audio.js?v=2"></script>
-  <script src="flashcards.js?v=13"></script>
+  <script src="pronunciation.js?v=3"></script>
+  <script src="flashcards.js?v=17"></script>
   <script src="mobile-layout.js?v=8"></script>
   <script src="courses.js?v=2"></script>
   <script src="mobile-viewport.js?v=2"></script>

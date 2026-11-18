@@ -30,7 +30,7 @@ Object.defineProperty(context,'language',{get:()=>language});
 vm.runInContext(DATA,context);
 assert.equal(vm.runInContext('Object.values(courseData).every(course=>course.tasks.length===5)',context),true,'all courses retain exactly five lesson-one tasks');
 assert.equal(vm.runInContext('Object.values(GUIDE_DATA).every(sections=>sections.every(section=>section.words.length>=5&&section.words.length<=7))',context),true,'glossary preserves five to seven terms per lesson');
-function boot(){elements=new Map();guideButtons=[];guideChecks=[];vm.runInContext(source,context)}
+function boot(){elements=new Map();guideButtons=[];guideChecks=[];vm.runInContext(fs.readFileSync('pronunciation.js','utf8'),context);vm.runInContext(source,context)}
 function click(id){const el=$('#'+id);assert.equal(el.disabled,false,id+' must be enabled');assert.equal(typeof el.onclick,'function',id+' handler exists');el.onclick()}
 const saved=()=>JSON.parse(storage.get('topa-word-review-v1'));
 const current=()=>saved().languages[language];
