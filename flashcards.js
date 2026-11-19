@@ -184,6 +184,7 @@
     const word=currentWord();
     if(!word){session=null;saveSession();renderEmpty();return}
     const counts=counters();
+    const showGreetingIllustration=!window.TopaWork?.active&&word.translation==='Здравствуйте';
     content.innerHTML=`
       <div class="review-counters">
         <span class="review-counter"><b>${counts.learning}</b>${reviewText('Ещё изучаю')}</span>
@@ -195,7 +196,8 @@
       <div class="review-card-shell">
         <button class="review-flip" id="reviewFlip" type="button" aria-label="${escapeHtml(word.word)}. ${reviewText('Показать перевод')}" aria-pressed="false">
           <span class="review-flip__inner">
-            <span class="review-face review-face--front" aria-hidden="false">
+            <span class="review-face review-face--front${showGreetingIllustration?' review-face--illustrated':''}" aria-hidden="false">
+              ${showGreetingIllustration?'<img class="review-illustration" src="flashcard-assets/illustrations/hello.svg?v=8" alt="" draggable="false">':''}
               ${reviewWordMarkup(word.word)}
               <span class="review-face__hint">${reviewText('Нажмите, чтобы увидеть перевод')}</span>
             </span>

@@ -32,3 +32,24 @@
 .guide-word .guide-words{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;max-width:100%}
 .guide-word .guide-word-text{margin:0;color:inherit;font-size:inherit}
 .guide-word .guide-word-reading{margin:0;color:#667da1;font-size:.875rem;font-weight:400;white-space:normal}
+
+.review-face--illustrated{
+  gap:clamp(9px,2dvh,18px);
+  padding:20px 54px 54px;
+}
+.review-illustration{
+  display:block;
+  flex:0 1 auto;
+  width:min(100%,300px);
+  height:clamp(96px,28dvh,260px);
+  min-height:0;
+  object-fit:contain;
+  pointer-events:none;
+}
+.review-face--illustrated .review-words{flex:none;row-gap:.24em}
+
+@media(max-width:560px){
+  .review-face--illustrated{padding:16px 36px 46px}
+  .review-face--illustrated strong{font-size:clamp(1.25rem,6.5vw,2rem)}
+  .review-illustration{height:clamp(90px,24dvh,200px)}
+}
