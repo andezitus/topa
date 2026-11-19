@@ -20,6 +20,8 @@ class Element{
   addEventListener(name,callback){this.events[name]=callback}
   append(el){elements.set(el.id,el)}
   focus(){}
+  showModal(){this.open=true}
+  close(){this.open=false;this.events.close?.()}
   getClientRects(){return [1]}
 }
 const $=s=>{const id=s.replace(/^#/,'');if(!elements.has(id))elements.set(id,new Element(id));return elements.get(id)};
@@ -118,3 +120,46 @@ console.log('PASS: intro word gating, reversible selection, shared-word rating r
 
 assert.deepEqual(toastMessages,[],'manual add and cancel are silent');
 open();assert.match($('#reviewContent').innerHTML,/Нажмите, чтобы увидеть перевод/,'front face contains the flip instruction');
+
+
+// Display preferences affect a whole deck only after confirmation and are keyed by course.
+storage.clear();
+language='Татарский';
+progress[language].completed=2;
+boot();
+open();
+const keys=['transcriptions','audio','illustrations'];
+const setting=key=>$('#reviewSetting-'+key);
+const deckHTML=()=>$('#reviewContent').innerHTML;
+const sessionBeforeSettings=JSON.stringify(current().session);
+click('reviewSettingsButton');
+assert.ok(keys.every(key=>setting(key).checked));
+keys.forEach(key=>{setting(key).checked=false});
+click('cancelReviewSettings');
+assert.match(deckHTML(),/review-word__reading/);
+assert.match(deckHTML(),/id="reviewAudio"/);
+assert.match(deckHTML(),/class="review-illustration"/);
+click('reviewSettingsButton');
+assert.ok(keys.every(key=>setting(key).checked),'cancel discards the draft');
+keys.forEach(key=>{setting(key).checked=false});
+$('#reviewSettingsForm').events.submit({preventDefault(){}});
+assert.doesNotMatch(deckHTML(),/review-word__reading|id="reviewAudio"|class="review-illustration"/);
+assert.equal(JSON.stringify(current().session),sessionBeforeSettings,'display settings do not touch review session');
+answer(true);
+assert.doesNotMatch(deckHTML(),/review-word__reading|id="reviewAudio"|class="review-illustration"/,'next card uses the same display');
+click('closeReview');
+for(language of ['Чувашский','Киргизский']){
+  progress[language].completed=2;
+  boot();
+  open();
+  click('reviewSettingsButton');
+  assert.ok(keys.every(key=>setting(key).checked),'each other course keeps its defaults');
+  click('cancelReviewSettings');
+  click('closeReview');
+}
+language='Татарский';
+boot();
+open();
+click('reviewSettingsButton');
+assert.ok(keys.every(key=>!setting(key).checked),'the original course restores its own preferences');
+console.log('PASS: apply and cancel, whole-deck display, reload, and per-course preferences.');
