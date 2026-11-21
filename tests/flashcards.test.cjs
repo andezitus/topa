@@ -163,3 +163,53 @@ open();
 click('reviewSettingsButton');
 assert.ok(keys.every(key=>!setting(key).checked),'the original course restores its own preferences');
 console.log('PASS: apply and cancel, whole-deck display, reload, and per-course preferences.');
+
+// The company course uses the shared dialog and a separate set of preferences.
+click('cancelReviewSettings');
+const selfStudyPrefs=storage.get('topa-self-study-review-display-v1:Татарский');
+context.location={search:'?mode=work'};
+context.URLSearchParams=URLSearchParams;
+vm.runInContext(fs.readFileSync('work-course.js','utf8'),context);
+vm.runInContext("GUIDE_DATA['Русский']=window.TopaWork.lessons.map(({title,words},lesson)=>({lesson,title,words}));",context);
+context.window.TopaWorkLocale={language:'Орус тили'};
+language='Русский';
+progress[language]={completed:2,introDone:true};
+const workSession=()=>JSON.parse(storage.get('topa-work-word-review-v1')).languages[language].session;
+boot();
+open();
+const firstWorkSession=JSON.stringify(workSession());
+click('reviewSettingsButton');
+assert.ok(keys.every(key=>setting(key).checked),'company preferences start independently');
+keys.forEach(key=>{setting(key).checked=false});
+click('cancelReviewSettings');
+assert.match(deckHTML(),/review-word__reading/);
+assert.match(deckHTML(),/id="reviewAudio"/);
+assert.match(deckHTML(),/src="work-assets\/review\//);
+click('reviewSettingsButton');
+keys.forEach(key=>{setting(key).checked=false});
+$('#reviewSettingsForm').events.submit({preventDefault(){}});
+assert.doesNotMatch(deckHTML(),/review-word__reading|id="reviewAudio"|class="review-illustration"/);
+assert.equal(JSON.stringify(workSession()),firstWorkSession);
+assert.equal(storage.get('topa-self-study-review-display-v1:Татарский'),selfStudyPrefs);
+boot();
+open();
+click('reviewSettingsButton');
+assert.ok(keys.every(key=>!setting(key).checked),'company choices survive reload');
+keys.forEach(key=>{setting(key).checked=true});
+$('#reviewSettingsForm').events.submit({preventDefault(){}});
+
+const corporateImages=new Set();
+for(let batch=0;batch<3;batch++){
+  if(batch)click('reviewMore');
+  while(workSession().index<workSession().queue.length){
+    const card=deckHTML();
+    const image=card.match(/src="(work-assets\/review\/[^"]+\.svg)\?v=2"/);
+    assert.ok(image && fs.existsSync(image[1]),'each company card has an available image');
+    assert.match(card,/review-word__reading/);
+    assert.match(card,/id="reviewAudio"/);
+    corporateImages.add(image[1]);
+    answer(true);
+  }
+}
+assert.equal(corporateImages.size,22);
+console.log('PASS: all company cards are illustrated, with independent saved display preferences.');

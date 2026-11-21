@@ -4,15 +4,15 @@
  */
 (function(){
   'use strict';
-  const KEY=window.TopaWork?.active?'topa-work-word-review-v1':'topa-word-review-v1';
-  const selfStudy=!window.TopaWork?.active;
+  const workMode=Boolean(window.TopaWork?.active);
+  const KEY=workMode?'topa-work-word-review-v1':'topa-word-review-v1';
   const displayOptions=[
     ['transcriptions','Транскрипции','Показывают, как произносится слово или фраза.'],
     ['audio','Озвучка слов','Показывает кнопку, чтобы прослушать слово или фразу.'],
     ['illustrations','Визуальные подсказки','Показывают иллюстрацию на лицевой стороне карточки.']
   ];
   const savedDisplay=new Map();
-  const displayKey=course=>'topa-self-study-review-display-v1:'+course;
+  const displayKey=course=>(workMode?'topa-work-review-display-v1:':'topa-self-study-review-display-v1:')+course;
   function displaySettings(course){
     let saved=savedDisplay.get(course);
     if(!saved){
@@ -44,11 +44,38 @@
     ['магазин', 'intro-shop.svg'],
     ['пальто', 'intro-coat.svg']
   ]);
-  function reviewIllustration(meaning){
-    if(window.TopaWork?.active)return '';
-    const name=illustrationByMeaning.get(meaning);
+  const workIllustrations = new Map([
+    ['каска', 'helmet'],
+    ['перчатки', 'gloves'],
+    ['жилет', 'vest'],
+    ['стой', 'stop'],
+    ['опасно', 'danger'],
+    ['не подходи', 'keep-back'],
+    ['надень каску', 'put-on-helmet'],
+    ['лопата', 'shovel'],
+    ['молоток', 'hammer'],
+    ['пила', 'saw'],
+    ['работа', 'work'],
+    ['принеси', 'bring'],
+    ['возьми', 'take'],
+    ['копай', 'dig'],
+    ['убери мусор', 'clean-up'],
+    ['кирпичи', 'bricks'],
+    ['этаж', 'floor'],
+    ['тачка', 'wheelbarrow'],
+    ['повторите, пожалуйста', 'please-repeat'],
+    ['где перчатки', 'where-are-the-gloves'],
+    ['всё понятно', 'understood'],
+    ['я позову', 'i-will-call']
+  ]);
+  function reviewIllustration(word){
+    if(workMode){
+      const name=workIllustrations.get(word.word);
+      return name ? 'work-assets/review/'+name+'.svg?v=2' : '';
+    }
+    const name=illustrationByMeaning.get(word.translation);
     const version=name==='hello'?8:2;
-    return lessonIllustrations.get(meaning) || (name ? 'flashcard-assets/illustrations/'+name+'.svg?v='+version : '');
+    return lessonIllustrations.get(word.translation) || (name ? 'flashcard-assets/illustrations/'+name+'.svg?v='+version : '');
   }
   function reviewWordMarkup(text,showTranscriptions){
     const pronunciation=showTranscriptions&&window.TopaPronunciation.forWord(text,language);
@@ -86,7 +113,17 @@
     'Нажмите, чтобы увидеть перевод':'Котормосун көрүү үчүн басыңыз',
     'Перевод на русский':'Кыргызча котормосу',
     'Прослушать слово':'Сөздү угуу',
-    'Отменить':'Жокко чыгаруу'
+    'Отменить':'Жокко чыгаруу',
+    'Настройки карточек':'Карточкалардын жөндөөлөрү',
+    'Выберите, что показывать на карточках.':'Карточкаларда эмнени көрсөтүүнү тандаңыз.',
+    'Транскрипции':'Айтылышы',
+    'Показывают, как произносится слово или фраза.':'Сөз же сөз айкашы кандай айтыларын көрсөтөт.',
+    'Озвучка слов':'Үн',
+    'Показывает кнопку, чтобы прослушать слово или фразу.':'Сөздү же сөз айкашын угуу баскычын көрсөтөт.',
+    'Визуальные подсказки':'Сүрөттөр',
+    'Показывают иллюстрацию на лицевой стороне карточки.':'Карточканын алдыңкы бетинде сүрөттү көрсөтөт.',
+    'Применить':'Колдонуу',
+    'Настройки действуют до обновления страницы. Браузер не сохранил их.':'Жөндөөлөр барак жаңыртылганга чейин иштейт. Браузер аларды сактай алган жок.'
   };
   const reviewText = label => workLocale ? reviewLabels[label] ?? label : label;
   let store={version:1,languages:{}};
@@ -99,13 +136,13 @@
   const root=document.createElement('div');
   root.id='reviewModal';root.className='modal review-modal';
   root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-labelledby','reviewTitle');
-  const settingsButton=selfStudy?`<button class="review-settings-button review-position" id="reviewSettingsButton" type="button"
-    aria-label="Настройки карточек" aria-haspopup="dialog" aria-controls="reviewSettings">
+  const settingsButton=`<button class="review-settings-button review-position" id="reviewSettingsButton" type="button"
+    aria-label="${reviewText('Настройки карточек')}" aria-haspopup="dialog" aria-controls="reviewSettings">
     <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
       <path d="M9.7 3.5h4.6l.5 2.4 1.4.8 2.4-.8 2.3 4-1.8 1.6v1l1.8 1.6-2.3 4-2.4-.8-1.4.8-.5 2.4H9.7l-.5-2.4-1.4-.8-2.4.8-2.3-4 1.8-1.6v-1L3.1 9.9l2.3-4 2.4.8 1.4-.8z"/>
       <circle cx="12" cy="12" r="3"/>
     </svg>
-  </button>`:'';
+  </button>`;
   root.innerHTML=`<section class="review-dialog" tabindex="-1">
     <header class="review-header">
       <div class="review-header__title"><span class="review-header__symbol">${icon}</span>
@@ -117,63 +154,61 @@
     </header><div id="reviewContent"></div>
   </section>`;
   document.body.append(root);
-  const settings=selfStudy?document.createElement('dialog'):null;
-  if(settings){
-    settings.id='reviewSettings';
-    settings.className='review-settings';
-    settings.setAttribute('aria-labelledby','reviewSettingsTitle');
-    settings.setAttribute('aria-describedby','reviewSettingsIntro');
-    settings.innerHTML=`<form id="reviewSettingsForm">
-      <header class="review-settings__head">
-        <h2 id="reviewSettingsTitle">Настройки карточек</h2>
-        <p id="reviewSettingsIntro">Выберите, что показывать на карточках.</p>
-      </header>
-      <div class="review-settings__options">
-        ${displayOptions.map(([id,title,description])=>`
-          <label class="review-settings__row">
-            <span><strong id="reviewSetting-${id}-label">${title}</strong>
-              <small id="reviewSetting-${id}-help">${description}</small></span>
-            <input type="checkbox" role="switch" id="reviewSetting-${id}"
-              aria-labelledby="reviewSetting-${id}-label" aria-describedby="reviewSetting-${id}-help">
-          </label>`).join('')}
-      </div>
-      <footer class="review-settings__actions">
-        <button class="review-settings__apply" type="submit">Применить</button>
-        <button class="review-settings__cancel" id="cancelReviewSettings" type="button">Отменить</button>
-      </footer>
-    </form>`;
-    document.body.append(settings);
-    let editingCourse;
-    $('#reviewSettingsButton').onclick=()=>{
-      editingCourse=language;
-      const current=displaySettings(editingCourse);
-      displayOptions.forEach(([id])=>{$('#reviewSetting-'+id).checked=current[id]});
-      window.TopaCardAudio?.stop();
-      window.speechSynthesis?.cancel();
-      settings.showModal();
-    };
-    $('#cancelReviewSettings').onclick=()=>settings.close();
-    $('#reviewSettingsForm').addEventListener('submit',event=>{
-      event.preventDefault();
-      const next=Object.fromEntries(displayOptions.map(([id])=>[id,$('#reviewSetting-'+id).checked]));
-      savedDisplay.set(editingCourse,next);
-      try{
-        localStorage.setItem(displayKey(editingCourse),JSON.stringify(next));
-        savedDisplay.delete(editingCourse);
-      }catch(error){
-        showToast('Настройки действуют до обновления страницы. Браузер не сохранил их.');
-      }
-      settings.close();
-      if(language===editingCourse){
-        const showTranslation=flipped;
-        render();
-        if(showTranslation)flip();
-      }
-    });
-    settings.addEventListener('close',()=>{
-      if(root.classList.contains('open'))$('#reviewSettingsButton').focus();
-    });
-  }
+  const settings=document.createElement('dialog');
+  settings.id='reviewSettings';
+  settings.className='review-settings';
+  settings.setAttribute('aria-labelledby','reviewSettingsTitle');
+  settings.setAttribute('aria-describedby','reviewSettingsIntro');
+  settings.innerHTML=`<form id="reviewSettingsForm">
+    <header class="review-settings__head">
+      <h2 id="reviewSettingsTitle">${reviewText('Настройки карточек')}</h2>
+      <p id="reviewSettingsIntro">${reviewText('Выберите, что показывать на карточках.')}</p>
+    </header>
+    <div class="review-settings__options">
+      ${displayOptions.map(([id,title,description])=>`
+        <label class="review-settings__row">
+          <span><strong id="reviewSetting-${id}-label">${reviewText(title)}</strong>
+            <small id="reviewSetting-${id}-help">${reviewText(description)}</small></span>
+          <input type="checkbox" role="switch" id="reviewSetting-${id}"
+            aria-labelledby="reviewSetting-${id}-label" aria-describedby="reviewSetting-${id}-help">
+        </label>`).join('')}
+    </div>
+    <footer class="review-settings__actions">
+      <button class="review-settings__apply" type="submit">${reviewText('Применить')}</button>
+      <button class="review-settings__cancel" id="cancelReviewSettings" type="button">${reviewText('Отменить')}</button>
+    </footer>
+  </form>`;
+  document.body.append(settings);
+  let editingCourse;
+  $('#reviewSettingsButton').onclick=()=>{
+    editingCourse=language;
+    const current=displaySettings(editingCourse);
+    displayOptions.forEach(([id])=>{$('#reviewSetting-'+id).checked=current[id]});
+    window.TopaCardAudio?.stop();
+    window.speechSynthesis?.cancel();
+    settings.showModal();
+  };
+  $('#cancelReviewSettings').onclick=()=>settings.close();
+  $('#reviewSettingsForm').addEventListener('submit',event=>{
+    event.preventDefault();
+    const next=Object.fromEntries(displayOptions.map(([id])=>[id,$('#reviewSetting-'+id).checked]));
+    savedDisplay.set(editingCourse,next);
+    try{
+      localStorage.setItem(displayKey(editingCourse),JSON.stringify(next));
+      savedDisplay.delete(editingCourse);
+    }catch(error){
+      showToast(reviewText('Настройки действуют до обновления страницы. Браузер не сохранил их.'));
+    }
+    settings.close();
+    if(language===editingCourse){
+      const showTranslation=flipped;
+      render();
+      if(showTranslation)flip();
+    }
+  });
+  settings.addEventListener('close',()=>{
+    if(root.classList.contains('open'))$('#reviewSettingsButton').focus();
+  });
   const content=root.querySelector('#reviewContent');
   const clone=value=>JSON.parse(JSON.stringify(value));
   function persist(){
@@ -273,7 +308,7 @@
   function close(){
     window.TopaCardAudio?.stop();
     root.classList.remove('open');
-    if(settings?.open)settings.close();
+    if(settings.open)settings.close();
     if(!document.querySelector('.modal.open'))document.body.style.overflow='';
     if('speechSynthesis' in window)window.speechSynthesis.cancel();
     refreshLaunch();
@@ -300,8 +335,8 @@
     const word=currentWord();
     if(!word){session=null;saveSession();renderEmpty();return}
     const counts=counters();
-    const display=selfStudy?displaySettings(language):{transcriptions:true,audio:true,illustrations:true};
-    const illustration=display.illustrations?reviewIllustration(word.translation):'';
+    const display=displaySettings(language);
+    const illustration=display.illustrations?reviewIllustration(word):'';
     content.innerHTML=`
       <div class="review-counters">
         <span class="review-counter"><b>${counts.learning}</b>${reviewText('Ещё изучаю')}</span>
